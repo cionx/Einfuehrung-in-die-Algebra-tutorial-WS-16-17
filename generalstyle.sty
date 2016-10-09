@@ -1,0 +1,83 @@
+%%% PACKAGES
+
+% XeLaTeX
+\usepackage{xltxtra}
+
+% German
+\usepackage[ngerman]{babel}
+
+% math stuff
+\usepackage{
+  amsmath,
+  amssymb,
+  amsthm,
+  mathtools
+}
+
+% more arrows
+\usepackage{stmaryrd} % for mapsfrom
+\usepackage{extarrows} % for xlongrightarrow
+
+% more flexible enumerations
+\usepackage{enumitem}
+
+% for commutative diagrams
+\usepackage{tikz-cd}
+\usetikzlibrary{babel} % otherwise babel fucks up tikzcd
+
+
+
+%%% FONTS
+
+% copied from the standard XeLaTeX template of kile
+\setromanfont[Mapping=tex-text]{Linux Libertine O}
+
+
+
+
+
+%%% THEOREMS AND COUNTERS
+
+\newcounter{everything}
+
+\newtheorem{definition}[everything]{Definition}
+\newtheorem{corollary}[everything]{Korollar}
+\newtheorem{lemma}[everything]{Lemma}
+\newtheorem{proposition}[everything]{Proposition}
+\newtheorem{theorem}[everything]{Theorem}
+
+\theoremstyle{definition}
+\newtheorem*{claim}{Behauptung}
+\newtheorem{remark}[everything]{Bemerkung}
+\newtheorem{warning}[everything]{Warnung}
+
+
+
+
+
+%%% MACROS
+
+% shortcuts for already defined commands
+\newcommand{\from}{\longleftarrow}
+
+% common sets of numbers
+\newcommand{\Natural}{\ensuremath{\mathbb{N}}}
+\newcommand{\Integer}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Rational}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}
+\newcommand{\Complex}{\ensuremath{\mathbb{C}}}
+
+% common names for ideals
+\newcommand{\aideal}{\ensuremath{\mathfrak{a}}}
+\newcommand{\bideal}{\ensuremath{\mathfrak{b}}}
+\newcommand{\pideal}{\ensuremath{\mathfrak{p}}}
+\newcommand{\mideal}{\ensuremath{\mathfrak{m}}}
+
+% occuring spaces and sets
+
+
+
+% functions
+
+
+% things with arguments
