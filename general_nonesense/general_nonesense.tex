@@ -1,0 +1,154 @@
+\documentclass[a4paper, 10pt, numbers=noenddot]{scrartcl}
+
+\usepackage{../generalstyle}
+\usepackage{specificstyle}
+
+\title{Lösungen zu Zettel 1}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+
+
+
+
+
+\addtocounter{section}{1}
+
+
+
+
+
+
+
+
+
+
+\section{}
+
+Zur Belustigung bezeichnen wir die gegebene Abbildung mit
+\begin{align*}
+              \Xi
+  \colon&\,   \{ \varphi  \colon R[T] \to S \mid \text{$\varphi$ ist ein Ringhomomorphismus} \}
+  \\
+        &\,   \phantom{\varphi} \to \{ \psi \colon R \to S        \mid \text{$\psi$ ist ein Ringhomomorphismus} \}
+                                    \times S,
+  \\
+         &\,  \varphi
+  \mapsto     (\varphi|_R, \varphi(T)).
+\end{align*}
+
+
+
+
+
+\subsection{}
+
+Es sei $\varphi \colon R[T] \to S$ ein Ringhomomorphismus.
+Es seien $\psi \coloneqq \varphi|_R$ und $s \coloneqq \varphi(T)$.
+Für jedes $\sum_i a_i T^i \in R[T]$ gilt dann
+\[
+    \varphi\left( \sum_i a_i T^i \right)
+  = \sum_i \varphi(a_i) \varphi(T)^i
+  = \sum_i \psi(a_i) s^i.
+\]
+Deshalb ist $\varphi$ durch $\psi$ und $s$ schon eindeutig bestimmt.
+Somit ist $\Xi$ injektiv.
+
+
+
+
+
+\subsection{}
+
+Falls $(\psi, s)$ im Bild von $\Xi$ liegt, so gibt es einen Ringhomomorphismus $\varphi \colon R[T] \to S$ mit $\psi = \varphi|_R$ und $s = \varphi(T)$.
+Dann gilt
+\[
+    \psi(r) s
+  = \varphi(r) \varphi(T)
+  = \varphi(r T)
+  = \varphi(T r)
+  = \varphi(T) \varphi(r)
+  = s \psi(r)
+  \qquad
+  \text{für alle $r \in R$},
+\]
+wobei sich die mittlere Gleichheit aus der Kommutativität von $R[T]$ ergibt.
+
+Es sei nun andererseits $(\psi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\psi \colon R \to S$ und einem Element $s \in S$, so dass $\psi(r) s = s \psi(r)$ für alle $r \in R$.
+Um zu zeigen, dass $(\psi, s)$ im Bild von $\Xi$ liegt, müssen wir zeigen, das es einen Ringhomomorphismus $\varphi \colon R[T] \to S$ gibt, so dass $\psi = \varphi|_R$ und $s = \varphi(T)$.
+Aus dem vorherigen Aufgabenteil wissen wir, wie $\varphi$ aussehen muss.
+Wir definieren deshalb die Abbildung
+\[
+  \varphi \colon R[T] \to S,
+  \quad
+  \sum_i a_i T^i \mapsto \sum_i \psi(a_i) s^i.
+\]
+Da $\varphi|_R = \psi$ und $\varphi(T) = s$ gilt es nur noch zeigen, dass $\varphi$ ein Ringhomomorphismus ist.
+
+Für alle $f, g \in R[T]$ mit $f = \sum_i a_i T^i$ und $g = \sum_i b_i T^i$ gelten
+\begin{align*}
+      \varphi(f + g)
+  &=  \varphi\left( \sum_i a_i T^i + \sum_i b_i T^i \right)
+   =  \varphi\left( \sum_i (a_i + b_i) T^i \right)
+   =  \sum_i (a_i + b_i) s^i
+  \\
+  &=  \sum_i a_i s^i + \sum_i b_i s^i
+   =  \varphi\left( \sum_i a_i T^i \right) + \varphi\left( \sum_i b_i TWi \right)
+   =  \varphi(f) + \varphi(g),
+\end{align*}
+und
+\begin{align*}
+    \varphi(f \cdot g)
+  &= \varphi\left( \left( \sum_i a_i T^i \right) \cdot \left( \sum_i b_i T^i \right) \right)
+   = \varphi\left( \sum_i \sum_{j + k = i} a_j b_k T^i \right)
+  \\
+  &= \sum_i \psi\left( \sum_{j + k = i} a_j b_k \right) s^i
+   = \sum_i \sum_{j + k = i} \psi(a_j) \psi(b_k) s^i
+  \\
+  &= \left( \sum_i \psi(a_i) s^i \right) \cdot \left( \sum_i \psi(b_i) s^i \right)
+   = \varphi\left( \sum_i a_i T^i \right) \cdot \varphi\left( \sum_i b_i T^i \right)
+  \\
+  &= \varphi(f) \cdot \varphi(g).
+\end{align*}
+Also ist $\varphi$ additiv und multiplikativ.
+Da
+\[
+    \varphi(1)
+  = \varphi(1 \cdot T^0)
+  = \psi(1) s^0
+  = 1 \cdot 1
+  = 1
+\]
+ist $\varphi$ auch unitär.
+Insgesamt zeigt dies, dass $\varphi$ ein Ringhomomorphismus ist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
