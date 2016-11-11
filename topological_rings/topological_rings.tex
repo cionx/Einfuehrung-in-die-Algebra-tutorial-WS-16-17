@@ -1,0 +1,215 @@
+\documentclass[a4paper, 10pt, numbers=noenddot]{scrartcl}
+
+\usepackage{../generalstyle}
+\usepackage{specificstyle}
+
+\title{Lösungen zu \\ Aufgabe 3, Zettel 2}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+\section{}
+\label{section: properties of a metric}
+
+Für alle $f, g \in \powerseries{R}{T}$ gilt
+\[
+        d_q(f,g) = 0
+  \iff  q^{-\nu(f-g)} = 0
+  \iff  \nu(f-g) = \infty
+  \iff  f-g = 0
+  \iff  f = g.
+\]
+Für jedes $h \in \powerseries{R}{T}$ und $i \geq 0$ ist genau dann $h_i \neq 0$ wenn $-h_i \neq 0$, weshalb $\nu(h) = \nu(-h)$.
+Für alle $f, g \in \powerseries{R}{T}$ gilt deshalb
+\[
+    d_q(f,g)
+  = q^{-\nu(f-g)}
+  = q^{-\nu(g-f)}
+  = d_q(g,f).
+\]
+Zum Beweis der Dreiecksungleichung fixieren wir $f, g, h \in \powerseries{R}{T}$.
+Es gilt zu zeigen, dass
+\begin{equation}
+  \label{eqn: triangle inequality}
+        q^{-\nu(f-h)}
+  \leq  q^{-\nu(f-g)} + q^{-\nu(g-h)}.
+\end{equation}
+Hierfür zeigen wir, dass bereits
+\[
+        q^{-\nu(f-h)}
+  \leq  \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}.
+\]
+(Wir zeigen also, dass in \eqref{eqn: triangle inequality} bereits einer der beiden Summanden ausreicht.
+Um welchen es sich dabei handelt hängt allerdings von $f$, $g$ und $h$ ab.)
+Da
+\begin{gather*}
+    \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}
+  = q^{\max\{ -\nu(f-g), -\nu(g-h) \}}
+  = q^{-\min\{ \nu(f-g), \nu(g-h) \}}
+\shortintertext{gilt}
+        q^{-\nu(f-h)} \leq  \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}
+  \iff  \nu(f-h)      \geq  \min\{ \nu(f-g), \nu(g-h) \}.
+\end{gather*}
+Diese letzte Ungleichung gilt, denn für alle $0 \leq i < \min\{ \nu(f-g), \nu(g-h) \}$ gilt $f_i = g_i$ und $g_i = h_i$, und somit auch $f_i = h_i$.
+
+Wir merken noch an, dass die Metrik $d_q$ translationsinvariant ist, d.h.\ es gilt
+\[
+    d_q(f + h, g + h)
+  = d_q(f, g)
+  \qquad
+  \text{für alle $f, g, h \in \powerseries{R}{T}$}.
+\]
+
+
+
+
+
+\section{}
+\label{section: convergence of power series}
+
+Für $f \in \powerseries{R}{T}$ und eine Folge $(f^{(i)})_i$ von Elementen $f^{(i)} \in \powerseries{R}{T}$ gilt
+\begin{align*}
+      &\, \text{$f^{(i)} \to f$ für $i \to \infty$ bezüglich $d_q$} \\
+  \iff&\, \text{$d_q(f^{(i)}, f) \to 0$ für $i \to \infty$} \\
+  \iff&\, \text{$q^{-\nu(f^{(i)} - f)} \to 0$ für $i \to \infty$} \\
+  \iff&\, \text{$-\nu(f^{(i)} - f) \to -\infty$ für $i \to \infty$} \\
+  \iff&\, \text{$\nu(f^{(i)} - f) \to \infty$ für $i \to \infty$} \\
+  \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $\nu(f^{(i)} - f) \geq n$ für alle $i \geq j$}  \\
+  \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $f^{(i)}_m = f_m$ für alle $m \leq n$, $i \geq j$}  \\
+  \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $f^{(i)}_n = f_n$ für alle $i \geq j$}.
+\end{align*}
+Es gilt also $f^{(i)} \to f$ genau dann wenn für jedes $n \geq 0$ gilt, dass $f^{(i)}_n = f_n$ für $i$ groß genug.
+(Man beachte, dass es von $n$ abhängt, wann $f^{(i)}_n$ konstant wird.
+Insbesondere wird die Folge $f^{(i)}$ selbst nicht notwendigerweise konstant.)
+Das zeigt insbesondere, dass die Folge $(f^{(i)})_i$ genau dann konvergiert, wenn für jedes $n \geq 0$ die Folge der Koeffizienten $(f^{(i)}_n)_i$ konstant wird.
+Wir haben aber auch gezeigt, dass sich der Grenzwert $\lim_{i \to \infty} f^{(i)}$ dann koeffizientenweise bestimmen lässt.
+
+Eine Reihe $\sum_{i = 0}^\infty f^{(i)}$ konvergiert per Definition genau dann, wenn die Folge $(g^{(j)})_j$ der Partialsummen $g^{(j)} \coloneqq \sum_{i=0}^\infty f^{(i)}$ konvergiert.
+Wie bereits gezeigt ist dies äquivalent dazu, dass für jedes $n \geq 0$ die Koeffizientenfolge $(g^{(j)}_n)_j$ konstant wird.
+Dies bedeutet gerade, dass es für jedes $n \geq 0$ ein $k \geq 0$ gibt, so dass $g^{(j_1)}_n = g^{(j_2)}_n$ für alle $j_1 \geq j_2 \geq k$;
+da $g^{(j_1)}_n - g^{(j_2)}_n = \sum_{i = j_2 + 1}^{j_1} f^{(i)}_n$ ist gilt dies genau dann, wenn $f^{(i)}_n = 0$ für alle $i > k$.
+
+Außerdem zeigt die obige Argumentation, dass sich der Grenzwert der Reihe $\sum_{i=0}^\infty f^{(i)}$ dann koeffizientenweise berechnen lässt, d.h.\ für alle $n \geq 0$ gilt $(\sum_{i=0}^\infty f^{(i)})_n = \sum_{i=0}^\infty f^{(i)}_n$.
+
+Wir wollen den Leser an dieser Stelle darauf aufmerksam machen, dass sich Konvergenzverhalten einer Folge, bzw.\ Reihe in $\powerseries{R}{T}$ nicht von dem gewählten Parameter $q > 1$ abhängt.
+
+\begin{remark}
+  Versieht man den Ring $R$ mit der diskreten Topologie, bzw.\ diskreten Metrik, so entspricht der topologische Raum $\powerseries{R}{T}$ zusammen mit den stetigen Projektionen $\pi_i \colon \powerseries{R}{T} \to R$, $f \mapsto f_i$ dem abzählbaren topologischen Produkt $\prod_{i \geq 0} R$.
+\end{remark}
+
+
+
+
+
+\section{}
+
+Für alle $n, i \geq 0$ gilt $(T^i)_n = \delta_{in}$;
+für fixiertes $n \geq 0$ ist deshalb $(T^i)_n = 0$ für alle $n > i$.
+Wie im Aufgabenteil~\ref{section: convergence of power series} gesehen, ist deshalb $T^i \to 0$ for $i \to \infty$ bezüglich $d_q$.
+
+Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt $(f_i T^i)_n = f_i \delta_{in}$, und für $i > n$ verschwindet dieser Term.
+Durch koeffizientenweises Berechnen des Grenzwertes ergibt sich, dass
+\[
+    \left( \sum_{i=0}^\infty f_i T^i \right)_n
+  = \sum_{i=0}^\infty (f_i T^i)_n
+  = \sum_{i=0}^\infty f_i \delta_{in}
+  = f_n
+  \qquad
+  \text{für alle $n \geq 0$},
+\]
+und somit $\sum_{i=0}^\infty f_i T^i = f$.
+
+
+
+
+
+\section{}
+
+
+
+\subsection*{Unabhängigkeit der Topologie vom Parameter $q$}
+
+
+Es seien $q_1, q_2 > 0$.
+Es gilt zu zeigen, dass eine Teilmenge $U \subseteq \powerseries{R}{T}$ genau dann offen bezüglich $d_{q_1}$ ist, wenn sie offen bezüglich $d_{q_2}$ ist.
+Dies ist äquivalent dazu, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann abgeschlossen bezüglich $d_{q_1}$ ist, wenn sie abgeschlossen bezüglich $d_{q_2}$ ist.
+Hierfür genügt es zu zeigen, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$ ist, wenn sie folgenabgeschlossen bezüglich $d_{q_2}$ ist.
+
+In Aufgabenteil~\ref{section: convergence of power series} haben wir gesehen, dass das Konvergenzverhalten einer Folge $(f^{(i)})_i$ von Elementen $f^{(i)} \in \powerseries{R}{T}$ bezüglich den Metriken $d_{q_1}$ und $d_{q_2}$ nicht von den Parametern $q_1$ und $q_2$ abhängt, d.h.\ für jedes $f \in \powerseries{R}{T}$ gilt genau dann $f^{(i)} \to f$ bezüglich $d_{q_1}$ wenn $f^{(i)} \to f$ bezüglich $d_{q_2}$.
+Deshalb ist $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$, wenn es folgenabgeschlossen bezüglich $d_{q_2}$ ist.
+
+Also ist die von $d_q$ erzeugte Topologie unabhängig von $q$.
+
+
+
+\subsection*{Stetigkeit der Ringoperationen}
+
+Es gilt zu zeigen, dass für je zwei konvergente Folgen $(f^{(i)})_i$ und $(g^{(i)})_i$ von Elementen $f^{(i)}, g^{(i)} \in \powerseries{R}{T}$ auch die Folgen $(f^{(i)} + g^{(i)})_i$ und $(f^{(i)} \cdot g^{(i)})_i$ konvergieren, und dass
+\begin{align*}
+      \lim_{i \to \infty} \left( f^{(i)} + g^{(i)} \right)
+  &=  \left( \lim_{i \to \infty} f^{(i)} \right) + \left( \lim_{i \to \infty} g^{(i)} \right)
+\shortintertext{und}
+      \lim_{i \to \infty} \left( f^{(i)} \cdot g^{(i)} \right)
+  &=  \left( \lim_{i \to \infty} f^{(i)} \right) \cdot \left( \lim_{i \to \infty} g^{(i)} \right)
+\end{align*}
+Hierfür fixieren wir zwei solche konvergenten Folgen und schreiben $f \coloneqq \lim_{i \to \infty} f^{(i)}$ und $g \coloneqq \lim_{i \to \infty} g^{(i)}$.
+
+Es sei $n \geq 0$.
+Aus $f^{(i)} \to f$ und $g^{(i)} \to g$ ergibt sich nach Aufgabenteil~\ref{section: convergence of power series}, dass es ein $j \geq 0$ gibt, so dass $f^{(i)}_n = f_n$ und $g^{(i)}_n = g_n$ für alle $i \geq j$.
+Es sei $j \geq j_f, j_g$.
+Für alle $i \geq j$ ist
+\[
+    (f^{(i)} + g^{(i)})_n
+  = f^{(i)}_n + g^{(i)}_n
+  = f_n + g_n
+  = (f + g)_n.
+\]
+Aus der Beliebigkeit von $n \geq 0$ folgt nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} + g^{(i)} \to f + g$.
+
+Für das Produkt gehen wir analog vor:
+Es sei $n \geq 0$.
+Da $f^{(i)} \to f$ und $g^{(i)} \to g$ ergibt sich nach Aufgabenteil~\ref{section: convergence of power series}, dass es ein $j \geq 0$ gibt, so dass $f^{(i)}_k = g^{(i)}_k$ für alle $k = 0, \dotsc, n$ und $i \geq j$.
+Für alle $i \geq j$ ist damit auch
+\[
+    (f^{(i)} \cdot g^{(i)})_n
+  = \sum_{k = 0}^n f^{(i)}_k g^{(i)}_{n-k}
+  = \sum_{k = 0}^n f_k g_{n-k}
+  = (f \cdot g)_n.
+\]
+Wegen der Beliebigkeit von $n$ zeigt dies nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \cdot g^{(i)} \to f \cdot g$.
+
+
+% TODO: Inversion hinzufügen
+
+
+
+
+\section{}
+
+Es genügt zu zeigen, dass $\powerseries{R}{T}$ bezüglich $d_q$ vollständig ist.
+Die Menge der Cauchyfolgen stimmt dann mit der Menge der konvergenten Folgen überein, und diese ist unabhängig von $q$, da die Topologie unabhängig von $q$ ist.
+
+Ist $(f^{(i)})_i$ eine Cauchyfolge in $\powerseries{R}{T}$ bezüglich $d_q$, so ist inbesondere $d_q(f^{(i+1)}, f^{(i)}) \to 0$ für $i \to \infty$.
+Wegen der Translationsinvarianz von $d_q$ ist $d_q(f^{(i+1)} - f^{(i)}, 0) \to 0$, also $f^{(i+1)} - f^{(i)} \to 0$.
+Nach Aufgabenteil~\ref{section: convergence of power series} gibt es deshalb für jedes $n \geq 0$ ein $j \geq 0$ mit $f^{(i+1)}_n - f^{(i)}_n = 0$ für alle $i \geq j$, also $f^{(i+1)}_n = f^{(i)}_n$ für alle $i \geq j$, weshalb die Folge $(f^{(i)}_n)_i$ für $i \geq j$ konstant ist.
+Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Folge $(f^{(i)})_i$ deshalb.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
