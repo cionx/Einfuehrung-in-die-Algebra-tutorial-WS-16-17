@@ -19,7 +19,142 @@
 
 
 
-\addtocounter{section}{1}
+\section{}
+
+Für je zwei Mengen $X$ und $Y$ sei $F(X,Y)$ die Menge der Funktionen $X \to Y$.
+Wir bezeichnen die übliche Adjunktionsabbildung mit
+\[
+  \Phi \colon F(R \times A, A) \to F(R, F(A,A)),
+  \quad
+  h \mapsto (r \mapsto h(r, -))
+\]
+wobei wir für jede Funktion $h \colon R \times A \to A$ und jedes $r \in R$ mit $h(r,-)$ die Funktion
+\[
+  h(r, -) \colon A \to A,
+  \quad
+  a \mapsto h(r,a)
+\]
+bezeichnen.
+Die Funktion $\Phi$ ist eine Bijektion, und ihr Inverses ist durch
+\[
+  \Psi \colon F(R, F(A,A)) \to F(R \times A, A),
+  \quad
+  h \mapsto ( (r,a) \mapsto h(r)(a) )
+\]
+gegeben.
+
+
+
+
+
+\subsection{}
+
+Es sei $\mu \in F(R \times A, A)$ und $f \coloneqq \Phi(f) \in F(R, F(A,A))$.
+Es gilt zu zeigen, dass $\mu$ genau dann eine $R$-Modulstruktur auf $A$ ist, wenn $f$ ein Ringhomomorphismus nach $\End(A)$ ist.
+Das $\mu$ eine $R$-Modulstruktur auf $A$ ist, bedeutet, dass die folgenden Bedingungen erfüllt sind:
+\begin{enumerate}[label = (M\arabic*)]
+  \item
+    \label{enum: module structure is additiv in second argument}
+    Für alle $r \in R$ und $a_1, a_2 \in A$ gilt $\mu(r, a_1 + a_2) = \mu(r, a_1) + \mu(r, a_2)$.
+  \item
+    Für alle $r_1, r_2 \in R$ und $a \in A$ gilt $\mu(r_1 + r_2, a) = \mu(r_1, a) + \mu(r_2, a)$.
+  \item
+    Für alle $r_1, r_2 \in R$ und $a \in A$ gilt $\mu(r_1 \cdot r_2, a) = \mu(r_1, \mu(r_2, a))$.
+  \item
+    Für alle $a \in A$ ist $\mu(1, a) = a$.
+\end{enumerate}
+Dass $f$ ein Ringhomomorphismus ist, bedeutet, dass die folgenden Bedingungen erfüllt sind:
+\begin{enumerate}[label = (R\arabic*)]
+  \item
+    \label{enum: ring morphism into the endomorphisms is well defined}
+    Für alle $r \in R$ gilt $f(r) \in \End(A)$, d.h.\ für alle $r \in R$ und $a_1, a_2 \in A$ gilt $f(r)(a_1 + a_2) = f(r)(a_1) + f(r)(a_2)$.
+  \item
+    Für alle $r \in R$ gilt $f(r_1, r_2) = f(r_1) + f(r_2)$, d.h.\ für alle $r_1, r_2 \in R$ und $a \in A$ gilt $f(r_1 + r_2)(a) = f(r_1)(a) + f(r_2)(a)$.
+  \item
+    Für alle $r \in R$ gilt $f(r_1 \cdot r_2) = f(r_1) \circ f(r_2)$, d.h.\ für alle $r_1, r_2 \in R$ und $a \in A$ gilt $f(r_1 \cdot r_2)(a) = f(r_1)( f(r_2)(a) )$.
+  \item
+    Es gilt $f(1) = \id_A$, d.h.\ für alle $a \in A$ gilt $f(1)(a) = a$.
+\end{enumerate}
+Da $\mu(r,a) = f(r)(a)$ sind die Bedingungen in gegebener Nummerierung paarweise äquivalent zueinander (bespielsweise ist \ref{enum: module structure is additiv in second argument} äquivalent zu \ref{enum: ring morphism into the endomorphisms is well defined}).
+Also erfüllt $\mu$ alle vier Bedingungen genau dann, wenn $f$ alle vier Bedingungen erfüllt.
+Also ist $\mu$ genau dann eine Modulstruktur, wenn $f$ ein Ringhomomorphismus nach $\End(A)$ ist.
+
+
+
+
+
+\subsection{}
+
+Wir bezeichnen die gegebene geordnete Basis $B$ von $V$ mit $B = (b_1, \dotsc, b_n)$.
+
+Die $K$-Vektorraumstruktur auf $V$ entspricht einem Ringhomomorphismus
+\[
+  f \colon K \to \End(V),
+  \quad
+  K \mapsto (v \mapsto \lambda \cdot v).
+\]
+Das Bild von $f$ liegt bereits im Unterring $\End_K(V)$, denn für jedes $\lambda \in K$ ist die Abbildung $f(\lambda) \colon V \to V$, $v \mapsto \lambda \cdot v$ nicht nur additiv, sondern auch $K$-linear (denn für alle $\mu \in K$ ist $f(\lambda)(\mu v) = \lambda \mu v = \mu \lambda v = \mu f(\lambda)(v)$.)
+Dashalb können wir $f$ als einen Ringhomomorphismus $K \to \End_K(V)$ auffassen.
+Der angegebene Ringisomorphismus $g \colon \End_K(V) \to \Mat_n(K)$ ordnet jedem Endomorphismus $L \in \End_K(V)$ die darstellende Matrix $\basismatrix_B(L) \in \Mat_n(K)$ zu.
+Für jedes $\lambda \in K$ ist $f(\lambda) = \lambda \id_V$ und somit
+\[
+    g(f(\lambda))
+  = g(\lambda \id_V)
+  = \basismatrix_B(\lambda \id_V)
+  = \lambda \basismatrix_B(\id_V)
+  = \lambda I_n.
+\]
+Die Komposition $K \xrightarrow{f} \End_K(V) \xrightarrow{g} \Mat_n(K)$ bildet als $\lambda \in K$ auf $\lambda I_n$ ab.
+
+
+
+
+
+\subsection{}
+
+Damit der Ausdruck $\End_{\End_R(A)}(A)$ Sinn ergibt, müssen wir zunächst eine $\End_R(A)$-Mo\-dul\-struk\-tur auf $A$ definieren.
+Eine $\End_R(A)$-Modulstruktur auf $A$ zu definieren ist äquivalent dazu, einen Ringhomomorphismus $\End_R(A) \to \End(A)$ anzugeben.
+
+Der Ringhomomorphismus, der hier betrachtet werden soll, ist die kanonische Inklusion $i \colon \End_R(A) \to \End(A)$, $f \mapsto f$.
+(Dies wird in der Aufgabenstellung recht schlecht -- nämlich gar nicht -- angegeben.)
+Die $\End_R(A)$-Modulstruktur auf $A$, die $i$ entspricht, ist durch
+\[
+    f \cdot a
+  = i(f)(a)
+  = f(a)
+  \qquad
+  \text{für alle $f \in \End_R(A)$, $a \in A$}
+\]
+gegeben.
+
+Für $g \in \End(A)$ gilt genau dann $g \in \End_{\End_R(A)}$, wenn $g(f \cdot a) = f \cdot g(a)$ für alle $g \in G$, d.h.\ wenn $g(f(a)) = f(g(a))$ für alle $a \in A$.
+Also ist
+\[
+    \End_{\End_R(A)}
+  = \{ g \in \End(A) \mid \text{$gf = fg$ für alle $f \in \End_R(A)$} \}.
+\]
+
+Ist $g$ im Bild des zu $\mu$ gehörigen Ringhomomorphismus $R \to \End(A)$, $r \mapsto \mu(r, -)$, so gibt es ein $r \in R$ mit $g = \mu(r, -)$.
+Für alle $a \in A$ ist dann $g(a) = \mu(r,-)(a) = \mu(r,a) = r \cdot a$, und für $f \in \End_R(A)$ ist deshalb
+\[
+    g(f(a))
+  = r \cdot f(a)
+  = f(r \cdot a)
+  = f(g(a))
+  \qquad
+  \text{für alle $a \in A$}.
+\]
+Also ist dann $g \in \End_{\End_R(A)}(A)$.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,7 +216,7 @@ Dann gilt
 \]
 wobei sich die mittlere Gleichheit aus der Kommutativität von $R[T]$ ergibt.
 
-Es sei nun andererseits $(\psi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\psi \colon R \to S$ und einem Element $s \in S$, so dass $\psi(r) s = s \psi(r)$ für alle $r \in R$.
+Umgekehrt sei $(\psi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\psi \colon R \to S$ und einem Element $s \in S$, so dass $\psi(r) s = s \psi(r)$ für alle $r \in R$.
 Um zu zeigen, dass $(\psi, s)$ im Bild von $\Xi$ liegt, müssen wir zeigen, das es einen Ringhomomorphismus $\varphi \colon R[T] \to S$ gibt, so dass $\psi = \varphi|_R$ und $s = \varphi(T)$.
 Aus dem vorherigen Aufgabenteil wissen wir, wie $\varphi$ aussehen muss.
 Wir definieren deshalb die Abbildung
