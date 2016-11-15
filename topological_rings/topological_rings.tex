@@ -184,8 +184,8 @@ Für alle $i \geq j$ ist damit auch
 \]
 Wegen der Beliebigkeit von $n$ zeigt dies nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \cdot g^{(i)} \to f \cdot g$.
 
-
 % TODO: Inversion hinzufügen
+
 
 
 
@@ -203,6 +203,70 @@ Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Fol
 
 
 
+
+\section{}
+
+\begin{claim}
+  Für alle $f, g \in \powerseries{R}{T}$ gilt
+  \[
+    \nu(f g) \geq \nu(g)
+    \quad\text{und}\quad
+    \nu(T g) = \nu(g) + 1.
+  \]
+  Ist $f \in T \cdot \powerseries{R}{T}$, so gilt $\nu(f g) \geq \nu(g) + 1$.
+\end{claim}
+\begin{proof}
+  Für alle $0 \leq i < \nu(g)$ gilt $g_i = 0$ und somit auch
+  \[
+      (f g)_i
+    = \sum_{j=0}^i f_j \underbrace{g_{i-j}}_{=0}
+    = 0.
+  \]
+  Deshalb ist $\nu(f g) \geq \nu(g)$.  
+  Aus $(T g)_0 = 0$ und $(T g)_i = (T g)_{i-1}$ für alle $i \geq 1$ ergibt sich direkt, dass $\nu(T g) = \nu(g) + 1$.
+  Ist $f \in T \cdot \powerseries{R}{T}$ so gibt es ein $f' \in \powerseries{R}{T}$ mit $f = T f'$.
+  Deshalb gilt dann
+  \[
+          \nu(f g)
+    =     \nu(T f' g)
+    =     \nu(f' g) + 1
+    \geq  \nu(g) + 1.
+    \qedhere
+  \]
+\end{proof}
+
+Für alle $f \in T \cdot \powerseries{R}{T}$ und $g \in \powerseries{R}{T}$ bezeichnen wir die gegebene Abbildung mit
+\[
+  \phi_{f,g} \colon \powerseries{R}{T} \to \powerseries{R}{T},
+  \quad
+  x \mapsto g - fx.
+\]
+Aus der obigen Behauptung erhalten wir für alle $x_1, x_2 \in \powerseries{R}{T}$, dass
+\begin{align*}
+        d_q( \phi_{f,g}(x_1), \phi_{f,g}(x_2) )
+  &=    d_q(g - f x_1, g - f x_2)
+   =    q^{-\nu((g - f x_1) - (g - f x_2))}
+  \\
+  &=    q^{-\nu(f (x_2 - x_1))}
+  \leq  q^{-(\nu(x_2 - x_1) + 1)}
+  =     q^{-1} q^{-\nu(x_2 - x_1)}
+  \\
+  &=    q^{-1} d_q(x_2, x_1)
+  =     q^{-1} d_q(x_1, x_2).
+\end{align*}
+Da $q > 1$ ist $0 < q^{-1} < 1$.
+Damit haben wir gezeigt, dass $\phi_{f,g}$ bezüglich $d_q$ eine Kontraktion ist (mit möglicher Kontraktionskonstante $q^{-1}$).
+
+% TODO: Herleitung der Einheiten.
+
+
+
+
+
+\section{}
+
+Für $f \in \powerseries{R}{T}$ und die Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \coloneqq \sum_{j=0}^i f_j T^j \in R[T]$ gilt nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \to f$ für $i \to \infty$.
+Also ist $R[T]$ dicht in $\powerseries{R}{T}$.
 
 
 
