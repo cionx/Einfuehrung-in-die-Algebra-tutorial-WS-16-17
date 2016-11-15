@@ -444,14 +444,117 @@ Insgesamt zeigt dies, dass $\varphi$ ein Ringhomomorphismus ist.
 
 
 
+\subsection{}
 
+%Die $K$-Vektorraumstruktur auf $V$ entspricht einen Ringhomomorphismus $\phi \colon K \to \End(V)$, $\lambda \mapsto (v \mapsto \lambda \cdot v)$.
+In den vorherigen Aufgabenteilen haben wir Bijektionen konstruiert:
+\begin{align*}
+  &\,
+  \{
+    \text{$K[T]$-Modulstrukturen $\mu \colon K[T] \times V \to V$}
+  \}
+  \\
+  \longleftrightarrow&\,
+  \{
+    \text{Ringhomomorphismen $\phi \colon K[T] \to \End(V)$}
+  \}
+  \\
+  \longleftrightarrow&\,
+  \left\{
+    (\psi, f)
+  \,
+  \middle|
+  \,
+    \begin{tabular}{c}
+      $\psi \colon K \to \End(V)$ ist ein Ringhomomorphismus, \\
+      $f \in \End(V)$ mit $f \psi(\lambda) = \psi(\lambda) f$ für alle $\lambda \in K$
+    \end{tabular}
+  \right\}
+  \\
+  \longleftrightarrow&\,
+  \left\{
+    (\nu, f)
+  \,
+  \middle|
+  \,
+    \begin{tabular}{c}
+      $K$-Modulstrukturen $\nu \colon K \times V \to V$\\
+      $f \in \End(V)$ mit $f(\nu(\lambda, -)) = \nu(\lambda, f(-))$ für alle $\lambda \in K$
+    \end{tabular}
+  \right\}
+\end{align*}
 
+Dass eine $K[T]$-Modulstruktur $\mu \colon K[T] \times V \to V$ die gegebene $K$-Vektorraumstruktur von $V$ erweitert, bedeutet, dass $\mu(\lambda, v) = \lambda \cdot v$ für alle $\lambda \in K$, $v \in V$.
+Die obige Bijektionskette schränkt sich dadurch wie folgt ein:
+\begin{align*}
+  &\,
+  \left\{
+    \begin{tabular}{c}
+      $K[T]$-Modulstrukturen $\mu \colon K[T] \times V \to V$, die
+      \\
+      die gegebene $K$-Vektorraumstruktur erweitern.
+    \end{tabular}
+  \right\}
+  \\
+  \longleftrightarrow&\,
+  \left\{
+    \begin{tabular}{c}
+      Ringhomomorphismen $\phi \colon K[T] \to \End(V)$
+      \\
+      mit $\phi(\lambda)(v) = \lambda v$ für alle $\lambda \in K$, $v \in V$
+    \end{tabular}
+  \right\}
+  \\
+  \longleftrightarrow&\,
+  \left\{
+    (\psi, f)
+  \,
+  \middle|
+  \,
+    \begin{tabular}{c}
+      $\psi \colon K \to \End(V)$ ist ein Ringhomomorphismus
+      \\
+      mit $\psi(\lambda)(v) = \lambda \cdot v$ für alle $\lambda \in K$, $v \in V$,
+      \\
+      $f \in \End(V)$ mit $f \psi(\lambda) = \psi(\lambda) f$ für alle $\lambda \in K$
+    \end{tabular}
+  \right\}
+  \\
+  \longleftrightarrow&\,
+  \left\{
+    (\nu, f)
+  \,
+  \middle|
+  \,
+    \begin{tabular}{c}
+      $K$-Modulstrukturen $\nu \colon K \times V \to V$
+      \\
+      mit $\nu(\lambda,v) = \lambda \cdot v$ für alle $\lambda \in K$, $v \in V$,
+      \\
+      $f \in \End(V)$ mit $f(\nu(\lambda, -)) = \nu(\lambda, f(-))$ für alle $\lambda \in K$
+    \end{tabular}
+  \right\}
+  \\
+  \longleftrightarrow&\,
+  \{
+    f \in \End(V)
+  \mid
+    \text{$f(\lambda \cdot v) = \lambda \cdot f(v)$ für alle $\lambda \in K$, $v \in V$}
+  \}
+  \\
+  =&\, 
+  \End_K(V).
+\end{align*}
+Damit haben wir eine Bijektion zwischen denjenigen $K[T]$-Modulstrukturen auf $V$, welche die $K$-Vektorraumstruktur erweitern, und den $K$-linearen Endomorphismen von $V$.
 
-
-
-
-
-
+Konkret sieht diese Bijektion so aus, dass für $f \in \End_K(V)$ die entsprechende $K[T]$-Modulstruktur $\mu \colon K[T] \times V \to V$ durch
+\[
+    \mu\left( \sum_i a_i T^i, v \right)
+  = \sum_i a_i f^i(v)
+  \qquad
+  \text{für alle $\sum_i a_i T^i \in K[T]$, $v \in V$}
+\]
+gegeben ist.
 
 
 
