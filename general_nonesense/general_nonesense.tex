@@ -310,6 +310,31 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
 
 
 
+\subsection{}
+
+Es sei $R$ ein nicht-kommutativer Ring.
+Als $R$-Modul betrachten wir $R$ selbst, d.h.\ wir betrachten $A \coloneqq R$, und die Multiplikation der $R$-Modulstruktur auf $A$ entspricht der Ringmultiplikation von $R$.
+
+Da $R$ nicht kommutativ ist gibt es $r_1, r_2 \in R$ mit $r_1 r_2 \neq r_2 r_1$.
+Die Abbildung
+\[
+  \lambda_{r_1} \colon A \to A,
+  \quad
+  a \mapsto r_1 \cdot a
+\]
+ist deshalb nicht $R$-linear, denn
+\[
+        \lambda_{r_1}(r_2 \cdot 1)
+  =     \lambda_{r_1}(r_2)
+  =     r_1 r_2
+  \neq  r_2 r_1
+  =     r_2 (r_1 \cdot 1)
+  =     r_2 \lambda_{r_1}(1).
+\]
+
+
+
+
 
 
 
