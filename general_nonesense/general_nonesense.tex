@@ -282,9 +282,28 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
 
 
 \begin{remark}
-  Lemma~\ref{lem: center of matrix rings} gilt nicht nur für Körper, sondern für beliebige Ringe mit $1$.
-  Der Beweis bleibt hierfür unverändert.
-  Die Aussage gilt auch für Ringe ohne $1$ (es gibt dann zwar keine Einheitsmatrix $I$ mehr, Skalarmatrizen ergeben aber weiterhin Sinn).
+  Allgemein gilt für jeden Ring $R$, dass
+  \[
+      \Center(\Mat_n(R))
+    = \left\{
+          \begin{pmatrix}
+            r &         &   \\
+              & \ddots  &   \\
+              &         & r
+          \end{pmatrix}
+        \,
+        \middle|
+        \,
+          r \in \Center(R)
+      \right\}.
+  \]
+  Hierfür muss $R$ weder kommutativ sein, noch eine $1$ haben.
+  
+  Für kommutative Ringe mit $1$ gilt der Beweis von Lemma~\ref{lem: center of matrix rings} unverändert (man muss nur $K$ durch $R$ ersetzen.)
+  
+  Für nicht-kommutative Ringe mit $1$ muss man noch einen weiteren Schritt hinzufügen, um einzusehen, dass die Skalare aus dem Zentrum $\Center(R)$ stammen müssen.
+  
+  Für Ringe $1$ lässt sich ``künstlich eine $1$ hinzufügen'', wodurch sich die Aussage auf den Fall von Ringen mit $1$ zurückführen lässt.
 \end{remark}
 
 
