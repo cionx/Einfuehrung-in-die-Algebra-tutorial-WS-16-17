@@ -150,6 +150,142 @@ Also ist dann $g \in \End_{\End_R(A)}(A)$.
 
 
 
+\subsection{}
+
+Wir bemerken zunächst, dass die Aussage im Fall $V = 0$ nicht gilt:
+Dann wäre nämlich $\End(V) = 0$ und für $\End_{\End_K(V)}(V) \subseteq \End(V)$ somit auch $\End_{\End_K(V)}(V) = 0$.
+Es gilt aber $K \ncong 0$.
+Wir arbeiten daher im Folgenden unter der zusätzlichen Annahme, dass $V \neq 0$.
+
+Nach dem vorherigen Aufgabenteil gilt $\End_{\End_K(V)}(V) \subseteq \End_K(V)$, da $K$ kommutativ ist.
+Deshalb ist
+\begin{equation}
+  \label{eqn: desired ring as the center}
+  \begin{aligned}
+        \End_{\End_K(V)}(V)
+    &=  \{
+          f \in \End(V)
+        \mid
+          \text{$gf = fg$ für alle $g \in \End_K(V)$}
+        \}
+    \\
+    &=  \{
+          f \in \End_K(V)
+        \mid
+          \text{$gf = fg$ für alle $g \in \End_K(V)$}
+        \}.
+  \end{aligned}
+\end{equation}
+Unter dem Isomorphismus $\basismatrix_B \colon \End_K(V) \cong \Mat_n(K)$, $f \mapsto \basismatrix_B(f)$ entspricht der Unterring $\End_{\End_K(V)}(V) \subseteq \End_K(V)$ dem Unterring
+\[
+            \{
+              A \in \Mat_n(K)
+            \mid
+              \text{$AB = BA$ für alle $B \in \Mat_n(K)$}
+            \}
+  \subseteq \Mat_n(K).
+\]
+Wir bezeichnen diesen Unterring mit $\Center(\Mat_n(K))$.
+
+\begin{remark}
+  Allgemein wird für einen Ring $R$ die Teilmenge
+  \[
+              \Center(R)
+    \coloneqq \{ r \in R \mid \text{$rs = sr$ für alle $s \in R$} \}
+  \]
+  als das \emph{Zentrum} von $R$ bezeichnet.
+  Es handelt sich hierbei um einen kommutativen Unterring von $R$.
+  In \eqref{eqn: desired ring as the center} haben wir formuliert, dass $\End_{\End_K(V)}(V) = Z(\End_K(V))$.
+\end{remark}
+
+Wir haben nun das folgende kommutative Diagram:
+\[
+  \begin{tikzcd}
+      {}
+    & \Mat_n(K)
+      \arrow[hookleftarrow]{r}
+    & \Center(\Mat_n(K))
+    \\
+      K
+      \arrow{ur}{\psi}
+      \arrow[swap]{dr}{\phi}
+    & {}
+    & {}
+    \\
+      {}
+    & \End_K(V)
+      \arrow[swap]{uu}{\basismatrix_B}
+      \arrow[hookleftarrow]{r}
+    & \End_{\End_K(V)}(V)
+      \arrow[swap]{uu}{\basismatrix_B}
+  \end{tikzcd}
+\]
+Dabei ist $\phi \colon K \to \End_K(V)$, $\lambda \mapsto \lambda \id_V$ und $\psi \colon K \to \Mat_n(K)$, $\lambda \mapsto \lambda I$.
+
+Da $\im \phi \subseteq \End_{\End_K(V)}$ ist auch $\im \psi \subseteq \Center(\Mat_n(K))$.
+Die Bijektivität der Einschränkung $\phi \colon K \to \End_{\End_K(V)}$ ist äquivalent dazu, dass die Einschränkung $\psi \colon K \to \Center(\Mat_n(K))$ ein Isomorphismus ist.
+Da $V \neq 0$ ist $n = \dim V \geq 1$ und $\psi$ deshalb injektiv.
+Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
+
+\begin{lemma}
+  Es gilt $Z(\Mat_n(K)) = \{ \lambda I \mid \lambda \in K\}$.
+\end{lemma}
+\begin{proof}
+  Es sei $D = (d_{ij}) \in Z(\Mat_n(K))$.
+  Für alle $1 \leq i,j \leq n$ sei $E_{ij} \in \Mat_n(K)$ die Matrix, deren $(i,j)$-ter Eintrag $1$ ist, und deren Einträge sonst alle $0$ sind (die $j$-te Spalte von $E_{ij}$ ist also $e_i$, und alle anderen Spalten sind $0$).
+  
+  Wir zeigen zunächst, dass $D$ eine Diagonalmatrix ist.
+  Hierfür fixieren wir ein $1 \leq i \leq n$.
+  Die Matrix $D E_{ii}$ ergibt sich aus $D$, indem bis auf die $i$-te Spalte alle Spalten gelöscht werden, d.h.\ es gilt
+  \[
+      D E_{ii}
+    = \begin{pmatrix}
+        0       & \cdots  & 0 & d_{1i}    & 0       & \cdots  & 0  \\
+        0       & \cdots  & 0 & d_{2i}    & 0       & \cdots  & 0  \\
+        \vdots  & \ddots  & 0 & \vdots    & \vdots  & \ddots  & 0  \\
+        0       & \cdots  & 0 & d_{n-1,i} & 0       & \cdots  & 0  \\
+        0       & \cdots  & 0 & d_{ni}    & 0       & \cdots  & 0
+      \end{pmatrix},
+  \]
+  wobei es sich bei der mittig gesetzen Spalte um die $i$-te handelt.
+  Die Matrix $E_{ii} D$ ergibt sich auch $D$, indem bis auf die $i$-te Zeile alle Zeilen gelöscht werden, d.h.\ es gilt
+  \[
+      D E_{ii}
+    = \begin{pmatrix}
+        0       & 0       & \cdots  & 0         & 0       \\
+        \vdots  & \vdots  & \ddots  & \vdots    & \vdots  \\
+        0       & 0       & \cdots  & 0         & 0       \\
+        d_{i1}  & d_{i2}  & \cdots  & d_{i,n-1} & d_{in}  \\
+        0       & 0       & \cdots  & 0         & 0       \\
+        \vdots  & \vdots  & \ddots  & \vdots    & \vdots  \\
+        0       & 0       & \cdots  & 0         & 0
+      \end{pmatrix},
+  \]
+  wobei es sich bei der mittig gesetzen Zeile um die $i$-te handelt.
+  Da $D \in \Center(\Mat_n(K))$ ist $D E_{ii} = E_{ii} D$, die beiden obigen Matrizen stimmen also überein.
+  Durch Vergleich der Einträge erhalten wir, dass $d_{ij} = 0$ für alle $j \neq i$ und $d_{ki} = 0$ für alle $k \neq i$.
+  Da dies für jedes $1 \leq i \leq n$ gilt, erhalten wir insgesamt, dass $d_{ij} = 0$ für alle $i \neq j$.
+  Somit ist $D$ eine Diagonalmatrix.
+  
+  Um zu zeigen, dass $D$ bereits eine Skalarmatrix ist (d.h.\ ein skalares Vielfaches der Einheitsmatrix) müssen wir noch zeigen, dass $d_{ii} = d_{jj}$ für alle $1 \leq i,j \leq n$.
+  Hierfür bemerken wir, dass
+  \[
+    D E_{ij} = d_{ii} E_{ij}
+    \quad\text{und}\quad
+    E_{ij} D = d_{jj} E_{ij}
+    \qquad
+    \text{für alle $1 \leq i,j \leq n$},
+  \]
+  Da $D E_{ij} = E_{ij} D$ für alle $1 \leq i,j \leq n$ ergibt sich, dass $d_{ii} E_{ij} = d_{jj} E_{ij}$ für alle $1 \leq i,j \leq n$, und somit $d_{ii} = d_{jj}$.
+\end{proof}
+
+
+
+
+
+
+
+
 
 
 
