@@ -88,19 +88,22 @@ Es gilt also $f^{(i)} \to f$ genau dann wenn für jedes $n \geq 0$ gilt, dass $f
 (Man beachte, dass es von $n$ abhängt, wann $f^{(i)}_n$ konstant wird.
 Insbesondere wird die Folge $f^{(i)}$ selbst nicht notwendigerweise konstant.)
 Das zeigt insbesondere, dass die Folge $(f^{(i)})_i$ genau dann konvergiert, wenn für jedes $n \geq 0$ die Folge der Koeffizienten $(f^{(i)}_n)_i$ konstant wird.
-Wir haben aber auch gezeigt, dass sich der Grenzwert $\lim_{i \to \infty} f^{(i)}$ dann koeffizientenweise bestimmen lässt.
 
-Eine Reihe $\sum_{i = 0}^\infty f^{(i)}$ konvergiert per Definition genau dann, wenn die Folge $(g^{(j)})_j$ der Partialsummen $g^{(j)} \coloneqq \sum_{i=0}^\infty f^{(i)}$ konvergiert.
+Wir haben auch gezeigt, dass sich der Grenzwert $\lim_{i \to \infty} f^{(i)}$ dann koeffizientenweise bestimmen lässt.
+%Im Folgenden versehen wir $R$ mit der diskreten Topologie, bzw.\ diskreten Metrik.
+%Dann konvergiert eine Folge $(a_i)_i$ von Werten $a_i \in R$ genau dann gegen ein $a \in R$, wenn es ein $j \geq 0$ gibt, so dass $a_i = a$ für alle $i \geq j$.
+
+Eine Reihe $\sum_{i = 0}^\infty f^{(i)}$ konvergiert per Definition genau dann, wenn die Folge $(g^{(j)})_j$ der Partialsummen $g^{(j)} \coloneqq \sum_{i=0}^j f^{(i)}$ konvergiert.
 Wie bereits gezeigt ist dies äquivalent dazu, dass für jedes $n \geq 0$ die Koeffizientenfolge $(g^{(j)}_n)_j$ konstant wird.
 Dies bedeutet gerade, dass es für jedes $n \geq 0$ ein $k \geq 0$ gibt, so dass $g^{(j_1)}_n = g^{(j_2)}_n$ für alle $j_1 \geq j_2 \geq k$;
-da $g^{(j_1)}_n - g^{(j_2)}_n = \sum_{i = j_2 + 1}^{j_1} f^{(i)}_n$ ist gilt dies genau dann, wenn $f^{(i)}_n = 0$ für alle $i > k$.
+wegen $g^{(j_1)}_n - g^{(j_2)}_n = \sum_{i = j_2 + 1}^{j_1} f^{(i)}_n$ ist dies äquivalent dazu, dass $f^{(i)}_n = 0$ für alle $i > k$.
 
 Außerdem zeigt die obige Argumentation, dass sich der Grenzwert der Reihe $\sum_{i=0}^\infty f^{(i)}$ dann koeffizientenweise berechnen lässt, d.h.\ für alle $n \geq 0$ gilt $(\sum_{i=0}^\infty f^{(i)})_n = \sum_{i=0}^\infty f^{(i)}_n$.
 
 Wir wollen den Leser an dieser Stelle darauf aufmerksam machen, dass sich Konvergenzverhalten einer Folge, bzw.\ Reihe in $\powerseries{R}{T}$ nicht von dem gewählten Parameter $q > 1$ abhängt.
 
 \begin{remark}
-  Versieht man den Ring $R$ mit der diskreten Topologie, bzw.\ diskreten Metrik, so entspricht der topologische Raum $\powerseries{R}{T}$ zusammen mit den stetigen Projektionen $\pi_i \colon \powerseries{R}{T} \to R$, $f \mapsto f_i$ dem abzählbaren topologischen Produkt $\prod_{i \geq 0} R$.
+  Versieht man den Ring $R$ mit der diskreten Topologie, bzw.\ der diskreten Metrik, so entspricht der topologische Raum $\powerseries{R}{T}$ zusammen mit den stetigen Projektionen $\pi_i \colon \powerseries{R}{T} \to R$, $f \mapsto f_i$ dem abzählbaren topologischen Produkt $\prod_{i \geq 0} R$.
 \end{remark}
 
 
@@ -113,7 +116,7 @@ Für alle $n, i \geq 0$ gilt $(T^i)_n = \delta_{in}$;
 für fixiertes $n \geq 0$ ist deshalb $(T^i)_n = 0$ für alle $n > i$.
 Wie im Aufgabenteil~\ref{section: convergence of power series} gesehen, ist deshalb $T^i \to 0$ for $i \to \infty$ bezüglich $d_q$.
 
-Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt $(f_i T^i)_n = f_i \delta_{in}$, und für $i > n$ verschwindet dieser Term.
+Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt \mbox{$(f_i T^i)_n = f_i \delta_{in}$}, und für $i > n$ verschwindet dieser Term.
 Durch koeffizientenweises Berechnen des Grenzwertes ergibt sich, dass
 \[
     \left( \sum_{i=0}^\infty f_i T^i \right)_n
