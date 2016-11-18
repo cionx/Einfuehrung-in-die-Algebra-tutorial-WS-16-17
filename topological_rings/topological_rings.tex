@@ -187,7 +187,44 @@ Für alle $i \geq j$ ist damit auch
 \]
 Wegen der Beliebigkeit von $n$ zeigt dies nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \cdot g^{(i)} \to f \cdot g$.
 
-% TODO: Inversion hinzufügen
+Die Stetigkeit der Inversion ergibt sich ähnlich:
+Es sei $(f^{(i)})_i$ eine Folge von Einheiten $f^{(i)} \in \powerseries{R}{T}^\times$  und $f \in \powerseries{R}{T}^\times$ mit $f^{(i)} \to f$ für $i \to \infty$.
+Es sei $g \coloneqq f^{-1}$ und für alle $i \geq 0$ sei $g^{(i)} \coloneqq (f^{(i)})^{-1}$.
+Es gilt zu zeigen, dass auch $g^{(i)} \to g$ für $i \to \infty$.
+
+Wir fixieren ein $n \geq 0$.
+Da $f^{(i)} \to f$ gibt es ein $j \geq 0$ mit $f^{(i)}_k = f_k$ für alle $i \geq j$ und $0 \leq k \leq n$.
+Wir zeigen dass $g^{(i)}_k = g_k$ für alle $i \geq j$ und $0 \leq k \leq n$, per Induktion über $k$:
+Für alle $i \geq j$ ist $g_0 = f_0^{-1} = (f^{(i)}_0)^{-1} = g^{(i)}_0$.
+Gilt $g^{(i)}_k = g_k$ für alle $0 \leq k < n$ und $i \geq j$, so ergibt sich, dass
+\[
+    g_{k+1}
+  = - g_0 \sum_{\ell=0}^k g_\ell f_{k+1-\ell}
+  = - g^{(i)}_0 \sum_{\ell=0}^k g^{(i)}_\ell f^{(i)}_{k+1-\ell}
+  = g^{(i)}_{k+1}.
+\]
+
+Ingesamt zeigt dies, dass es für jedes $n \geq 0$ ein $j \geq 0$, so dass $g^{(i)}_k = g_k$ für alle $0 \leq k \leq n$ und $i \geq j$; insbesondere ist $g^{(i)}_n = g_n$ für alle $i \geq j$.
+Das zeigt, dass $g^{(i)} \to g$ für $i \to \infty$.
+
+\begin{remark}
+  Die Menge der Einheiten $\powerseries{R}{T}^\times$ ist als Teilmenge von $\powerseries{R}{T}$ sowohl offen als auch abgeschlossen:
+  
+  Es sei $(f^{(i)})_i$ eine Folge in $\powerseries{R}{T}^\times$ die gegen ein $f \in \powerseries{R}{T}$ konvergiert.
+  Für alle $i \geq 0$ ist $f^{(i)}_0 \in R^\times$, da $f^{(i)}$ invertierbar ist.
+  Es gibt ein $j \geq 0$ mit $f_0 = f^{(i)}_0$ für alle $i \geq j$.
+  Also ist auch $f_0 \in R^\times$, und somit $f \in \powerseries{R}{T}^\times$.
+  Das zeigt, dass $\powerseries{R}{T}^\times$ folgenabgeschlossen in $\powerseries{R}{T}$ ist, und somit abgeschlossen in $\powerseries{R}{T}$.
+  
+  Analog ergibt sich, dass auch $\powerseries{R}{T} \smallsetminus \powerseries{R}{T}^\times$ abgeschlossen ist, und $\powerseries{R}{T}^\times$ somit offen.
+  
+  Die Aussage lässt sich auch abstrakter einsehen:
+  Versieht man $R$ mit der diskreten Topologie, bzw.\ der diskreten Metrik, so ist die Projektion auf den konstanten Koeffizienten $\pi_0 \colon \powerseries{R}{T} \to R$, $f \mapsto f_0$ stetig.
+  Für jede Menge von Koeffizienten $C \subseteq R$ sind dann die Urbilder $\pi_0(C)$ und $\pi_0(R \smallsetminus C) = \powerseries{R}{T} \smallsetminus \pi_0(C)$ offen in $\powerseries{R}{T}$.
+  Wählt man $C = R^\times$, so ergibt sich die Aussage.
+\end{remark}
+
+
 
 
 
