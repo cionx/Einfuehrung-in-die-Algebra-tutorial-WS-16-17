@@ -1,0 +1,156 @@
+\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage{../generalstyle}
+
+\title{Lösung zu Zettel~4, Aufgabe~4}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+\section{Kurze Version}
+
+Es sei $J \subseteq R_S$ ein Ideal.
+Durch direktes Nachrechnen ergibt sich, dass
+\[
+            I
+  \coloneqq \left\{
+              r \in R
+            \,\middle|\,
+              \frac{r}{1} \in J
+            \right\}
+\]
+ein Ideal in $R$ ist.
+Nach Annahme ist $I$ ein Hauptideal, also $I = (a)$ für ein $a \in R$.
+Aus $a \in I$ ergibt sich, dass $a/1 \in J$, und damit auch $(a/1) \subseteq J$.
+Für $r/s \in J$ gilt $r/1 = (s/1)(r/s) \in J$ und somit $r \in I$.
+Deshalb gilt $r = x a$ für ein $x \in R$, und somit
+\[
+      \frac{r}{s}
+  =   \frac{x a}{s}
+  =   \frac{x}{s} \frac{a}{1}
+  \in \left( \frac{a}{1} \right).
+\]
+Also gilt auch $J \subseteq (a/1)$.
+Insgesamt ist somit $J = (a/1)$ ein Hauptideal.
+
+
+
+
+
+\section{Bessere Version}
+
+
+\begin{lemma}
+  \label{lem: preimage of ideals}
+  Ist $f \colon R_1 \to R_2$ ein Ringhomomorphismus zwischen kommutativen Ringen $R_1$ und $R_2$, und $I \subseteq R_2$ ein Ideal, so ist das Urbild $f^{-1}(I)$ ein Ideal in $R_1$.
+\end{lemma}
+
+
+\begin{proof}
+  Die Aussage lässt sich durch explizites Nachrechnen zeigen:
+  Da $f(0) = 0 \in I$ ist $0 \in f^{-1}(I)$.
+  Für $x, y \in f^{-1}(I)$ gilt $f(x), f(y) \in I$, also auch $f(x + y) = f(x) + f(y) \in I$, und somit $x + y \in f^{-1}(I)$.
+  Für $x \in f^{-1}(I)$ gilt $f(x) \in I$, und somit für alle $r \in R$ auch $f(rx) = f(r) f(x) \in I$, also $r x \in f^{-1}(I)$.
+  
+  Die Aussage lässt sich auch geschickt zeigen:
+  Die kanonische Projektion $\pi \colon R_2 \to R_2/I$, $x \mapsto \overline{x}$ ist ein Ringhomomorphismus mit $\ker \pi = I$.
+  Die Komposition $\pi \circ f \colon R_1 \to R_2/I$ ist deshalb ein Ringhomomorphismus mit
+  \[
+      \ker(\pi \circ f)
+    = (\pi \circ f)^{-1}(0)
+    = f^{-1}(\pi^{-1}(0))
+    = f^{-1}(I).
+  \]
+  Als Kern eines Ringhomomorphismus ist auch $f^{-1}(I)$ ein Ideal.
+\end{proof}
+
+
+\begin{definition}
+  Es sei $R$ ein kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge.
+  \begin{enumerate}
+    \item
+      Ist $I \subseteq R$ ein Ideal, so ist $I^e \coloneqq \{r/s \mid r \in I, s \in S\} \subseteq R_S$ (die \emph{extension of $I$}).
+    \item
+      Ist $J \subseteq R_S$ ein Ideal, so ist $J^c \coloneqq \{r \in R \mid r/1 \in J\} \subseteq R$
+      (die \emph{contraction of $J$}).
+  \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+  \label{prop: extension and contraction for localizations}
+  Es sei $R$ ein kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge.
+  \begin{enumerate}
+    \item
+      Ist $I \subseteq R$ ein Ideal, so ist $I^e \subseteq R_S$ ein Ideal.
+    \item
+      Für jede Familie $(a_i)_{i \in I}$ von Elementen $a_i \in R$ gilt $(a_i \mid i \in I)^e = (a_i/1 \mid i \in I)$.
+    \item
+      Ist $J \subseteq R_S$ ein Ideal, so ist $J^c \subseteq R$ ein Ideal.
+    \item
+      Für jedes Ideal $J \subseteq R_S$ ist $J^{ce} = J$.
+  \end{enumerate}
+\end{proposition}
+
+
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Da $0 \in I$ ist $0_{R_S} = 0/1 \in I^e$.
+      Für $r_1/s_1, r_2/s_2 \in R_S$ gilt $r_1, r_2 \in I$, somit auch $r_1 s_2 + r_2 s_1 \in I$ und damit $(r_1/s_1) + (r_2/s_2) = (r_1 s_2 + r_2 s_1)/(s_1 s_2) \in I^e$.
+      Für $r/s \in I^e$ und beliebiges $r'/s' \in R_S$ ist $r \in I$, somit auch $r r' \in I$, und deshalb auch $(r/s)(r'/s') = (r r')/(s s') \in I^e$.
+    \item
+      Für alle $i \in I$ ist $a_i/1 \in I^e$, und somit ist $(a_i/1 \mid i \in I) \subseteq I^e$.
+      Für $r/s \in I^e$ ist $r \in I$ und somit $r = \sum_{i \in I} x_i a_i$ mit $x_i \in R$ und $x_i = 0$ für fast alle $i \in I$.
+      Deshalb ist
+      \[
+            \frac{r}{s}
+        =   \frac{\sum_{i \in I} x_i a_i}{s}
+        =   \sum_{i \in I} \frac{x_i a_i}{s}
+        =   \sum_{i \in I} \frac{x_i}{s} \frac{a_i}{s}
+        \in \left( \frac{a_i}{1} \,\middle|\, i \in I \right).
+      \]
+      Das zeigt, dass auch $I^e \subseteq (a_i/1 \mid i \in I)$.
+    \item
+      Bezüglich des Ringhomomorphismus $f \colon R \to R_S$, $r \mapsto r/1$ gilt $J^c = f^{-1}(J)$, also ist $J^c$ nach Lemma~\ref{lem: preimage of ideals} ein Ideal in $R$.
+    \item
+      Ist $r/s \in J^{ce}$, so ist $r \in J^c$ und somit $r/1 \in J$.
+      Damit ist auch $r/s = (1/s)(r/1) \in J$.
+      Also ist $J^{ce} \subseteq J$.
+      Ist $r/s \in J$ so ist $r/1 = (s/1)(r/s) \in J$ und somit $r \in J^c$.
+      Damit ist $r/s \in J^{ce}$.
+      Also ist $J \subseteq J^{ce}$.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{corollary}
+  Es sei $R$ ein kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge.
+  \begin{enumerate}
+    \item
+      Ist $R$ noethersch, so ist auch $R_S$ nothersch.
+    \item
+      Ist jedes Ideal in $R$ ein Hauptideal, so ist auch jedes Ideal in $R_S$ ein Hauptideal.
+  \end{enumerate}
+\end{corollary}
+
+
+\begin{proof}
+  Es sei $J \subseteq R_S$ ein Ideal.
+  Nach Proposition~\ref{prop: extension and contraction for localizations} ist $I \coloneqq J^c$ ein Ideal in $R$ mit $J = I^e$.
+  Nach Proposition~\ref{prop: extension and contraction for localizations} benötigt $J$ höchstens so viele Erzeuger wie $I$.
+  Ist $I$ endlich erzeugt, so ist deshalb auch $J$ endlich erzeugt, und ist $I$ ein Hauptideal, so ist auch $J$ ein Hauptideal.
+\end{proof}
+
+
+
+
+
+
+\end{document}
