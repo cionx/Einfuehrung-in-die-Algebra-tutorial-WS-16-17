@@ -492,7 +492,17 @@ Damit erhalten wir, dass
   &= \sum_{i=0}^\infty \varphi(f_i) s^i.
 \end{align*}
 
+
 \subsubsection*{Schritt 4: Konstruktion von $\psi$}
+Wir können nun $\psi$ definieren:
+Für $f \in \powerseries{R}{T}$ ist $f = \sum_{i=0}^\infty f_i T^i$, und nach den vorherigen beiden Schritten konvergiert die Reihe $\sum_{i=0}^\infty \varphi(f_i) s^i$.
+Wir definieren $\psi(f) \coloneqq \sum_{i=0}^\infty \varphi(f_i) s^i$.
+
+
+\subsubsection*{Schritt 5: Stetigkeit von $\psi$}
+Es sei $f \in \powerseries{R}{T}$ und $(f^{(i)})_i$ eine Folge von Potenreihen $f^{(i)} \in \powerseries{R}{T}$ mit $f^{(i)} \to f$ für $i \to \infty$.
+Es gilt zu zeigen, dass $\psi(f^{(i)}) \to \psi(f)$.
+
 
 
 
