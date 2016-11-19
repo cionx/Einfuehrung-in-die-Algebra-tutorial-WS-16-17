@@ -246,6 +246,10 @@ Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Fol
 
 \section{}
 
+
+\subsection*{Nachweis der Kontraktion}
+
+
 \begin{claim}
   Für alle $f, g \in \powerseries{R}{T}$ gilt
   \[
@@ -297,7 +301,36 @@ Aus der obigen Behauptung erhalten wir für alle $x_1, x_2 \in \powerseries{R}{T
 Da $q > 1$ ist $0 < q^{-1} < 1$.
 Damit haben wir gezeigt, dass $\phi_{f,g}$ bezüglich $d_q$ eine Kontraktion ist (mit möglicher Kontraktionskonstante $q^{-1}$).
 
-% TODO: Herleitung der Einheiten.
+
+\subsection*{Bestimmung der Einheiten}
+
+Ist $f \in \powerseries{R}{T}$ eine Einheit, so gibt es ein $g \in \powerseries{R}{T}$ mit $fg = 1$.
+Dann muss $1 = (fg)_0 = f_0 g_0$ und somit $f_0 \in R^\times$ (mit $f_0^{-1} = g_0$).
+
+Es sei nun andererseits $f \in \powerseries{R}{T}$ mit $f_0 \in R^\times$.
+
+Im Fall $f_0 = 1$ betrachten wir die abgeänderte Potenzreihe
+\[
+            f'         
+  \coloneqq f - 1
+  =         f - f_0
+  =         \sum_{i=1}^\infty f_i T^i
+  \in       T \cdot \powerseries{R}{T}.
+\]
+Dann ist $\phi_{f', 1} \colon \powerseries{R}{T} \to \powerseries{R}{T}$ eine Kontraktion bezüglich $d_q$.
+Da $\powerseries{R}{T}$ bezüglich $d_q$ ein vollständiger metrischer Raum ist, können wir auf $\phi_{f',1}$ den Banachschen Fixpunktsatz anwenden.
+Somit erhalten wir einen (eindeutigen) Fixpunkt $x \in \powerseries{R}{T}$ von $\phi_{f',1}$.
+Es gilt nun \mbox{$x = \phi_{f',1}(x) = 1 - f' x$} und somit $x (1 + f') = 1$.
+Also ist $1 + f' = f$ eine Einheit (mit $f^{-1} = x$).
+
+Ist allgemeiner $f_0 \in R^\times$, so lässt sich $f$ als $f = f_0 (f_0^{-1} f)$ schreiben.
+Nach der obigen Argumentation ist $f_0^{-1} f$ eine Einheit in $\powerseries{R}{T}$.
+Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f$ das Produkt zweier Einheiten, und damit ebenfalls eine Einheit.
+
+
+
+
+
 
 
 
