@@ -368,6 +368,7 @@ Man kann diesen Ausdruck Sinn verleihen, indem man fordert, dass $S$ ein topolog
 Dann kann $\sum_i \varphi(a_i) s^i$ als eine Reihe gesehen werden.
 Damit diese Reihe konvergiert muss die Wahl von $s$ allerdings noch passend eingeschränkt werden;
 für $s = 1$ und $\sum_i a_i T^i = \sum_i T^i$ (also $a_i = 1$ für alle $i$) ergibt etwa die Summe $\sum_i 1$ im Allgemeinen keinen Sinn.
+Außerdem sollte $\psi$ stetig sein, damit $\psi$ auch mit unendlichen Summen verträglich ist.
 
 Bevor wir uns an das Rechnen machen, wollen wir noch abkürzende Begriffe einführen:
 
@@ -384,6 +385,117 @@ Bevor wir uns an das Rechnen machen, wollen wir noch abkürzende Begriffe einfü
 
 
 \subsection*{Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$ $\leadsto$ Paare $(\varphi, s)$}
+
+Es sei $\psi \colon \powerseries{R}{T} \to S$ ein stetiger Ringhomomorphismus.
+Es seien $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$.
+Dann ist $\varphi$ ein Ringhomomorphismus, und es gilt zu zeigen, dass
+\[
+    \sum_j \left( \sum_i \varphi(a_{ij}) s^i \right)
+  = \sum_i \left( \sum_j \varphi(a_{ij}) s^i \right)
+\]
+für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$.
+Hierfür fixieren wir eine solche Matrix.
+
+Für alle $i, j \in \Natural$ seien $f^{(i)} \coloneqq \sum_j a_{ij} T^i$ und $g^{(j)} \coloneqq \sum_i a_{ij} T^i$;
+da $a$ zeilen- und spaltenendlich ist sind beide Summen endlich.
+
+\begin{claim}
+  Die beiden Reihen $\sum_{i=0}^\infty f^{(i)}$ und $\sum_{j=0}^\infty g^{(j)}$ konvergieren, und für die Grenzwerte gilt $\sum_{i=0}^\infty f^{(i)} = \sum_{j=0}^\infty g^{(j)}$.
+\end{claim}
+
+\begin{proof}a
+  Für alle $n \geq 0$ gilt $f^{(i)}_n = \delta_{ni} \sum_j a_{ij}$.
+  Also ist $f^{(i)}_n = 0$ alle $i \neq n$, weshalb die Reihe $\sum_{i=0}^\infty$ nach Aufgabenteil~\ref{section: convergence of power series} konvergiert.
+  Für den Grenzwert $f \coloneqq \sum_{i=0}^\infty f^{(i)}$ gilt $f_n = \sum_{i=0}^\infty f^{(i)}_n = \sum_j a_{nj}$ für alle $n \geq 0$.
+  
+  Für alle $n \geq 0$ gilt $g^{(j)}_n = a_{nj}$.
+  Wegen der Spaltenendlichkeit von $a$ gilt für jedes $n \geq 0$, dass $g^{(j)}_n = a_{nj} = 0$ für fast alle $j \geq 0$.
+  Deshalb konvergiert die Reihe $\sum_{j=0}^\infty g^{(j)}$.
+  Für den Grenzwert $g \coloneqq \sum_{j=0}^\infty g^{(j)}$ gilt $g_n = \sum_{j=0}^\infty g^{(j)}_n = \sum_j a_{nj}$ für alle $n \geq 0$, und somit $f = g$.
+\end{proof}
+
+Anwenden von $\psi$ auf die Reihe $\sum_{i=0}^\infty f^{(i)}$ ergibt, dass die Reihe $\sum_{i=0}^\infty \psi(f^{(i)})$ konvergiert, und dass
+\[
+    \psi\left( \sum_{i=0}^\infty f^{(i)} \right)
+  = \sum_{i=0}^\infty \psi(f^{(i)})
+  = \sum_{i=0}^\infty \psi\left( \sum_j a_{ij} T^i \right)
+  = \sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i.
+\]
+Analog ergibt sich, dass auch die Reihe $\sum_{j=0}^\infty \psi(g^{(i)})$ konvergiert, und dass
+\[
+    \psi\left( \sum_{j=0}^\infty g^{(j)} \right)
+  = \sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i.
+\]
+Also konvergieren die beiden Reihen $\sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i$ und $\sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i$.
+Da $\sum_{i=0}^\infty f^{(i)}$ und $\sum_{j=0}^\infty g^{(j)}$ ergibt sich außerdem, dass die beiden Reihen gleich sind.
+
+
+
+\subsection*{Paare $(\varphi, s)$ $\leadsto$ Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$}
+
+Es sei nun $(\varphi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einem Element $s \in S$, so dass für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ die beiden Reihen $\sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i$ und $\sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i$ konvergieren und die beiden Grenzwerte übereinstimmen.
+Wir konstruieren in mehreren Schritten einen stetigen Ringhomomorphismus $\psi \colon \powerseries{R}{T} \to S$ mit $\psi|_R = \varphi$ und $\psi(T) = s$.
+
+
+\subsubsection*{Schritt 1: Konstruktion von $\tilde{\psi} \colon R[T] \to S$}
+Nach der universellen Eigenschaft des Polynomrings $R[T]$ entspricht das Paar $(\varphi, s)$ einem eindeutigen Ringhomomorphismus $\tilde{\psi} \colon R[T] \to S$ mit $\tilde{\psi}|_R = \varphi$ und $\tilde{\psi}(T) = s$.
+
+
+\subsubsection*{Schritt 2: $(f^{(i)})_i$ konvergiert in $\powerseries{R}{T}$ $\implies$ $\tilde{\psi}(f^{(i)})_i$ konvergiert in $S$}
+Ist $(f^{(i)})_i$ eine in $\powerseries{R}{T}$ konvergente Folge von Polynomen $f^{(i)} \in R[T]$ so konvergiert auch die Bildfolge $( \tilde{\psi}(f^{(i)}) )_i$:
+
+Wir definieren die Folge $( g^{(i)} )_i$ von Polynomen $g^{(i)} \in R[T]$ durch $g^{(0)} \coloneqq f^{(0)}$ und $g^{(i)} \coloneqq f^{(i)} - f^{(i-1)}$ für alle $i \geq 1$.
+Dann ist $\sum_{j=0}^i g^{(j)} = f^{(i)}$ für alle $i$.
+Damit ist insbesondere
+\[
+    \tilde{\psi}(f^{(i)})
+  = \tilde{\psi}\left( \sum_{j=0}^i g^{(j)} \right)
+  = \sum_{j=0}^i \tilde{\psi}(g^{(j)})
+  \qquad
+  \text{für alle $i \geq 0$}.
+\]
+Es gilt also zu zeigen, dass die Reihe $\sum_{j=0}^\infty \tilde{\psi}(g^{(j)})$ konvergiert.
+
+Da die Folge $f^{(i)}$ konvergiert, wissen wir, dass die Reihe $\sum_{j=0}^\infty g^{(j)}$ konvergiert.
+Die Matrix $a \colon \Natural^2 \to R$, $(i,j) \mapsto g^{(j)}_i$ ist zeilen- und spaltenendlich:
+Für jedes $j \geq 0$ ist $g^{(j)}$ ein Polynom und somit $g^{(j)}_i = 0$ für fast alle $i \geq 0$.
+Da die Reihe $\sum_{j=0}^\infty g^{(j)}$ konvergiert, gilt nach Aufgabenteil~\ref{section: convergence of power series} für jedes $i \geq 0$, dass $g^{(j)}_i = 0$ für fast alle $j \geq 0$.
+
+Da die Matrix $a$ zeilen- und spaltenendlich ist, konvergiert die Reihe $\sum_{j=0}^\infty \sum_i \varphi( g^{(j)}_i ) s^i$ nach Annahme.
+Da
+\[
+    \sum_i \varphi\left( g^{(j)}_i \right) s^i
+  = \tilde{\psi}\left( \sum_i g^{(j)}_i T^i \right)
+  = \tilde{\psi}\left( g^{(j)} \right)
+  \qquad
+  \text{für alle $i \geq 0$}
+\]
+ist dies genau die Konvergenz der Reihe $\sum_{j=0}^\infty \tilde{\psi}(g^{(j)})$.
+
+
+\subsubsection*{Schritt 3: Falls $(f^{(i)})_i \to f$ in $\powerseries{R}{T}$, dann gilt $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$}
+Ist $(f^{(i)})_i$ eine Folge von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f \in \powerseries{R}{T}$, so gilt für den Grenzwert $\lim_{i \to \infty} \tilde{\varphi}(f^{(i)})$, dass $\lim_{i \to \infty} \tilde{\varphi}(f^{(i)}) = \sum_{i=0}^\infty \varphi(f_i) s^i$:
+
+Die Folge $(g^{(j)})$ von Polynomen $g^{(j)} \in R[T]$ sei definiert wie zuvor.
+Wie oben gesehen gilt $f = \lim_{i \to \infty} f^{(i)} = \sum_{j=0}^\infty g^{(j)}$, und die Matrix $\Natural^2 \to R$, $(i,j) \mapsto g^{(j)}_i$ ist zeilen- und spaltenendlich.
+Damit erhalten wir, dass
+\begin{align*}
+    \lim_{i \to \infty} \tilde{\psi}\left( f^{(i)} \right)
+  &= \sum_{j=0}^\infty \tilde{\psi}\left( g^{(j)} \right)
+   = \sum_{j=0}^\infty \tilde{\psi}\left( \sum_i g^{(j)}_i T^i \right)
+   = \sum_{j=0}^\infty \sum_i \varphi\left( g^{(j)}_i \right) s^i
+  \\
+  &= \sum_{i=0}^\infty \sum_j \varphi\left( g^{(j)}_i \right) s^i
+   = \sum_{i=0}^\infty \varphi\left( \sum_j g^{(j)}_i \right) s^i
+   = \sum_{i=0}^\infty \varphi\left( \left( \sum_{j=0}^\infty g^{(j)} \right)_{\!\!\!i}\; \right) s^i
+  \\
+  &= \sum_{i=0}^\infty \varphi(f_i) s^i.
+\end{align*}
+
+\subsubsection*{Schritt 4: Konstruktion von $\psi$}
+
+
+
 
 
 
