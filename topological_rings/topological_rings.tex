@@ -116,7 +116,7 @@ Für alle $n, i \geq 0$ gilt $(T^i)_n = \delta_{in}$;
 für fixiertes $n \geq 0$ ist deshalb $(T^i)_n = 0$ für alle $n > i$.
 Wie im Aufgabenteil~\ref{section: convergence of power series} gesehen, ist deshalb $T^i \to 0$ for $i \to \infty$ bezüglich $d_q$.
 
-Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt \mbox{$(f_i T^i)_n = f_i \delta_{in}$}, und für $i > n$ verschwindet dieser Term.
+Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt $(f_i T^i)_n = f_i \delta_{in}$, und für $i > n$ verschwindet dieser Term.
 Durch koeffizientenweises Berechnen des Grenzwertes ergibt sich, dass
 \[
     \left( \sum_{i=0}^\infty f_i T^i \right)_n
@@ -152,6 +152,8 @@ Also ist die von $d_q$ erzeugte Topologie unabhängig von $q$.
 
 
 \subsection*{Stetigkeit der Ringoperationen}
+
+% TODO: Add the definition of a topological ring.
 
 Es gilt zu zeigen, dass für je zwei konvergente Folgen $(f^{(i)})_i$ und $(g^{(i)})_i$ von Elementen $f^{(i)}, g^{(i)} \in \powerseries{R}{T}$ auch die Folgen $(f^{(i)} + g^{(i)})_i$ und $(f^{(i)} \cdot g^{(i)})_i$ konvergieren, und dass
 \begin{align*}
@@ -321,7 +323,7 @@ Im Fall $f_0 = 1$ betrachten wir die abgeänderte Potenzreihe
 Dann ist $\phi_{f', 1} \colon \powerseries{R}{T} \to \powerseries{R}{T}$ eine Kontraktion bezüglich $d_q$.
 Da $\powerseries{R}{T}$ bezüglich $d_q$ ein vollständiger metrischer Raum ist, können wir auf $\phi_{f',1}$ den Banachschen Fixpunktsatz anwenden.
 Somit erhalten wir einen (eindeutigen) Fixpunkt $x \in \powerseries{R}{T}$ von $\phi_{f',1}$.
-Es gilt nun \mbox{$x = \phi_{f',1}(x) = 1 - f' x$} und somit $x (1 + f') = 1$.
+Es gilt nun $x = \phi_{f',1}(x) = 1 - f' x$ und somit $x (1 + f') = 1$.
 Also ist $1 + f' = f$ eine Einheit (mit $f^{-1} = x$).
 
 Ist allgemeiner $f_0 \in R^\times$, so lässt sich $f$ als $f = f_0 (f_0^{-1} f)$ schreiben.
@@ -334,8 +336,63 @@ Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f$ das Produ
 
 \section{}
 
+% TODO: Add definition of denseness.
+
 Für $f \in \powerseries{R}{T}$ und die Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \coloneqq \sum_{j=0}^i f_j T^j \in R[T]$ gilt nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \to f$ für $i \to \infty$.
 Also ist $R[T]$ dicht in $\powerseries{R}{T}$.
+
+
+
+
+
+\section{}
+
+
+
+\subsection*{Motivation}
+
+Ein Ringhomomorphismus $\psi \colon R[T] \to S$ ist eindeutig durch die Einschränkung $\varphi \coloneqq \psi|_R$ und das Bild $s \coloneqq \psi(T)$ bestimmt:
+Für ein beliebiges Polynom $\sum_i a_i T^i \in R[T]$ gilt dann, dass
+\begin{equation}
+  \label{eqn: formula for polynomials}
+    \psi\left( \sum_i a_i T^i \right)
+  = \sum_i \psi(a_i) s^i;
+\end{equation}
+da $a_i = 0$ für fast alle $i$ gilt, ist auch $\psi(a_i) = 0$ für fast alle $i$, und die Summe $\sum_i \psi(a_i) s^i$ somit wohldefiniert.
+Umgekehrt liefert jedes Paar $(\varphi, s)$ bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einen Element $s \in S$ durch \eqref{eqn: formula for polynomials} einen Ringhomomorphismus $\psi \colon R[T] \to S$, und die beiden Konstruktionen sind invers zueinander.
+
+Es ist naheliegend, dieses Ergebnis auf den Potenzreihenring $\powerseries{R}{T}$ zu verallgemeinern:
+Ein Ringhomomorphismus $\psi \colon \powerseries{R}{T} \to S$ sollte mit $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$ durch $\psi(\sum_i a_i T^i) = \sum_i \varphi(a_i) s^i$ eindeutig bestimmt sein.
+Die oben genutzte Bedingung, dass $a_i = 0$ für fast alle $i$, gilt nun aber nicht mehr; daher ergibt der Ausdruck $\sum_i \varphi(a_i) s^i$ im Allgemeinen keinen Sinn.
+
+Man kann diesen Ausdruck Sinn verleihen, indem man fordert, dass $S$ ein topologischer Raum ist:  
+Dann kann $\sum_i \varphi(a_i) s^i$ als eine Reihe gesehen werden.
+Damit diese Reihe konvergiert muss die Wahl von $s$ allerdings noch passend eingeschränkt werden;
+für $s = 1$ und $\sum_i a_i T^i = \sum_i T^i$ (also $a_i = 1$ für alle $i$) ergibt etwa die Summe $\sum_i 1$ im Allgemeinen keinen Sinn.
+
+Bevor wir uns an das Rechnen machen, wollen wir noch abkürzende Begriffe einführen:
+
+\begin{definition}
+  Es sei $a \colon \Natural^2 \to R$.
+  \begin{enumerate}
+    \item
+      Die Matrix $a$ heißt \emph{zeilenendlich}, wenn in jeder Zeile fast alle Einträge verschwinden, d.h.\ für jedes $i \in \Natural$ gilt $a_{ij} = 0$ für fast alle $j \in \Natural$.
+    \item
+      Die Matrix $a$ heißt \emph{spaltenendlich}, wenn in jeder Spalte fast alle Einträge verschwinden, d.h.\ für jedes $j \in \Natural$ gilt $a_{ij} = 0$ für fast alle $i \in \Natural$.
+  \end{enumerate}
+\end{definition}
+
+
+
+\subsection*{Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$ $\leadsto$ Paare $(\varphi, s)$}
+
+
+
+
+
+
+
+
 
 
 
