@@ -99,9 +99,9 @@ Für jedes $\lambda \in K$ ist $f(\lambda) = \lambda \id_V$ und somit
   = g(\lambda \id_V)
   = \basismatrix_B(\lambda \id_V)
   = \lambda \basismatrix_B(\id_V)
-  = \lambda I_n.
+  = \lambda I.
 \]
-Die Komposition $K \xrightarrow{f} \End_K(V) \xrightarrow{g} \Mat_n(K)$ bildet also $\lambda \in K$ auf $\lambda I_n \in \Mat_n(K)$ ab.
+Die Komposition $K \xrightarrow{f} \End_K(V) \xrightarrow{g} \Mat_n(K)$ bildet also $\lambda \in K$ auf $\lambda I \in \Mat_n(K)$ ab.
 
 
 
@@ -126,10 +126,11 @@ gegeben.
 
 Für $g \in \End(A)$ gilt genau dann $g \in \End_{\End_R(A)}$, wenn $g(f \cdot a) = f \cdot g(a)$ für alle $f \in \End_R(A)$ und $a \in A$, d.h.\ wenn $g(f(a)) = f(g(a))$ für alle $f \in \End_R(A)$ und $a \in A$.
 Also ist
-\[
+\begin{equation}
+  \label{eqn: description of double centralizer}
     \End_{\End_R(A)}
   = \{ g \in \End(A) \mid \text{$gf = fg$ für alle $f \in \End_R(A)$} \}.
-\]
+\end{equation}
 
 Liegt $g$ im Bild des zu $\mu$ gehörigen Ringhomomorphismus $R \to \End(A)$, $r \mapsto \mu(r, -)$, so gibt es ein $r \in R$ mit $g = \mu(r, -)$.
 Für alle $a \in A$ ist dann $g(a) = \mu(r,-)(a) = \mu(r,a) = r \cdot a$, und für $f \in \End_R(A)$ ist deshalb
@@ -187,12 +188,13 @@ dass also $f \in \End_R(A)$.
 \subsection{}
 
 Wir bemerken zunächst, dass die Aussage im Fall $V = 0$ nicht gilt:
-Dann wäre nämlich $\End(V) = 0$ und für $\End_{\End_K(V)}(V) \subseteq \End(V)$ somit auch $\End_{\End_K(V)}(V) = 0$.
+Dann wäre nämlich $\End(V) = 0$ und für $\End_{\End_K(V)}(V) \subseteq \End(V)$ somit ebenfalls $\End_{\End_K(V)}(V) = 0$.
 Es gilt aber $K \ncong 0$.
+
 Wir arbeiten daher im Folgenden unter der zusätzlichen Annahme, dass $V \neq 0$.
 
 Nach dem vorherigen Aufgabenteil gilt $\End_{\End_K(V)}(V) \subseteq \End_K(V)$, da $K$ kommutativ ist.
-Deshalb ist
+Zusammen mit \eqref{eqn: description of double centralizer} erhalten wir damit, dass
 \begin{equation}
   \label{eqn: desired ring as the center}
   \begin{aligned}
@@ -210,7 +212,7 @@ Deshalb ist
         \}.
   \end{aligned}
 \end{equation}
-Unter dem Isomorphismus $\basismatrix_B \colon \End_K(V) \cong \Mat_n(K)$, $f \mapsto \basismatrix_B(f)$ entspricht der Unterring $\End_{\End_K(V)}(V) \subseteq \End_K(V)$ dem Unterring
+Unter dem Isomorphismus $\basismatrix_B \colon \End_K(V) \to \Mat_n(K)$, $f \mapsto \basismatrix_B(f)$ entspricht der Unterring $\End_{\End_K(V)}(V) \subseteq \End_K(V)$ dem Unterring
 \[
             \{
               A \in \Mat_n(K)
@@ -229,7 +231,7 @@ Wir bezeichnen diesen Unterring mit $\Center(\Mat_n(K))$.
   \]
   als das \emph{Zentrum} von $R$ bezeichnet.
   Es handelt sich hierbei um einen kommutativen Unterring von $R$.
-  In \eqref{eqn: desired ring as the center} haben wir formuliert, dass $\End_{\End_K(V)}(V) = Z(\End_K(V))$.
+  In \eqref{eqn: description of double centralizer} haben wir formuliert, dass $\End_{\End_R(A)}(A) = Z(\End_R(A))$, und in \eqref{eqn: desired ring as the center} als Sonderfall, dass $\End_{\End_K(V)}(V) = Z(\End_K(V))$.
 \end{remark}
 
 Wir haben nun das folgende kommutative Diagram:
@@ -258,7 +260,7 @@ Dabei ist $\phi \colon K \to \End_K(V)$, $\lambda \mapsto \lambda \id_V$ und $\p
 
 Da $\im \phi \subseteq \End_{\End_K(V)}$ ist auch $\im \psi \subseteq \Center(\Mat_n(K))$.
 Die Bijektivität der Einschränkung $\phi \colon K \to \End_{\End_K(V)}$ ist äquivalent dazu, dass die Einschränkung $\psi \colon K \to \Center(\Mat_n(K))$ ein Isomorphismus ist.
-Da $V \neq 0$ ist $n = \dim V \geq 1$ und $\psi$ deshalb injektiv.
+Da $V \neq 0$ ist $n = \dim V \geq 1$ und $\psi$ somit injektiv.
 Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
 
 \begin{lemma}
@@ -266,7 +268,9 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
   Es gilt $Z(\Mat_n(K)) = \{ \lambda I \mid \lambda \in K\}$.
 \end{lemma}
 \begin{proof}
-  Es sei $D = (d_{ij}) \in Z(\Mat_n(K))$.
+  Da $I \in Z(\Mat_n(K))$ ist auch $\lambda I \in Z(\Mat_n(K))$ für jedes $\lambda \in K$.
+  
+  Andererseits sei $D = (d_{ij}) \in Z(\Mat_n(K))$.
   Für alle $1 \leq i,j \leq n$ sei $E_{ij} \in \Mat_n(K)$ die Matrix, deren $(i,j)$-ter Eintrag $1$ ist, und deren Einträge sonst alle $0$ sind (die $j$-te Spalte von $E_{ij}$ ist also $e_i$, und alle anderen Spalten sind $0$).
   
   Wir zeigen zunächst, dass $D$ eine Diagonalmatrix ist.
@@ -275,17 +279,17 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
   \[
       D E_{ii}
     = \begin{pmatrix}
-        0       & \cdots  & 0 & d_{1i}    & 0       & \cdots  & 0  \\
-        0       & \cdots  & 0 & d_{2i}    & 0       & \cdots  & 0  \\
-        \vdots  & \ddots  & 0 & \vdots    & \vdots  & \ddots  & 0  \\
-        0       & \cdots  & 0 & d_{n-1,i} & 0       & \cdots  & 0  \\
-        0       & \cdots  & 0 & d_{ni}    & 0       & \cdots  & 0
+        0       & \cdots  & 0       & d_{1i}    & 0       & \cdots  & 0       \\
+        0       & \cdots  & 0       & d_{2i}    & 0       & \cdots  & 0       \\
+        \vdots  & \ddots  & \vdots  & \vdots    & \vdots  & \ddots  & \vdots  \\
+        0       & \cdots  & 0       & d_{n-1,i} & 0       & \cdots  & 0       \\
+        0       & \cdots  & 0       & d_{ni}    & 0       & \cdots  & 0
       \end{pmatrix},
   \]
   wobei es sich bei der mittig gesetzen Spalte um die $i$-te handelt.
-  Die Matrix $E_{ii} D$ ergibt sich auch $D$, indem bis auf die $i$-te Zeile alle Zeilen gelöscht werden, d.h.\ es gilt
+  Die Matrix $E_{ii} D$ ergibt sich aus $D$, indem bis auf die $i$-te Zeile alle Zeilen gelöscht werden, d.h.\ es gilt
   \[
-      D E_{ii}
+      E_{ii} D
     = \begin{pmatrix}
         0       & 0       & \cdots  & 0         & 0       \\
         \vdots  & \vdots  & \ddots  & \vdots    & \vdots  \\
@@ -297,21 +301,21 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
       \end{pmatrix},
   \]
   wobei es sich bei der mittig gesetzen Zeile um die $i$-te handelt.
-  Da $D \in \Center(\Mat_n(K))$ ist $D E_{ii} = E_{ii} D$, die beiden obigen Matrizen stimmen also überein.
-  Durch Vergleich der Einträge erhalten wir, dass $d_{ij} = 0$ für alle $j \neq i$ und $d_{ki} = 0$ für alle $k \neq i$.
+  Da $D \in \Center(\Mat_n(K))$ ist $D E_{ii} = E_{ii} D$, die obigen beiden Matrizen stimmen also überein.
+  Durch Vergleich der Einträge erhalten wir, dass $d_{ij} = 0$ für alle $j \neq i$ und $d_{ki} = 0$ für alle $k \neq i$, d.h.\ bis auf $d_{ii}$ verschwindet jeder Eintrag in der $i$-ten Zeile und Spalte.
   Da dies für jedes $1 \leq i \leq n$ gilt, erhalten wir insgesamt, dass $d_{ij} = 0$ für alle $i \neq j$.
   Somit ist $D$ eine Diagonalmatrix.
   
-  Um zu zeigen, dass $D$ bereits eine Skalarmatrix ist (d.h.\ ein skalares Vielfaches der Einheitsmatrix) müssen wir noch zeigen, dass $d_{ii} = d_{jj}$ für alle $1 \leq i,j \leq n$.
+  Um zu zeigen, dass $D$ bereits eine Skalarmatrix ist (d.h.\ ein skalares Vielfaches der Einheitsmatrix, also von der Form $\lambda I$ mit $\lambda \in K$) müssen wir noch zeigen, dass $d_{ii} = d_{jj}$ für alle $1 \leq i,j \leq n$.
   Hierfür bemerken wir, dass
   \[
     D E_{ij} = d_{ii} E_{ij}
     \quad\text{und}\quad
     E_{ij} D = d_{jj} E_{ij}
     \qquad
-    \text{für alle $1 \leq i,j \leq n$},
+    \text{für alle $1 \leq i,j \leq n$}.
   \]
-  Da $D E_{ij} = E_{ij} D$ für alle $1 \leq i,j \leq n$ ergibt sich, dass $d_{ii} E_{ij} = d_{jj} E_{ij}$ für alle $1 \leq i,j \leq n$, und somit $d_{ii} = d_{jj}$.
+  Da $D \in \Center(\Mat_n(K))$ ist $D E_{ij} = E_{ij} D$ für alle $1 \leq i,j \leq n$, und somit $d_{ii} E_{ij} = d_{jj} E_{ij}$ für alle $1 \leq i,j \leq n$, und somit $d_{ii} = d_{jj}$ für alle $1 \leq i,j \leq n$.
 \end{proof}
 
 
@@ -331,13 +335,10 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
           r \in \Center(R)
       \right\}.
   \]
-  Hierfür muss $R$ weder kommutativ sein, noch eine $1$ haben.
+  Hierfür muss $R$ nicht kommutativ sein.
   
   Für kommutative Ringe mit $1$ gilt der Beweis von Lemma~\ref{lem: center of matrix rings} unverändert (man muss nur $K$ durch $R$ ersetzen.)
-  
-  Für nicht-kommutative Ringe mit $1$ muss man noch einen weiteren Schritt hinzufügen, um einzusehen, dass die Skalare aus dem Zentrum $\Center(R)$ stammen müssen.
-  
-  Für Ringe $1$ lässt sich ``künstlich eine $1$ hinzufügen'', wodurch sich die Aussage auf den Fall von Ringen mit $1$ zurückführen lässt.
+  Für nicht-kommutative Ringe mit $1$ muss man noch einen weiteren Schritt hinzufügen, um einzusehen, dass $\Center(\Mat_n(K))$ nur aus den Skalarmatrizen $r I$ besteht, für die $r \in \Center(R)$.
 \end{remark}
 
 
@@ -346,10 +347,10 @@ Für die Surjektivität von $\psi$ müssen wir das folgende Lemma beweisen:
 
 \subsection{}
 
-Es sei $R$ ein nicht-kommutativer Ring.
-Als $R$-Modul betrachten wir $R$ selbst, d.h.\ wir betrachten $A \coloneqq R$, und die Multiplikation der $R$-Modulstruktur auf $A$ entspricht der Ringmultiplikation von $R$.
+Es sei $R$ ein nichtkommutativer Ring.
+Als $R$-Modul betrachten wir $R$ selbst, d.h.\ wir betrachten $A \coloneqq R$, und die $R$-Modulstruktur auf $A$ entspricht der Ringmultiplikation auf $R$.
 
-Da $R$ nicht kommutativ ist gibt es $r_1, r_2 \in R$ mit $r_1 r_2 \neq r_2 r_1$.
+Wegen der Nichtkommutativität von $R$ gibt es $r_1, r_2 \in R$ mit $r_1 r_2 \neq r_2 r_1$.
 Die Abbildung
 \[
   \lambda_{r_1} \colon A \to A,
@@ -362,8 +363,8 @@ ist deshalb nicht $R$-linear, denn
   =     \lambda_{r_1}(r_2)
   =     r_1 r_2
   \neq  r_2 r_1
-  =     r_2 (r_1 \cdot 1)
-  =     r_2 \lambda_{r_1}(1).
+  =     r_2 \cdot (r_1 \cdot 1)
+  =     r_2 \cdot \lambda_{r_1}(1).
 \]
 
 
@@ -379,14 +380,12 @@ ist deshalb nicht $R$-linear, denn
 
 Zur Belustigung bezeichnen wir die gegebene Abbildung mit
 \begin{align*}
-              \Xi
-  \colon&\,   \{ \varphi  \colon R[T] \to S \mid \text{$\varphi$ ist ein Ringhomomorphismus} \}
+              \Xi \colon
+  \phantom{\varphi \mapsto}&\,  \{ \varphi  \colon R[T] \to S \mid \text{$\varphi$ ist ein Ringhomomorphismus} \}
   \\
-        &\,   \phantom{\varphi} \to \{ \psi \colon R \to S        \mid \text{$\psi$ ist ein Ringhomomorphismus} \}
-                                    \times S,
+                        \to&\,  \{ \psi \colon R \to S \mid \text{$\psi$ ist ein Ringhomomorphismus} \} \times S,
   \\
-         &\,  \varphi
-  \mapsto     (\varphi|_R, \varphi(T)).
+            \varphi \mapsto&\,  (\varphi|_R, \varphi(T)).
 \end{align*}
 
 
@@ -397,7 +396,8 @@ Zur Belustigung bezeichnen wir die gegebene Abbildung mit
 
 Es sei $\varphi \colon R[T] \to S$ ein Ringhomomorphismus.
 Es seien $\psi \coloneqq \varphi|_R$ und $s \coloneqq \varphi(T)$.
-Für jedes $\sum_i a_i T^i \in R[T]$ gilt dann
+Da $\psi$ ein Ringhomomorphismus ist, gilt dies auch für die Einschränkung $\psi|_R = \varphi$.
+Für jedes Polynom $\sum_i a_i T^i \in R[T]$ gilt
 \[
     \varphi\left( \sum_i a_i T^i \right)
   = \sum_i \varphi(a_i) \varphi(T)^i
@@ -435,9 +435,8 @@ Wir definieren deshalb die Abbildung
   \quad
   \sum_i a_i T^i \mapsto \sum_i \psi(a_i) s^i.
 \]
-Da $\varphi|_R = \psi$ und $\varphi(T) = s$ gilt es nur noch zeigen, dass $\varphi$ ein Ringhomomorphismus ist.
-
-Für alle $f, g \in R[T]$ mit $f = \sum_i a_i T^i$ und $g = \sum_i b_i T^i$ gelten
+Da $\varphi|_R = \psi$ und $\varphi(T) = s$ gilt es nur noch zu zeigen, dass $\varphi$ ein Ringhomomorphismus ist.
+Für alle $f, g \in R[T]$ mit $f = \sum_i a_i T^i$ und $g = \sum_i b_i T^i$ gilt
 \begin{align*}
       \varphi(f + g)
   &=  \varphi\left( \sum_i a_i T^i + \sum_i b_i T^i \right)
@@ -445,8 +444,8 @@ Für alle $f, g \in R[T]$ mit $f = \sum_i a_i T^i$ und $g = \sum_i b_i T^i$ gelt
    =  \sum_i (a_i + b_i) s^i
   \\
   &=  \sum_i a_i s^i + \sum_i b_i s^i
-   =  \varphi\left( \sum_i a_i T^i \right) + \varphi\left( \sum_i b_i TWi \right)
-   =  \varphi(f) + \varphi(g),
+   =  \varphi\left( \sum_i a_i T^i \right) + \varphi\left( \sum_i b_i T^i \right)
+   =  \varphi(f) + \varphi(g)
 \end{align*}
 und
 \begin{align*}
@@ -460,10 +459,10 @@ und
   &= \left( \sum_i \psi(a_i) s^i \right) \cdot \left( \sum_i \psi(b_i) s^i \right)
    = \varphi\left( \sum_i a_i T^i \right) \cdot \varphi\left( \sum_i b_i T^i \right)
   \\
-  &= \varphi(f) \cdot \varphi(g).
+  &= \varphi(f) \cdot \varphi(g),
 \end{align*}
-Also ist $\varphi$ additiv und multiplikativ.
-Da
+wobei wir beim Übergang von der zweiten in die dritte Zeile nutzen, dass $\psi(r) s = s \psi(r)$ für alle $r \in R$.
+Das zeigt, dass $\varphi$ additiv und multiplikativ ist, und da
 \[
     \varphi(1)
   = \varphi(1 \cdot T^0)
@@ -471,8 +470,7 @@ Da
   = 1 \cdot 1
   = 1
 \]
-ist $\varphi$ auch unitär.
-Insgesamt zeigt dies, dass $\varphi$ ein Ringhomomorphismus ist.
+ist $\varphi$ somit ein Ringhomomorphismus.
 
 
 
@@ -480,8 +478,7 @@ Insgesamt zeigt dies, dass $\varphi$ ein Ringhomomorphismus ist.
 
 \subsection{}
 
-%Die $K$-Vektorraumstruktur auf $V$ entspricht einen Ringhomomorphismus $\phi \colon K \to \End(V)$, $\lambda \mapsto (v \mapsto \lambda \cdot v)$.
-In den vorherigen Aufgabenteilen haben wir Bijektionen konstruiert:
+Aus den vorherigen Aufgabenteilen ergibt sich eine Folge von Bijektionen:
 \begin{align*}
   &\,
   \{
@@ -490,7 +487,7 @@ In den vorherigen Aufgabenteilen haben wir Bijektionen konstruiert:
   \\
   \longleftrightarrow&\,
   \{
-    \text{Ringhomomorphismen $\phi \colon K[T] \to \End(V)$}
+    \text{Ringhomomorphismen $\varphi \colon K[T] \to \End(V)$}
   \}
   \\
   \longleftrightarrow&\,
@@ -519,7 +516,7 @@ In den vorherigen Aufgabenteilen haben wir Bijektionen konstruiert:
 \end{align*}
 
 Dass eine $K[T]$-Modulstruktur $\mu \colon K[T] \times V \to V$ die gegebene $K$-Vektorraumstruktur von $V$ erweitert, bedeutet, dass $\mu(\lambda, v) = \lambda \cdot v$ für alle $\lambda \in K$, $v \in V$.
-Die obige Bijektionskette schränkt sich dadurch wie folgt ein:
+Die obige Bijektionskette schränkt sich damit zu der folgenden Kette von Bijektionen ein:
 \begin{align*}
   &\,
   \left\{
@@ -533,9 +530,9 @@ Die obige Bijektionskette schränkt sich dadurch wie folgt ein:
   \longleftrightarrow&\,
   \left\{
     \begin{tabular}{c}
-      Ringhomomorphismen $\phi \colon K[T] \to \End(V)$
+      Ringhomomorphismen $\varphi \colon K[T] \to \End(V)$
       \\
-      mit $\phi(\lambda)(v) = \lambda v$ für alle $\lambda \in K$, $v \in V$
+      mit $\varphi(\lambda)(v) = \lambda v$ für alle $\lambda \in K$, $v \in V$
     \end{tabular}
   \right\}
   \\
@@ -579,7 +576,7 @@ Die obige Bijektionskette schränkt sich dadurch wie folgt ein:
   =&\, 
   \End_K(V).
 \end{align*}
-Damit haben wir eine Bijektion zwischen denjenigen $K[T]$-Modulstrukturen auf $V$, welche die $K$-Vektorraumstruktur erweitern, und den $K$-linearen Endomorphismen von $V$.
+Damit haben wir eine Bijektion zwischen den $K[T]$-Modulstrukturen auf $V$, welche die gegebene $K$-Vektorraumstruktur erweitern, und den $K$-linearen Endomorphismen von $V$.
 
 Konkret sieht diese Bijektion so aus, dass für $f \in \End_K(V)$ die entsprechende $K[T]$-Modulstruktur $\mu \colon K[T] \times V \to V$ durch
 \[
@@ -589,11 +586,6 @@ Konkret sieht diese Bijektion so aus, dass für $f \in \End_K(V)$ die entspreche
   \text{für alle $\sum_i a_i T^i \in K[T]$, $v \in V$}
 \]
 gegeben ist.
-
-
-
-
-
 
 
 
