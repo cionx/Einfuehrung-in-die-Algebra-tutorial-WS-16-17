@@ -13,6 +13,39 @@
 
 
 
+\begin{remark}
+  Aufgrund der bis zum 5.\ Übungszettel unterschiedlichen Verwendung des Begriffs \emph{Hauptidealring} in der Vorlesung und den Übungszetteln galt es in dieser Aufgabe nur zu zeigen, dass für jeden Ring $R$, in dem jedes Ideal ein Hauptideal ist, jede Lokalisierung $R_S$ von $R$ an einer multiplikativen Teilmenge $S \subseteq R$ die gleiche Eigenschaft hat.
+  
+  Der Vollständigkeits halber wollen wir hier aber kurz diskutieren, unter welchen Umständen eine Lokalisierung eines Integritätsbereichs wieder ein Integritätsbereich ist:
+  Hierfür sei $R$ ein Integritätsbereich und $S \subseteq R$ eine multiplikative Teilmenge.
+  
+  Ist $0 \in S$, so ist $R_S = 0$ und $R_S$ somit kein Integritätsbereich.
+  
+  Ist hingegen $0 \notin S$, so ist $R$ ebenfalls ein Integritätsbereich:
+  Es ist $1/1 \neq 0/1$, denn sonst gebe es $s \in S$ mit $s = s \cdot (1 \cdot 1 - 1 \cdot 0) = 0$, was $0 \notin S$ widerspreche.
+  Da $1_{R_S} = 1/1 \neq 0/1 = 0_{R_S}$ ist $R_S \neq 0$.
+  Sind $r_1/s_1, r_2/s_2 \in R_S$ mit
+  \[
+      \frac{0}{1}
+    =  0_{R_S}
+    = \frac{r_1}{s_1} \cdot \frac{r_2}{s_2}
+    = \frac{r_1 r_2}{s_1 s_2},
+  \]
+  so gibt es ein $t \in S$ mit
+  \[
+      0
+    = t(1 \cdot r_1 r_2 - 0 \cdot s_1 s_2)
+    = t r_1 r_2.
+  \]
+  Da $R$ ein Integritätsbereich ist, folgt daraus, dass $t = 0$, $r_1 = 0$ oder $r_2 = 0$.
+  Da $0 \notin S$ ist $t \neq 0$, also $r_1 = 0$ oder $r_2 = 0$.
+  Somit gilt $r_1/s_1 = 0$ oder $r_2/s_2 = 0$, was die Nullteilerfreiheit von $R_S$ zeigt.
+\end{remark}
+
+
+
+
+
 \section{Kurze Version}
 
 Es sei $J \subseteq R_S$ ein Ideal.
@@ -26,6 +59,7 @@ Durch direktes Nachrechnen ergibt sich, dass
             \right\}
 \]
 ein Ideal in $R$ ist.
+($I$ kann äquivalent auch als $I = \{ r \in R \mid \text{$r/s \in R_S$ für ein $s \in S$} \}$ definiert werden.)
 Nach Annahme ist $I$ ein Hauptideal, also $I = (a)$ für ein $a \in R$.
 Aus $a \in I$ ergibt sich, dass $a/1 \in J$, und damit auch $(a/1) \subseteq J$.
 Für $r/s \in J$ gilt $r/1 = (s/1)(r/s) \in J$ und somit $r \in I$.
@@ -56,7 +90,7 @@ Insgesamt ist somit $J = (a/1)$ ein Hauptideal.
   Die Aussage lässt sich durch explizites Nachrechnen zeigen:
   Da $f(0) = 0 \in I$ ist $0 \in f^{-1}(I)$.
   Für $x, y \in f^{-1}(I)$ gilt $f(x), f(y) \in I$, also auch $f(x + y) = f(x) + f(y) \in I$, und somit $x + y \in f^{-1}(I)$.
-  Für $x \in f^{-1}(I)$ gilt $f(x) \in I$, und somit für alle $r \in R$ auch $f(rx) = f(r) f(x) \in I$, also $r x \in f^{-1}(I)$.
+  Für $x \in f^{-1}(I)$ gilt $f(x) \in I$, und somit für jedes $r \in R$ auch $f(rx) = f(r) f(x) \in I$, also $r x \in f^{-1}(I)$.
   
   Die Aussage lässt sich auch geschickt zeigen:
   Die kanonische Projektion $\pi \colon R_2 \to R_2/I$, $x \mapsto \overline{x}$ ist ein Ringhomomorphismus mit $\ker \pi = I$.
@@ -65,6 +99,7 @@ Insgesamt ist somit $J = (a/1)$ ein Hauptideal.
       \ker(\pi \circ f)
     = (\pi \circ f)^{-1}(0)
     = f^{-1}(\pi^{-1}(0))
+    = f^{-1}(\ker \pi)
     = f^{-1}(I).
   \]
   Als Kern eines Ringhomomorphismus ist auch $f^{-1}(I)$ ein Ideal.
@@ -75,9 +110,9 @@ Insgesamt ist somit $J = (a/1)$ ein Hauptideal.
   Es sei $R$ ein kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge.
   \begin{enumerate}
     \item
-      Ist $I \subseteq R$ ein Ideal, so ist $I^e \coloneqq \{r/s \mid r \in I, s \in S\} \subseteq R_S$ (die \emph{extension of $I$}).
+      Ist $I \subseteq R$ ein Ideal, so sei $I^e \coloneqq \{r/s \mid r \in I, s \in S\} \subseteq R_S$ (die \emph{extension of $I$}).
     \item
-      Ist $J \subseteq R_S$ ein Ideal, so ist $J^c \coloneqq \{r \in R \mid r/1 \in J\} \subseteq R$
+      Ist $J \subseteq R_S$ ein Ideal, so sei $J^c \coloneqq \{r \in R \mid r/1 \in J\} \subseteq R$
       (die \emph{contraction of $J$}).
   \end{enumerate}
 \end{definition}
@@ -106,26 +141,26 @@ Insgesamt ist somit $J = (a/1)$ ein Hauptideal.
       Für $r_1/s_1, r_2/s_2 \in R_S$ gilt $r_1, r_2 \in I$, somit auch $r_1 s_2 + r_2 s_1 \in I$ und damit $(r_1/s_1) + (r_2/s_2) = (r_1 s_2 + r_2 s_1)/(s_1 s_2) \in I^e$.
       Für $r/s \in I^e$ und beliebiges $r'/s' \in R_S$ ist $r \in I$, somit auch $r r' \in I$, und deshalb auch $(r/s)(r'/s') = (r r')/(s s') \in I^e$.
     \item
-      Für alle $i \in I$ ist $a_i/1 \in I^e$, und somit ist $(a_i/1 \mid i \in I) \subseteq I^e$.
-      Für $r/s \in I^e$ ist $r \in I$ und somit $r = \sum_{i \in I} x_i a_i$ mit $x_i \in R$ und $x_i = 0$ für fast alle $i \in I$.
+      Für alle $i \in I$ gilt $a_i/1 \in I^e$, und somit gilt $(a_i/1 \mid i \in I) \subseteq I^e$.
+      Für $r/s \in I^e$ gilt $r \in I$ und somit $r = \sum_{i \in I} x_i a_i$ mit $x_i \in R$ und $x_i = 0$ für fast alle $i \in I$.
       Deshalb ist
       \[
             \frac{r}{s}
         =   \frac{\sum_{i \in I} x_i a_i}{s}
         =   \sum_{i \in I} \frac{x_i a_i}{s}
-        =   \sum_{i \in I} \frac{x_i}{s} \frac{a_i}{s}
+        =   \sum_{i \in I} \frac{x_i}{s} \frac{a_i}{1}
         \in \left( \frac{a_i}{1} \,\middle|\, i \in I \right).
       \]
-      Das zeigt, dass auch $I^e \subseteq (a_i/1 \mid i \in I)$.
+      Das zeigt, dass auch $I^e \subseteq (a_i/1 \mid i \in I)$ gilt.
     \item
       Bezüglich des Ringhomomorphismus $f \colon R \to R_S$, $r \mapsto r/1$ gilt $J^c = f^{-1}(J)$, also ist $J^c$ nach Lemma~\ref{lem: preimage of ideals} ein Ideal in $R$.
     \item
-      Ist $r/s \in J^{ce}$, so ist $r \in J^c$ und somit $r/1 \in J$.
-      Damit ist auch $r/s = (1/s)(r/1) \in J$.
-      Also ist $J^{ce} \subseteq J$.
-      Ist $r/s \in J$ so ist $r/1 = (s/1)(r/s) \in J$ und somit $r \in J^c$.
-      Damit ist $r/s \in J^{ce}$.
-      Also ist $J \subseteq J^{ce}$.
+      Ist $r/s \in J^{ce}$, so gilt $r \in J^c$ und deshalb $r/1 \in J$.
+      Damit gilt auch $r/s = (1/s)(r/1) \in J$.
+      Also gilt $J^{ce} \subseteq J$.
+      Ist $r/s \in J$ so gilt $r/1 = (s/1)(r/s) \in J$ und somit $r \in J^c$.
+      Damit gilt $r/s \in J^{ce}$.
+      Also gilt auch $J \subseteq J^{ce}$.
   \end{enumerate}
 \end{proof}
 
