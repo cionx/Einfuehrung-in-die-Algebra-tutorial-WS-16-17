@@ -149,7 +149,36 @@ Also gilt $g \in \End_{\End_R(A)}(A)$.
 
 \subsection{}
 
+Ist $R$ kommutativ, so ist für jedes $r \in R$ die Abbildung
+\[
+  \lambda_r \colon A \to A,
+  \quad
+  a \mapsto r \cdot a
+\]
+nicht nur additiv sondern sogar $R$-linear, denn
+\[
+    \lambda_r(s \cdot a)
+  = r \cdot s \cdot a
+  = s \cdot r \cdot a
+  = s \cdot \lambda_r(a)
+  \qquad
+  \text{für alle $s \in S$, $a \in A$}.
+\]
+Also ist $\lambda_r \in \End_R(A)$ für alle $r \in R$.
+(Die Abbildung $\lambda \colon R \to \End_R(A) \to \End(A)$, $r \mapsto \lambda_r$ ist der zu $\mu$ gehörige Ringhomomorphismus $R \to \End(A)$.)
 
+Ist $f \in \End_{\End_R(A)}(A)$, so ist $fg = gf$ für alle $g \in \End_R(A)$.
+Insbesondere ist damit $f \lambda_r = \lambda_r f$ für alle $r \in R$.
+Das bedeutet genau, dass
+\[
+    f(r \cdot a)
+  = f(\lambda_r(a))
+  = \lambda_r(f(a))
+  = r \cdot f(a)
+  \qquad
+  \text{für alle $r \in R$, $a \in A$},
+\]
+dass also $f \in \End_R(A)$.
 
 
 
