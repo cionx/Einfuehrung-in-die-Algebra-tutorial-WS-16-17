@@ -138,7 +138,6 @@ und somit $\sum_{i=0}^\infty f_i T^i = f$.
 
 \subsection*{Unabhängigkeit der Topologie vom Parameter $q$}
 
-
 Es seien $q_1, q_2 > 0$.
 Es gilt zu zeigen, dass eine Teilmenge $U \subseteq \powerseries{R}{T}$ genau dann offen bezüglich $d_{q_1}$ ist, wenn sie offen bezüglich $d_{q_2}$ ist.
 Dies ist äquivalent dazu, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann abgeschlossen bezüglich $d_{q_1}$ ist, wenn sie abgeschlossen bezüglich $d_{q_2}$ ist.
@@ -245,10 +244,11 @@ Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Fol
 
 
 \section{}
+\label{section: calculation of units}
+
 
 
 \subsection*{Nachweis der Kontraktion}
-
 
 \begin{claim}
   Für alle $f, g \in \powerseries{R}{T}$ gilt
@@ -302,6 +302,7 @@ Aus der obigen Behauptung erhalten wir für alle $x_1, x_2 \in \powerseries{R}{T
 \end{align*}
 Da $q > 1$ ist $0 < q^{-1} < 1$.
 Damit haben wir gezeigt, dass $\phi_{f,g}$ bezüglich $d_q$ eine Kontraktion ist (mit möglicher Kontraktionskonstante $q^{-1}$).
+
 
 
 \subsection*{Bestimmung der Einheiten}
@@ -495,22 +496,149 @@ Damit erhalten wir, dass
 
 \subsubsection*{Schritt 4: Konstruktion von $\psi$}
 Wir können nun $\psi$ definieren:
-Für $f \in \powerseries{R}{T}$ ist $f = \sum_{i=0}^\infty f_i T^i$, und nach den vorherigen beiden Schritten konvergiert die Reihe $\sum_{i=0}^\infty \varphi(f_i) s^i$.
-Wir definieren $\psi(f) \coloneqq \sum_{i=0}^\infty \varphi(f_i) s^i$.
+Es sei $f \in \powerseries{R}{T}$.
+Wegen der Dichtheit von $R[T]$ in $\powerseries{R}{T}$ gibt es eine Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f$.
+Nach den vorherigen Schritten konvergiert die Bildfolge $(\tilde{\psi}(f^{(i)}))_i$ und der Grenzwert $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$ hängt nur von $f$ ab.
+Wir definieren $\psi(f) \coloneqq \lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$.
+
+Man bemerke, dass $\psi|_{R[T]} = \tilde{\psi}$:
 
 
 \subsubsection*{Schritt 5: Stetigkeit von $\psi$}
-Es sei $f \in \powerseries{R}{T}$ und $(f^{(i)})_i$ eine Folge von Potenreihen $f^{(i)} \in \powerseries{R}{T}$ mit $f^{(i)} \to f$ für $i \to \infty$.
-Es gilt zu zeigen, dass $\psi(f^{(i)}) \to \psi(f)$.
+Der Beweis der Stetigkeit von $\psi$ wird noch hinzugefügt.
+
+Wir wollen hier aber noch bemerken, dass $\psi$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$ auf $\powerseries{R}{T}$ ist:
+Ist $\psi' \colon \powerseries{R}{T} \to S$ eine stetige Fortsetzung von $\tilde{\psi}$, so gibt es für jedes $f \in \powerseries{R}{T}$ eine Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f$ mit $f^{(i)} \to f$, weshalb
+\[
+    \psi'(f)
+  = \psi'\left( \lim_{i \to \infty} f^{(i)} \right)
+  = \lim_{i \to \infty} \psi'( f^{(i)} )
+  = \lim_{i \to \infty} \tilde{\psi}( f^{(i)} )
+  = \psi(f).
+\]
+
+
+\subsubsection*{Schritt 6: $\psi$ ist ein Ringhomomorphismus}
+Es seien $f, g \in \powerseries{R}{T}$ und $(f^{(i)})_i, (g^{(i)})_i$ zwei Folgen von Polynomen $f^{(i)}, g^{(i)} \in R[T]$ mit $f^{(i)} \to f$ und $g^{(i)} \to g$.
+Aus der Stetigkeit der Addition von $\powerseries{R}{T}$ folgt, dass auch $f^{(i)} + g^{(i)} \to f + g$.
+Aus der Stetigkeit der Addition von $S$ und der Stetigkeit von $\psi$ ergibt sich damit, dass
+\begin{align*}
+        \psi(f) + \psi(g)
+  &=    \left( \lim_{i \to \infty} \tilde{\psi}(f^{(i)}) \right)
+      + \left( \lim_{i \to \infty} \tilde{\psi}(g^{(i)}) \right)
+   =  \lim_{i \to \infty} ( \tilde{\psi}(f^{(i)}) + \tilde{\psi}(g^{(i)} ) )
+  \\
+  &=  \lim_{i \to \infty} \tilde{\psi}( f^{(i)} + g^{(i)} )
+   =  \tilde{\psi}\left( \lim_{i \to \infty} f^{(i)} + g^{(i)} \right)
+   =  \psi(f + g).
+\end{align*}
+Also ist $\psi$ additiv.
+Analog ergibt sich, dass $\psi$ multiplikativ ist (in der obigen Argumentation ersetzt man Addition durch Multiplikation).
+Außerdem gilt
+\[
+    \psi(1)
+  = \psi(T^0)
+  = \psi\left( \sum_{i=0}^\infty \delta_{i,0} T^i \right)
+  = \sum_{i=0}^\infty \varphi(\delta_{i,0}) s^i
+  = \sum_{i=0}^\infty \delta_{i,0} s^i
+  = s^0
+  = 1.
+\]
+
+
+\subsubsection*{Schritt 7: Die beiden Konstruktionen sind invers zueinender}
+Es sei $\psi \colon \powerseries{R}{T} \to S$ ein stetiger Ringhomomorphismus.
+Es seien $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$.
+Es sei $\tilde{\theta} \colon R[T] \to S$ der eindeutige Ringhomomorphismus mit $\tilde{\theta}|_R = \varphi$ und $\tilde{\theta}(T) = s$, und es sei $\theta \colon \powerseries{R}{T} \to S$ die eindeutige stetige Fortsetzung von $\tilde{\theta}$.
+Die Einschränkung $\tilde{\psi} \coloneqq \psi|_{R[T]}$ ist ein Ringhomomorphismus mit $\tilde{\psi}|_R = \psi|_{R[T]}|_R = \psi|_R = \varphi$ und $\tilde{\psi}(T) = \psi(T) = s$, weshalb $\tilde{\psi} = \tilde{\theta}$.
+Also ist $\psi$ eine stetige Fortsetzung von $\tilde{\psi} = \tilde{\theta}$ auf $\powerseries{R}{T}$; wegen der Eindeutigkeit dieser Fortsetzung ist $\psi = \theta$.
+
+Es sei nun $(\varphi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einem Element $s \in S$ wie in der Aufgabenstellung.
+Es sei $\tilde{\psi} \colon R[T] \to S$ der eindeutige Ringhomomorphismus mit $\tilde{\psi}|_R = \varphi$ und $\psi \colon \powerseries{R}{T} \to S$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$.
+Für das zu $\psi$ gehörige Paar $(\varphi', s')$ mit $\varphi' = \psi|_R$ und $s' = \psi(T)$ gilt $\varphi' = \psi|_R = \tilde{\psi}|_R = \varphi$ und $s' = \psi(T) = \tilde{\psi}(T) = s$, also $(\varphi', s') = (\varphi, s)$.
 
 
 
 
 
+\section{}
+
+Es sei $\iota \colon R \to \powerseries{R}{T}$, $r \mapsto r = r T^0$ die kanonische Inklusion und $f \in T \cdot \powerseries{R}{T}$.
+Es gilt zu zeigen, dass das Paar $(\iota, f)$ im Sinne des vorherigen Aufgabenteiles einen wohldefinierten Ringendomorphismus
+\[
+  \psi \colon \powerseries{R}{T} \to \powerseries{R}{T},
+  \quad
+  \sum_{i=0}^\infty a_i T^i \mapsto \sum_{i=0}^\infty a_i f^i
+\]
+induziert.
+Hierfür müssen wir überprüfen, dass für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ die beiden Reihen
+\[
+    \sum_{i=0}^\infty \left( \sum_j \iota(a_{ij}) f^i \right)
+  = \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right)
+  \quad\text{und}\quad
+    \sum_{j=0}^\infty \left( \sum_i \iota(a_{ij}) f^i \right)
+  = \sum_{j=0}^\infty \left( \sum_i a_{ij} f^i \right)
+\]
+konvergieren und gleichen Wert haben.
+
+Hierfür bemerken wir, dass aus $f \in T \cdot \powerseries{R}{T} = (T)$ folgt, dass $f^i \in (T^i)$ für alle $i \geq 0$ (da $f \in (T)$ ist $f = T g$ für ein $g \in \powerseries{R}{T}$, und somit $f^i = T^i g^i \in (T^i)$ für alle $i \geq 0$).
+
+Für jedes $i \geq 0$ gilt $f^i \in (T^i)$ und somit $\sum_j a_{ij} f^i \in (T^i)$.
+Deshalb gilt $(\sum_j a_{ij} f^i)_n = 0$ für alle $i > n$, und somit $\sum_j a_{ij} f^i \to 0$ für $i \to \infty$.
+Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert deshalb die Reihe $\sum_{i=0}^\infty (\sum_j a_{ij} f^i)$, und für alle $n \geq 0$ gilt
+\[
+    \left( \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right) \right)_{\!\!\!n}
+  = \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right)_{\!\!\!n}
+  = \sum_i \sum_j a_{ij} (f^i)_n.
+\]
+
+Für die Konvergenz der Reihe $\sum_{j=0}^\infty (\sum_i a_{ij} f^i)$ gilt es zu zeigen, dass $\sum_i a_{ij} f^i \to 0$ für $j \to \infty$, dass es also für jedes $n \geq 0$ ein $J \geq 0$ mit $(\sum_i a_{ij} f^i)_n = 0$ für alle $j \geq J$ gibt.
+Für jedes $j \geq 0$ gilt für alle $n \geq 0$, dass
+\[
+    \left( \sum_i a_{ij} f^i \right)_{\!\!\!n}
+  = \sum_i a_{ij} (f^i)_n
+  = \sum_{i=0}^n a_{ij} (f^i)_n.
+\]
+Wegen der Zeilenendlichkeit von $a$ gibt es für jedes $i = 0, \dotsc, n$ ein $J_i \geq 0$ mit $a_{ij} = 0$ für alle $j \geq J_i$.
+Für $J \coloneqq \max_{i=1, \dotsc, n} J_i$ gilt dann $a_{ij} = 0$ für alle $i = 1, \dotsc, n$ und $j \geq J$.
+Für jedes $j \geq J$ ist also $(\sum_i a_{ij} f^i)_n = \sum_{i=0}^n a_{ij} (f^i)_n = 0$.
+
+Die Reihe $\sum_{j=0}^\infty (\sum_i a_{ij} f^i)$ konvergiert also, und für jedes $n \geq 0$ gilt
+\[
+    \left( \sum_{j=0}^\infty \left( \sum_i a_{ij} f^i \right) \right)_{\!\!\!n} 
+  = \sum_j \left( \sum_i a_{ij} f^i \right)_{\!\!\!n}
+  = \sum_j \sum_i a_{ij} (f^i)_n.
+\]
+Wegen der Endlichkeit der Summen $\sum_i \sum_j a_{ij} (f^i)_n$ und $\sum_j \sum_i a_{ij} (f^i)_n$ ergibt sich für die beiden konvergenten Reihen $\sum_{i=0}^\infty \sum_j a_{ij} f^i$ und $\sum_{j=0}^\infty \sum_i a_{ij} f^i$, dass
+\[
+    \left( \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right) \right)_{\!\!\!n}
+  = \sum_i \sum_j a_{ij} (f^i)_n
+  = \sum_j \sum_i a_{ij} (f^i)_n
+  = \left( \sum_{j=0}^\infty \left( \sum_i a_{ij} f^i \right) \right)_{\!\!\!n}
+\]
+für alle $n \geq 0$, und somit $\sum_{i=0}^\infty \sum_j a_{ij} f^i = \sum_{j=0}^\infty \sum_i a_{ij} f^i$.
 
 
 
 
+
+\section{}
+
+Es sei $f \in \powerseries{R}{T}$ mit $f_0 = 1$.
+Die Potenzreihe $g \coloneqq f-1 = \sum_{i=1}^\infty f_i T^i \in T \cdot \powerseries{R}{T}$ liefert nach dem vorherigen Aufgabenteil einen stetigen Ringendomorphismus $\psi \colon \powerseries{R}{T} \to \powerseries{R}{T}$ mit $\psi(\sum_i a_i T^i) = \sum_{i=0}^\infty a_i g^i$ für alle $\sum_i a_i T^i \in \powerseries{R}{T}$.
+Inbesondere gilt $f = 1 + g = \psi(1 + T)$.
+
+Da $(1 + T)(\sum_i (-1)^i T) = 1$ ist $1 + T$ eine Einheit mit $(1 + T)^{-1} = \sum_i (-1)^i T^i$.
+Deshalb ist auch $\psi(1 + T) = 1 + g = f$ eine Einheit in $\powerseries{R}{T}$ mit
+\[
+    \psi(1 + T)^{-1}
+  = \psi\left( (1 + T)^{-1} \right)
+  = \psi\left( \sum_i (-1)^i T^i \right)
+  = \sum_i (-1)^i g^i.
+\]
+
+Damit haben wir gezeigt, dass jede Potenzreihe $f \in \powerseries{R}{T}$ mit $f_0 = 1$ eine Einheit ist.
+Die Charakterisierung der Einheitengruppe $\powerseries{R}{T}$ ergibt sich damit wie in Aufgabenteil~\ref{section: calculation of units}.
 
 
 
