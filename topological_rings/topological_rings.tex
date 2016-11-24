@@ -19,6 +19,18 @@
 
 
 
+\section*{Notationen}
+
+Im Folgenden werden konvergente Reihen stets in der Form $\sum_{i=0}^\infty a_i s^i$ geschrieben.
+Endliche Summen werden in der Form $\sum_i a_i$ oder $\sum_{i=0}^n a_i$ geschrieben; die zweite Notation werden wir nur nutzen, wenn wir konkrete Summationsgrenzen angeben.
+Elemente des Potenzreihenrings $\powerseries{R}{T}$ fassen wir als formale Summen auf, und werden diese als $\sum_i a_i T^i$ schreiben.
+
+Wir wählen diese Konvention, um zu unterscheiden, welche Summen unabhängig von den Topologien sind ($\sum_i$ und $\sum_{i=0}^n$), und bei welchen Summen es sich um Reihen handelt, die mithilfe von Topologien definiert sind ($\sum_{i=0}^\infty$).
+
+
+
+
+
 \section{}
 \label{section: properties of a metric}
 
@@ -30,7 +42,7 @@ Für alle $f, g \in \powerseries{R}{T}$ gilt
   \iff  f-g = 0
   \iff  f = g.
 \]
-Für jedes $h \in \powerseries{R}{T}$ und $i \geq 0$ ist genau dann $h_i \neq 0$ wenn $-h_i \neq 0$, weshalb $\nu(h) = \nu(-h)$.
+Für jedes $h \in \powerseries{R}{T}$ und alle $n \geq 0$ gilt genau dann $h_n \neq 0$ wenn $-h_n \neq 0$, weshalb $\nu(h) = \nu(-h)$.
 Für alle $f, g \in \powerseries{R}{T}$ gilt deshalb
 \[
     d_q(f,g)
@@ -45,11 +57,13 @@ Es gilt zu zeigen, dass
         q^{-\nu(f-h)}
   \leq  q^{-\nu(f-g)} + q^{-\nu(g-h)}.
 \end{equation}
-Hierfür zeigen wir, dass bereits
-\[
+Hierfür zeigen wir, dass bereits die stärkere Ungleichung
+\begin{equation}
+  \label{eqn: ultrametric}
         q^{-\nu(f-h)}
-  \leq  \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}.
-\]
+  \leq  \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}
+\end{equation}
+gilt.
 (Wir zeigen also, dass in \eqref{eqn: triangle inequality} bereits einer der beiden Summanden ausreicht.
 Um welchen es sich dabei handelt hängt allerdings von $f$, $g$ und $h$ ab.)
 Da
@@ -61,15 +75,34 @@ Da
         q^{-\nu(f-h)} \leq  \max\{ q^{-\nu(f-g)}, q^{-\nu(g-h)} \}
   \iff  \nu(f-h)      \geq  \min\{ \nu(f-g), \nu(g-h) \}.
 \end{gather*}
-Diese letzte Ungleichung gilt, denn für alle $0 \leq i < \min\{ \nu(f-g), \nu(g-h) \}$ gilt $f_i = g_i$ und $g_i = h_i$, und somit auch $f_i = h_i$.
+Diese letzte Ungleichung gilt, denn für alle $0 \leq n < \min\{ \nu(f-g), \nu(g-h) \}$ gilt $f_n = g_n$ und $g_n = h_n$, und somit auch $f_n = h_n$.
+
+\begin{remark}
+  Eine Metrik $d \colon X \times X \to [0,\infty)$ auf einer Menge $X$, die neben der gewöhnlichen Dreiecksungleichung
+  \[
+    d(x,z) \leq d(x,y) + d(y,z)
+    \qquad
+    \text{für alle $x, y, z \in X$}
+  \]
+  sogar schon die stärkere Ungleichung
+  \[
+    d(x,z) \leq \max\{ d(x,y), d(y,z) \}
+    \qquad
+    \text{für alle $x, y, z \in X$}
+  \]
+  erfüllt, heißt \emph{Ultrametrik}.
+  Wir haben gezeigt, dass $d_q$ eine Ultrametrik auf $\powerseries{R}{T}$ ist.
+\end{remark}
+
 
 Wir merken noch an, dass die Metrik $d_q$ translationsinvariant ist, d.h.\ es gilt
-\[
+\begin{equation}
+  \label{eqn: translation invariance}
     d_q(f + h, g + h)
   = d_q(f, g)
   \qquad
   \text{für alle $f, g, h \in \powerseries{R}{T}$}.
-\]
+\end{equation}
 
 
 
@@ -78,7 +111,7 @@ Wir merken noch an, dass die Metrik $d_q$ translationsinvariant ist, d.h.\ es gi
 \section{}
 \label{section: convergence of power series}
 
-Für $f \in \powerseries{R}{T}$ und eine Folge $(f^{(i)})_i$ von Elementen $f^{(i)} \in \powerseries{R}{T}$ gilt
+Für $f \in \powerseries{R}{T}$ und eine Folge $(f^{(i)})_i$ von Potenzreihen $f^{(i)} \in \powerseries{R}{T}$ gilt
 \begin{align*}
       &\, \text{$f^{(i)} \to f$ für $i \to \infty$ bezüglich $d_q$} \\
   \iff&\, \text{$d_q(f^{(i)}, f) \to 0$ für $i \to \infty$} \\
@@ -86,7 +119,7 @@ Für $f \in \powerseries{R}{T}$ und eine Folge $(f^{(i)})_i$ von Elementen $f^{(
   \iff&\, \text{$-\nu(f^{(i)} - f) \to -\infty$ für $i \to \infty$} \\
   \iff&\, \text{$\nu(f^{(i)} - f) \to \infty$ für $i \to \infty$} \\
   \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $\nu(f^{(i)} - f) \geq n$ für alle $i \geq j$}  \\
-  \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $f^{(i)}_m = f_m$ für alle $m \leq n$, $i \geq j$}  \\
+  \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $f^{(i)}_m = f_m$ für alle $i \geq j$, $m < n$}  \\
   \iff&\, \text{für jedes $n \geq 0$ gibt es ein $j \geq 0$ mit $f^{(i)}_n = f_n$ für alle $i \geq j$}.
 \end{align*}
 Es gilt also $f^{(i)} \to f$ genau dann wenn für jedes $n \geq 0$ gilt, dass $f^{(i)}_n = f_n$ für $i$ groß genug.
@@ -100,15 +133,19 @@ Wir haben auch gezeigt, dass sich der Grenzwert $\lim_{i \to \infty} f^{(i)}$ da
 
 Eine Reihe $\sum_{i = 0}^\infty f^{(i)}$ konvergiert per Definition genau dann, wenn die Folge $(g^{(j)})_j$ der Partialsummen $g^{(j)} \coloneqq \sum_{i=0}^j f^{(i)}$ konvergiert.
 Wie bereits gezeigt ist dies äquivalent dazu, dass für jedes $n \geq 0$ die Koeffizientenfolge $(g^{(j)}_n)_j$ konstant wird.
-Dies bedeutet gerade, dass es für jedes $n \geq 0$ ein $k \geq 0$ gibt, so dass $g^{(j_1)}_n = g^{(j_2)}_n$ für alle $j_1 \geq j_2 \geq k$;
-wegen $g^{(j_1)}_n - g^{(j_2)}_n = \sum_{i = j_2 + 1}^{j_1} f^{(i)}_n$ ist dies äquivalent dazu, dass $f^{(i)}_n = 0$ für alle $i > k$.
+Dies bedeutet gerade, dass es für jedes $n \geq 0$ ein $j \geq 0$ gibt, so dass $g^{(k_1)}_n = g^{(k_2)}_n$ für alle $k_1 \geq k_2 \geq j$;
+da $g^{(k_1)}_n - g^{(k_2)}_n = \sum_{i = k_2 + 1}^{k_1} f^{(i)}_n$ ist dies äquivalent dazu, dass $f^{(i)}_n = 0$ für alle $i > j$.
 
-Außerdem zeigt die obige Argumentation, dass sich der Grenzwert der Reihe $\sum_{i=0}^\infty f^{(i)}$ dann koeffizientenweise berechnen lässt, d.h.\ für alle $n \geq 0$ gilt $(\sum_{i=0}^\infty f^{(i)})_n = \sum_{i=0}^\infty f^{(i)}_n$.
+Da sich der Grenzwert einer konvergenten Folge $(f^{(i)})_i$ von Potenzreihen $f^{(i)} \in \powerseries{R}{T}$ koeffizientenweise bestimmen lässt, ergibt sich, dass sich auch der Grenzwert einer konvergenten Reihe $\sum_{i=0}^\infty f^{(i)}$ von Potenzreihen $f^{(i)} \in \powerseries{R}{T}$ koeffizientenweise berechnen lässt, d.h.\ für alle $n \geq 0$ gilt $(\sum_{i=0}^\infty f^{(i)})_n = \sum_i f^{(i)}_n$.
 
 Wir wollen den Leser an dieser Stelle darauf aufmerksam machen, dass sich Konvergenzverhalten einer Folge, bzw.\ Reihe in $\powerseries{R}{T}$ nicht von dem gewählten Parameter $q > 1$ abhängt.
 
 \begin{remark}
+  \label{remark: product topology on ring of power series}
   Versieht man den Ring $R$ mit der diskreten Topologie, bzw.\ der diskreten Metrik, so entspricht der topologische Raum $\powerseries{R}{T}$ zusammen mit den stetigen Projektionen $\pi_i \colon \powerseries{R}{T} \to R$, $f \mapsto f_i$ dem abzählbaren topologischen Produkt $\prod_{i \geq 0} R$.
+  
+  Insbesondere konvergiert dann eine Folge $(f^{(i)})_i$ von Potenzreihen $f^{(i)} \in \powerseries{R}{T}$ genau dann in $\powerseries{R}{T}$, wenn für jedes $n \geq 0$ die Koeffizientenfolge $(f^{(i)}_n)_i$ in $R$ konvergiert.
+  Für den Grenzwert $\lim_{i \to \infty} f^{(i)}$ gilt dann $(\lim_{i \to \infty} f^{(i)})_n = \lim_{i \to \infty} f^{(i)}_n$ für alle $n \geq 0$.
 \end{remark}
 
 
@@ -121,11 +158,11 @@ Für alle $n, i \geq 0$ gilt $(T^i)_n = \delta_{in}$;
 für fixiertes $n \geq 0$ ist deshalb $(T^i)_n = 0$ für alle $n > i$.
 Wie im Aufgabenteil~\ref{section: convergence of power series} gesehen, ist deshalb $T^i \to 0$ for $i \to \infty$ bezüglich $d_q$.
 
-Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$, denn für jedes $n \geq 0$ gilt $(f_i T^i)_n = f_i \delta_{in}$, und für $i > n$ verschwindet dieser Term.
+Für $f \in \powerseries{R}{T}$ konvergiert die Reihe $\sum_{i=0}^\infty f_i T^i$ bezüglich $d_q$, denn für alle $n, i \geq 0$ gilt $(f_i T^i)_n = f_i \delta_{in}$, und für $i > n$ verschwindet dieser Term.
 Durch koeffizientenweises Berechnen des Grenzwertes ergibt sich, dass
 \[
-    \left( \sum_{i=0}^\infty f_i T^i \right)_n
-  = \sum_{i=0}^\infty (f_i T^i)_n
+    \left( \sum_{i=0}^\infty f_i T^i \right)_{\!\!\!n}
+  = \sum_{i=0}^\infty \left( f_i T^i \right)_n
   = \sum_{i=0}^\infty f_i \delta_{in}
   = f_n
   \qquad
@@ -146,12 +183,10 @@ und somit $\sum_{i=0}^\infty f_i T^i = f$.
 Es seien $q_1, q_2 > 0$.
 Es gilt zu zeigen, dass eine Teilmenge $U \subseteq \powerseries{R}{T}$ genau dann offen bezüglich $d_{q_1}$ ist, wenn sie offen bezüglich $d_{q_2}$ ist.
 Dies ist äquivalent dazu, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann abgeschlossen bezüglich $d_{q_1}$ ist, wenn sie abgeschlossen bezüglich $d_{q_2}$ ist.
-Hierfür genügt es zu zeigen, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$ ist, wenn sie folgenabgeschlossen bezüglich $d_{q_2}$ ist.
+Dies ist äquivalent dazu, dass eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$ ist, wenn sie folgenabgeschlossen bezüglich $d_{q_2}$ ist.
 
-In Aufgabenteil~\ref{section: convergence of power series} haben wir gesehen, dass das Konvergenzverhalten einer Folge $(f^{(i)})_i$ von Elementen $f^{(i)} \in \powerseries{R}{T}$ bezüglich den Metriken $d_{q_1}$ und $d_{q_2}$ nicht von den Parametern $q_1$ und $q_2$ abhängt, d.h.\ für jedes $f \in \powerseries{R}{T}$ gilt genau dann $f^{(i)} \to f$ bezüglich $d_{q_1}$ wenn $f^{(i)} \to f$ bezüglich $d_{q_2}$.
-Deshalb ist $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$, wenn es folgenabgeschlossen bezüglich $d_{q_2}$ ist.
-
-Also ist die von $d_q$ erzeugte Topologie unabhängig von $q$.
+In Aufgabenteil~\ref{section: convergence of power series} haben wir gesehen, dass das Konvergenzverhalten einer Folge $(f^{(i)})_i$ von Potenzreihen $f^{(i)} \in \powerseries{R}{T}$ bezüglich den Metriken $d_{q_1}$ und $d_{q_2}$ nicht von den Parametern $q_1$ und $q_2$ abhängt, d.h.\ für jedes $f \in \powerseries{R}{T}$ gilt genau dann $f^{(i)} \to f$ bezüglich $d_{q_1}$ wenn $f^{(i)} \to f$ bezüglich $d_{q_2}$ gilt.
+Deshalb ist eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann folgenabgeschlossen bezüglich $d_{q_1}$, wenn sie folgenabgeschlossen bezüglich $d_{q_2}$ ist.
 
 
 
@@ -159,22 +194,21 @@ Also ist die von $d_q$ erzeugte Topologie unabhängig von $q$.
 
 % TODO: Add the definition of a topological ring.
 
-Es gilt zu zeigen, dass für je zwei konvergente Folgen $(f^{(i)})_i$ und $(g^{(i)})_i$ von Elementen $f^{(i)}, g^{(i)} \in \powerseries{R}{T}$ auch die Folgen $(f^{(i)} + g^{(i)})_i$ und $(f^{(i)} \cdot g^{(i)})_i$ konvergieren, und dass
+Es gilt zu zeigen, dass für je zwei konvergente Folgen $(f^{(i)})_i$ und $(g^{(i)})_i$ von Potenzreihen $f^{(i)}, g^{(i)} \in \powerseries{R}{T}$ auch die Folgen $(f^{(i)} + g^{(i)})_i$ und $(f^{(i)} \cdot g^{(i)})_i$ konvergieren, und dass
 \begin{align*}
       \lim_{i \to \infty} \left( f^{(i)} + g^{(i)} \right)
   &=  \left( \lim_{i \to \infty} f^{(i)} \right) + \left( \lim_{i \to \infty} g^{(i)} \right)
 \shortintertext{und}
       \lim_{i \to \infty} \left( f^{(i)} \cdot g^{(i)} \right)
-  &=  \left( \lim_{i \to \infty} f^{(i)} \right) \cdot \left( \lim_{i \to \infty} g^{(i)} \right)
+  &=  \left( \lim_{i \to \infty} f^{(i)} \right) \cdot \left( \lim_{i \to \infty} g^{(i)} \right).
 \end{align*}
-Hierfür fixieren wir zwei solche konvergenten Folgen und schreiben $f \coloneqq \lim_{i \to \infty} f^{(i)}$ und $g \coloneqq \lim_{i \to \infty} g^{(i)}$.
+Hierfür fixieren wir zwei solche konvergenten Folgen und setzen $f \coloneqq \lim_{i \to \infty} f^{(i)}$ und $g \coloneqq \lim_{i \to \infty} g^{(i)}$.
 
 Es sei $n \geq 0$.
 Aus $f^{(i)} \to f$ und $g^{(i)} \to g$ ergibt sich nach Aufgabenteil~\ref{section: convergence of power series}, dass es ein $j \geq 0$ gibt, so dass $f^{(i)}_n = f_n$ und $g^{(i)}_n = g_n$ für alle $i \geq j$.
-Es sei $j \geq j_f, j_g$.
 Für alle $i \geq j$ ist
 \[
-    (f^{(i)} + g^{(i)})_n
+    \left( f^{(i)} + g^{(i)} \right)_{\!n}
   = f^{(i)}_n + g^{(i)}_n
   = f_n + g_n
   = (f + g)_n.
@@ -183,12 +217,12 @@ Aus der Beliebigkeit von $n \geq 0$ folgt nach Aufgabenteil~\ref{section: conver
 
 Für das Produkt gehen wir analog vor:
 Es sei $n \geq 0$.
-Da $f^{(i)} \to f$ und $g^{(i)} \to g$ ergibt sich nach Aufgabenteil~\ref{section: convergence of power series}, dass es ein $j \geq 0$ gibt, so dass $f^{(i)}_k = g^{(i)}_k$ für alle $k = 0, \dotsc, n$ und $i \geq j$.
-Für alle $i \geq j$ ist damit auch
+Da $f^{(i)} \to f$ und $g^{(i)} \to g$ ergibt sich nach Aufgabenteil~\ref{section: convergence of power series}, dass es ein $j \geq 0$ gibt, so dass $f^{(i)}_m = g^{(i)}_m$ für alle $i \geq j$ und $m = 0, \dotsc, n$.
+Für alle $i \geq j$ ist damit
 \[
-    (f^{(i)} \cdot g^{(i)})_n
-  = \sum_{k = 0}^n f^{(i)}_k g^{(i)}_{n-k}
-  = \sum_{k = 0}^n f_k g_{n-k}
+    \left( f^{(i)} \cdot g^{(i)} \right)_{\!n}
+  = \sum_{m = 0}^n f^{(i)}_m g^{(i)}_{n-m}
+  = \sum_{m = 0}^n f_m g_{n-m}
   = (f \cdot g)_n.
 \]
 Wegen der Beliebigkeit von $n$ zeigt dies nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \cdot g^{(i)} \to f \cdot g$.
@@ -199,34 +233,34 @@ Es sei $g \coloneqq f^{-1}$ und für alle $i \geq 0$ sei $g^{(i)} \coloneqq (f^{
 Es gilt zu zeigen, dass auch $g^{(i)} \to g$ für $i \to \infty$.
 
 Wir fixieren ein $n \geq 0$.
-Da $f^{(i)} \to f$ gibt es ein $j \geq 0$ mit $f^{(i)}_k = f_k$ für alle $i \geq j$ und $0 \leq k \leq n$.
-Wir zeigen dass $g^{(i)}_k = g_k$ für alle $i \geq j$ und $0 \leq k \leq n$, per Induktion über $k$:
+Da $f^{(i)} \to f$ gibt es ein $j \geq 0$ mit $f^{(i)}_m = f_m$ für alle $i \geq j$ und $m = 0, \dotsc, n$.
+Per Induktion über $m = 0, \dotsc, n$ zeigen wir, dass $g^{(i)}_m = g_m$ für alle $i \geq j$:
 Für alle $i \geq j$ ist $g_0 = f_0^{-1} = (f^{(i)}_0)^{-1} = g^{(i)}_0$.
-Gilt $g^{(i)}_k = g_k$ für alle $0 \leq k < n$ und $i \geq j$, so ergibt sich, dass
-\[
-    g_{k+1}
-  = - g_0 \sum_{\ell=0}^k g_\ell f_{k+1-\ell}
-  = - g^{(i)}_0 \sum_{\ell=0}^k g^{(i)}_\ell f^{(i)}_{k+1-\ell}
-  = g^{(i)}_{k+1}.
+Gilt $g^{(i)}_m = g_m$ für alle $i \geq j$ und $0 \leq m < n$, so ergibt sich, dass
+\[    
+    g^{(i)}_{m+1}
+  = - g^{(i)}_0 \sum_{l=0}^m g^{(i)}_l f^{(i)}_{m+1-l}
+  = - g_0 \sum_{l=0}^m g_l f_{m+1-l}
+  = g_{m+1}.
 \]
-
-Ingesamt zeigt dies, dass es für jedes $n \geq 0$ ein $j \geq 0$, so dass $g^{(i)}_k = g_k$ für alle $0 \leq k \leq n$ und $i \geq j$; insbesondere ist $g^{(i)}_n = g_n$ für alle $i \geq j$.
+Ingesamt zeigt dies, dass es für jedes $n \geq 0$ ein $j \geq 0$, so dass $g^{(i)}_m = g_m$ für alle $i \geq j$ und $m = 0, \dotsc, n$;
+insbesondere ist $g^{(i)}_n = g_n$ für alle $i \geq j$.
 Das zeigt, dass $g^{(i)} \to g$ für $i \to \infty$.
 
 \begin{remark}
   Die Menge der Einheiten $\powerseries{R}{T}^\times$ ist als Teilmenge von $\powerseries{R}{T}$ sowohl offen als auch abgeschlossen:
   
   Es sei $(f^{(i)})_i$ eine Folge in $\powerseries{R}{T}^\times$ die gegen ein $f \in \powerseries{R}{T}$ konvergiert.
-  Für alle $i \geq 0$ ist $f^{(i)}_0 \in R^\times$, da $f^{(i)}$ invertierbar ist.
-  Es gibt ein $j \geq 0$ mit $f_0 = f^{(i)}_0$ für alle $i \geq j$.
-  Also ist auch $f_0 \in R^\times$, und somit $f \in \powerseries{R}{T}^\times$.
+  Für alle $i \geq 0$ gilt $f^{(i)}_0 \in R^\times$, da $f^{(i)}$ invertierbar ist.
+  Es gibt ein $j \geq 0$ mit $f_0 = f^{(i)}_0$ für alle $i \geq j$, also gilt auch $f_0 \in R^\times$.
+  Somit gilt auch $f \in \powerseries{R}{T}^\times$.
   Das zeigt, dass $\powerseries{R}{T}^\times$ folgenabgeschlossen in $\powerseries{R}{T}$ ist, und somit abgeschlossen in $\powerseries{R}{T}$.
   
   Analog ergibt sich, dass auch $\powerseries{R}{T} \smallsetminus \powerseries{R}{T}^\times$ abgeschlossen ist, und $\powerseries{R}{T}^\times$ somit offen.
   
   Die Aussage lässt sich auch abstrakter einsehen:
-  Versieht man $R$ mit der diskreten Topologie, bzw.\ der diskreten Metrik, so ist die Projektion auf den konstanten Koeffizienten $\pi_0 \colon \powerseries{R}{T} \to R$, $f \mapsto f_0$ stetig.
-  Für jede Menge von Koeffizienten $C \subseteq R$ sind dann die Urbilder $\pi_0(C)$ und $\pi_0(R \smallsetminus C) = \powerseries{R}{T} \smallsetminus \pi_0(C)$ offen in $\powerseries{R}{T}$.
+  Versieht man $R$ wie in Bemerkung~\ref{remark: product topology on ring of power series} mit der diskreten Topologie, bzw.\ der diskreten Metrik, so ist die Projektion auf den konstanten Koeffizienten $\pi_0 \colon \powerseries{R}{T} \to R$, $f \mapsto f_0$ stetig.
+  Für jede Menge von Koeffizienten $C \subseteq R$ sind dann die Urbilder $\pi_0^{-1}(C)$ und $\pi_0^{-1}(R \smallsetminus C) = \powerseries{R}{T} \smallsetminus \pi_0^{-1}(C)$ offen in $\powerseries{R}{T}$.
   Wählt man $C = R^\times$, so ergibt sich die Aussage.
 \end{remark}
 
@@ -237,12 +271,13 @@ Das zeigt, dass $g^{(i)} \to g$ für $i \to \infty$.
 \section{}
 
 Es genügt zu zeigen, dass $\powerseries{R}{T}$ bezüglich $d_q$ vollständig ist.
-Die Menge der Cauchyfolgen stimmt dann mit der Menge der konvergenten Folgen überein, und diese ist unabhängig von $q$, da die Topologie unabhängig von $q$ ist.
+Die Menge der Cauchyfolgen stimmt dann mit der Menge der konvergenten Folgen überein, und diese ist unabhängig von $q$, da die durch $d_q$ induzierte Topologie unabhängig von $q$ ist.
 
-Ist $(f^{(i)})_i$ eine Cauchyfolge in $\powerseries{R}{T}$ bezüglich $d_q$, so ist inbesondere $d_q(f^{(i+1)}, f^{(i)}) \to 0$ für $i \to \infty$.
-Wegen der Translationsinvarianz von $d_q$ ist $d_q(f^{(i+1)} - f^{(i)}, 0) \to 0$, also $f^{(i+1)} - f^{(i)} \to 0$.
-Nach Aufgabenteil~\ref{section: convergence of power series} gibt es deshalb für jedes $n \geq 0$ ein $j \geq 0$ mit $f^{(i+1)}_n - f^{(i)}_n = 0$ für alle $i \geq j$, also $f^{(i+1)}_n = f^{(i)}_n$ für alle $i \geq j$, weshalb die Folge $(f^{(i)}_n)_i$ für $i \geq j$ konstant ist.
-Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Folge $(f^{(i)})_i$ deshalb.
+Ist $(f^{(i)})_i$ eine Cauchyfolge in $\powerseries{R}{T}$ bezüglich $d_q$, so gilt inbesondere $d_q(f^{(i+1)}, f^{(i)}) \to 0$.
+Wegen der Translationsinvarianz von $d_q$ (siehe \eqref{eqn: translation invariance}) gilt deshalb $d_q(f^{(i+1)} - f^{(i)}, 0) \to 0$, also $f^{(i+1)} - f^{(i)} \to 0$.
+Nach Aufgabenteil~\ref{section: convergence of power series} gibt es deshalb für jedes $n \geq 0$ ein $j \geq 0$ mit $f^{(i+1)}_n - f^{(i)}_n = 0$ für alle $i \geq j$, also $f^{(i+1)}_n = f^{(i)}_n$ für alle $i \geq j$;
+die Folge $(f^{(i)}_n)_i$ ist also konstant für $i \geq j$.
+Nach Aufgabenteil~\ref{section: convergence of power series} zeigt dies, dass die Folge $(f^{(i)})_i$ konvergiert.
 
 
 
@@ -253,9 +288,10 @@ Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Fol
 
 
 
-\subsection*{Nachweis der Kontraktion}
+\subsection*{Beweis der Kontraktionseigenschaft}
 
 \begin{claim}
+  \label{claim: rules for the degree}
   Für alle $f, g \in \powerseries{R}{T}$ gilt
   \[
     \nu(f g) \geq \nu(g)
@@ -265,16 +301,16 @@ Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert die Fol
   Ist $f \in T \cdot \powerseries{R}{T}$, so gilt $\nu(f g) \geq \nu(g) + 1$.
 \end{claim}
 \begin{proof}
-  Für alle $0 \leq i < \nu(g)$ gilt $g_i = 0$ und somit auch
+  Für alle $0 \leq n < \nu(g)$ gilt $g_n = 0$ und somit auch
   \[
-      (f g)_i
-    = \sum_{j=0}^i f_j \underbrace{g_{i-j}}_{=0}
+      (f g)_n
+    = \sum_{m=0}^n f_m \underbrace{g_{n-m}}_{=0}
     = 0.
   \]
   Deshalb ist $\nu(f g) \geq \nu(g)$.  
   (Tatsächlich ergibt sich mit der obigen Argumentation, dass $\nu(fg) \geq \nu(f) + \nu(g)$.
   Ist $R$ ein Integritätsbereich, so handelt es sich hierbei um eine Gleichheit.)
-  Aus $(T g)_0 = 0$ und $(T g)_i = (T g)_{i-1}$ für alle $i \geq 1$ ergibt sich, dass $\nu(T g) = \nu(g) + 1$.
+  Aus $(T g)_0 = 0$ und $(T g)_n = g_{n-1}$ für alle $n \geq 1$ ergibt sich, dass $\nu(T g) = \nu(g) + 1$.
   Ist $f \in T \cdot \powerseries{R}{T}$ so gibt es ein $f' \in \powerseries{R}{T}$ mit $f = T f'$.
   Deshalb gilt dann
   \[
@@ -292,18 +328,18 @@ Für alle $f \in T \cdot \powerseries{R}{T}$ und $g \in \powerseries{R}{T}$ beze
   \quad
   x \mapsto g - fx.
 \]
-Aus der obigen Behauptung erhalten wir für alle $x_1, x_2 \in \powerseries{R}{T}$, dass
+Mit Behauptung~\ref{claim: rules for the degree} erhalten wir für alle $x_1, x_2 \in \powerseries{R}{T}$, dass
 \begin{align*}
         d_q( \phi_{f,g}(x_1), \phi_{f,g}(x_2) )
   &=    d_q(g - f x_1, g - f x_2)
    =    q^{-\nu((g - f x_1) - (g - f x_2))}
   \\
   &=    q^{-\nu(f (x_2 - x_1))}
-  \leq  q^{-(\nu(x_2 - x_1) + 1)}
-  =     q^{-1} q^{-\nu(x_2 - x_1)}
+   =    q^{-(\nu(x_2 - x_1) + 1)}
+   =    q^{-1} q^{-\nu(x_2 - x_1)}
   \\
   &=    q^{-1} d_q(x_2, x_1)
-  =     q^{-1} d_q(x_1, x_2).
+   =    q^{-1} d_q(x_1, x_2).
 \end{align*}
 Da $q > 1$ ist $0 < q^{-1} < 1$.
 Damit haben wir gezeigt, dass $\phi_{f,g}$ bezüglich $d_q$ eine Kontraktion ist (mit möglicher Kontraktionskonstante $q^{-1}$).
@@ -312,28 +348,32 @@ Damit haben wir gezeigt, dass $\phi_{f,g}$ bezüglich $d_q$ eine Kontraktion ist
 
 \subsection*{Bestimmung der Einheiten}
 
+\begin{claim}
+  \label{claim: power series with constant term 1 are units}
+  Ist $f \in \powerseries{R}{T}$ mit $f_0 = 1$, so gilt $f \in \powerseries{R}{T}^\times$.
+\end{claim}
+\begin{proof}
+  Wir betrachten die abgeänderte Potenzreihe
+  \[
+              g        
+    \coloneqq g - 1
+    =         g - f_0
+    =         \sum_{i \geq 1} f_i T^i
+    \in       T \cdot \powerseries{R}{T}.
+  \]
+  Dann ist $\phi_{g, 1} \colon \powerseries{R}{T} \to \powerseries{R}{T}$ eine Kontraktion bezüglich $d_q$.
+  Da $\powerseries{R}{T}$ bezüglich $d_q$ ein vollständiger metrischer Raum ist, können wir auf $\phi_{g,1}$ den Banachschen Fixpunktsatz anwenden.
+  Somit erhalten wir einen (eindeutigen) Fixpunkt $x \in \powerseries{R}{T}$ von $\phi_{g,1}$.
+  Es gilt nun $x = \phi_{g,1}(x) = 1 - g x$ und somit $x (1 + g) = 1$.
+  Also ist $1 + g = f$ eine Einheit (mit $f^{-1} = x$).
+\end{proof}
+
 Ist $f \in \powerseries{R}{T}$ eine Einheit, so gibt es ein $g \in \powerseries{R}{T}$ mit $fg = 1$.
-Dann muss $1 = (fg)_0 = f_0 g_0$ und somit $f_0 \in R^\times$ (mit $f_0^{-1} = g_0$).
+Für die konstanten Terme gilt $1 = (fg)_0 = f_0 g_0$ und somit $f_0 \in R^\times$ (mit $f_0^{-1} = g_0$).
 
-Es sei nun andererseits $f \in \powerseries{R}{T}$ mit $f_0 \in R^\times$.
-
-Im Fall $f_0 = 1$ betrachten wir die abgeänderte Potenzreihe
-\[
-            f'         
-  \coloneqq f - 1
-  =         f - f_0
-  =         \sum_{i=1}^\infty f_i T^i
-  \in       T \cdot \powerseries{R}{T}.
-\]
-Dann ist $\phi_{f', 1} \colon \powerseries{R}{T} \to \powerseries{R}{T}$ eine Kontraktion bezüglich $d_q$.
-Da $\powerseries{R}{T}$ bezüglich $d_q$ ein vollständiger metrischer Raum ist, können wir auf $\phi_{f',1}$ den Banachschen Fixpunktsatz anwenden.
-Somit erhalten wir einen (eindeutigen) Fixpunkt $x \in \powerseries{R}{T}$ von $\phi_{f',1}$.
-Es gilt nun $x = \phi_{f',1}(x) = 1 - f' x$ und somit $x (1 + f') = 1$.
-Also ist $1 + f' = f$ eine Einheit (mit $f^{-1} = x$).
-
-Ist allgemeiner $f_0 \in R^\times$, so lässt sich $f$ als $f = f_0 (f_0^{-1} f)$ schreiben.
-Nach der obigen Argumentation ist $f_0^{-1} f$ eine Einheit in $\powerseries{R}{T}$.
-Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f$ das Produkt zweier Einheiten, und damit ebenfalls eine Einheit.
+Ist andererseits $f \in \powerseries{R}{T}$ mit $f_0 \in R^\times$, so lässt sich $f$ als $f = f_0 (f_0^{-1} f)$ schreiben.
+Da $(f_0^{-1} f)_0 = f_0^{-1} f_0 = 1$ ist $f_0^{-1} f$ nach Behauptung~\ref{claim: power series with constant term 1 are units} eine Einheit in $\powerseries{R}{T}$.
+Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f = f_0 \cdot (f_0^{-1} f)$ das Produkt zweier Einheiten, und damit ebenfalls eine Einheit.
 
 
 
@@ -343,7 +383,7 @@ Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f$ das Produ
 
 % TODO: Add definition of denseness.
 
-Für $f \in \powerseries{R}{T}$ und die Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \coloneqq \sum_{j=0}^i f_j T^j \in R[T]$ gilt nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \to f$ für $i \to \infty$.
+Für $f \in \powerseries{R}{T}$ gilt für die Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \coloneqq \sum_{j=0}^i f_j T^j \in R[T]$ nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \to f$ für $i \to \infty$.
 Also ist $R[T]$ dicht in $\powerseries{R}{T}$.
 
 
@@ -366,97 +406,138 @@ Für ein beliebiges Polynom $\sum_i a_i T^i \in R[T]$ gilt dann, dass
 da $a_i = 0$ für fast alle $i$ gilt, ist auch $\psi(a_i) = 0$ für fast alle $i$, und die Summe $\sum_i \psi(a_i) s^i$ somit wohldefiniert.
 Umgekehrt liefert jedes Paar $(\varphi, s)$ bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einen Element $s \in S$ durch \eqref{eqn: formula for polynomials} einen Ringhomomorphismus $\psi \colon R[T] \to S$, und die beiden Konstruktionen sind invers zueinander.
 
-Es ist naheliegend, dieses Ergebnis auf den Potenzreihenring $\powerseries{R}{T}$ zu verallgemeinern:
+Es ist naheliegend dieses Ergebnis auf den Potenzreihenring $\powerseries{R}{T}$ verallgemeinern zu  wollen:
 Ein Ringhomomorphismus $\psi \colon \powerseries{R}{T} \to S$ sollte mit $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$ durch $\psi(\sum_i a_i T^i) = \sum_i \varphi(a_i) s^i$ eindeutig bestimmt sein.
-Die oben genutzte Bedingung, dass $a_i = 0$ für fast alle $i$, gilt nun aber nicht mehr; daher ergibt der Ausdruck $\sum_i \varphi(a_i) s^i$ im Allgemeinen keinen Sinn.
 
-Man kann diesen Ausdruck Sinn verleihen, indem man fordert, dass $S$ ein topologischer Raum ist:  
-Dann kann $\sum_i \varphi(a_i) s^i$ als eine Reihe gesehen werden.
+Die oben genutzte Bedingung, dass $a_i = 0$ für fast alle $i$, gilt nun aber nicht mehr.
+Daher ergibt der Ausdruck $\sum_i \varphi(a_i) s^i$ im Allgemeinen keinen Sinn.
+Man kann ihm aber Sinn verleihen, indem man fordert, dass $S$ ein topologischer Ring ist:  
+Dann kann $\sum_i \varphi(a_i) s^i$ als eine Reihe verstanden werden.
+
 Damit diese Reihe konvergiert muss die Wahl von $s$ allerdings noch passend eingeschränkt werden;
 für $s = 1$ und $\sum_i a_i T^i = \sum_i T^i$ (also $a_i = 1$ für alle $i$) ergibt etwa die Summe $\sum_i 1$ im Allgemeinen keinen Sinn.
-Außerdem sollte $\psi$ stetig sein, damit $\psi$ auch mit unendlichen Summen verträglich ist.
+Außerdem sollte $\psi$ stetig sein, damit $\psi$ auch mit diesen unendlichen Summen verträglich ist.
 
-Bevor wir uns an das Rechnen machen, wollen wir noch abkürzende Begriffe einführen:
+Bevor wir uns ans Rechnen machen, wollen wir noch abkürzende Begriffe einführen:
 
 \begin{definition}
-  Es sei $a \colon \Natural^2 \to R$.
+  Es sei $a \colon \Natural^2 \to R$ eine Matrix.
   \begin{enumerate}
     \item
-      Die Matrix $a$ heißt \emph{zeilenendlich}, wenn in jeder Zeile fast alle Einträge verschwinden, d.h.\ für jedes $i \in \Natural$ gilt $a_{ij} = 0$ für fast alle $j \in \Natural$.
+      Die Matrix $a$ heißt \emph{zeilenendlich}, wenn in jeder Zeile von $a$ fast alle Einträge verschwinden, d.h.\ für jedes $i \in \Natural$ gilt $a_{ij} = 0$ für fast alle $j \in \Natural$.
     \item
-      Die Matrix $a$ heißt \emph{spaltenendlich}, wenn in jeder Spalte fast alle Einträge verschwinden, d.h.\ für jedes $j \in \Natural$ gilt $a_{ij} = 0$ für fast alle $i \in \Natural$.
+      Die Matrix $a$ heißt \emph{spaltenendlich}, wenn in jeder Spalte von $a$ fast alle Einträge verschwinden, d.h.\ für jedes $j \in \Natural$ gilt $a_{ij} = 0$ für fast alle $i \in \Natural$.
+    \item
+      Es sei $\varphi \colon R \to S$ ein Ringhomomorphismus und $s \in S$.
+      Ist die Matrix $a$ zeilen- und spaltenendlich, so heißt sie \emph{$(\varphi,s)$-kompatibel}, bzw.\ \emph{kompatibel zu $(\varphi,s)$}, wenn die beiden Reihen $\sum_{i=0}^\infty( \sum_j \varphi(a_{ij}) s^i )$ und $\sum_{j=0}^\infty( \sum_i \varphi(a_{ij}) s^i )$ konvergieren und für die entsprechenden Grenzwerte $\sum_{i=0}^\infty( \sum_j \varphi(a_{ij}) s^i ) = \sum_{j=0}^\infty( \sum_i \varphi(a_{ij}) s^i )$ gilt.
   \end{enumerate}
 \end{definition}
 
+\begin{remark}
+  Die Begriffe von Zeilen- und Spaltenendlichkeit einer Matrix sind weit verbreitet.
+  Der Begriff von $(\varphi, s)$-Kompatiblitat hingegen wird hier der Nützlichkeit wegen ad-hoc eingefügt.
+\end{remark}
 
 
-\subsection*{Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$ $\leadsto$ Paare $(\varphi, s)$}
+\subsection*{Von Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$ zu Paaren $(\varphi, s)$}
 
 Es sei $\psi \colon \powerseries{R}{T} \to S$ ein stetiger Ringhomomorphismus.
 Es seien $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$.
-Dann ist $\varphi$ ein Ringhomomorphismus, und es gilt zu zeigen, dass
-\[
-    \sum_j \left( \sum_i \varphi(a_{ij}) s^i \right)
-  = \sum_i \left( \sum_j \varphi(a_{ij}) s^i \right)
-\]
-für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$.
+Dann ist $\varphi$ ein Ringhomomorphismus, und es gilt zu zeigen, jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ kompatibel mit $(\varphi, s)$ ist.
 Hierfür fixieren wir eine solche Matrix.
 
 Für alle $i, j \in \Natural$ seien $f^{(i)} \coloneqq \sum_j a_{ij} T^i$ und $g^{(j)} \coloneqq \sum_i a_{ij} T^i$;
-da $a$ zeilen- und spaltenendlich ist sind beide Summen endlich.
+da $a$ zeilen- und spaltenendlich ist, sind beide Summen endlich.
 
 \begin{claim}
-  Die beiden Reihen $\sum_{i=0}^\infty f^{(i)}$ und $\sum_{j=0}^\infty g^{(j)}$ konvergieren, und für die Grenzwerte gilt $\sum_{i=0}^\infty f^{(i)} = \sum_{j=0}^\infty g^{(j)}$.
+  Die beiden Reihen $\sum_{i=0}^\infty f^{(i)}$ und $\sum_{j=0}^\infty g^{(j)}$ konvergieren, und für die beiden Grenzwerte gilt $\sum_{i=0}^\infty f^{(i)} = \sum_{j=0}^\infty g^{(j)}$.
 \end{claim}
 
-\begin{proof}a
-  Für alle $n \geq 0$ gilt $f^{(i)}_n = \delta_{ni} \sum_j a_{ij}$.
-  Also ist $f^{(i)}_n = 0$ alle $i \neq n$, weshalb die Reihe $\sum_{i=0}^\infty$ nach Aufgabenteil~\ref{section: convergence of power series} konvergiert.
-  Für den Grenzwert $f \coloneqq \sum_{i=0}^\infty f^{(i)}$ gilt $f_n = \sum_{i=0}^\infty f^{(i)}_n = \sum_j a_{nj}$ für alle $n \geq 0$.
+\begin{proof}
+  Für alle $n \geq 0$ gilt $f^{(i)}_n = (\sum_j a_{ij}) \delta_{ni}$, und deshalb $f^{(i)}_n = 0$ alle $i \neq n$.
+  Nach Aufgabenteil~\ref{section: convergence of power series} gilt deshalb $f^{(i)} \to 0$, weshalb die Reihe $\sum_{i=0}^\infty f^{(i)}$ konvergiert.
+  Für den Grenzwert $f \coloneqq \sum_{i=0}^\infty f^{(i)}$ ergibt sich durch koeffizientenweises Berechnen, dass
+  \[
+    f_n
+    = \sum_i f^{(i)}_n
+    = \sum_i \left( \sum_j a_{ij} \right) \delta_{in}
+    = \sum_j a_{nj}
+    \qquad
+    \text{für alle $n \geq 0$}.
+  \]
   
-  Für alle $n \geq 0$ gilt $g^{(j)}_n = a_{nj}$.
+  Für alle $n \geq 0$ gilt $g^{(j)}_n = a_{nj}$ für alle $j \geq 0$.
   Wegen der Spaltenendlichkeit von $a$ gilt für jedes $n \geq 0$, dass $g^{(j)}_n = a_{nj} = 0$ für fast alle $j \geq 0$.
-  Deshalb konvergiert die Reihe $\sum_{j=0}^\infty g^{(j)}$.
-  Für den Grenzwert $g \coloneqq \sum_{j=0}^\infty g^{(j)}$ gilt $g_n = \sum_{j=0}^\infty g^{(j)}_n = \sum_j a_{nj}$ für alle $n \geq 0$, und somit $f = g$.
+  Nach Aufgabenteil~\ref{section: convergence of power series} ist deshalb $g^{(j)} \to 0$, weshalb die Reihe $\sum_{j=0}^\infty g^{(j)}$ konvergiert.
+  Für den Grenzwert $g \coloneqq \sum_{j=0}^\infty g^{(j)}$ ergibt sich durch koeffizientenweises Berechnen, dass
+  \[
+    g_n = \sum_j g^{(j)}_n = \sum_j a_{nj}
+    \qquad
+    \text{für alle $n \geq 0$}.
+  \]
+  Für alle $n \geq 0$ gilt $f_n = g_n$ und somit $f = g$.
 \end{proof}
 
-Anwenden von $\psi$ auf die Reihe $\sum_{i=0}^\infty f^{(i)}$ ergibt, dass die Reihe $\sum_{i=0}^\infty \psi(f^{(i)})$ konvergiert, und dass
+Anwenden von $\psi$ auf die Reihe $\sum_{i=0}^\infty f^{(i)}$ ergibt wegen der Additivität und Stetigkeit von $\psi$, dass auch die Reihe $\sum_{i=0}^\infty \psi(f^{(i)})$ konvergiert.
+Dabei gilt
 \[
     \psi\left( \sum_{i=0}^\infty f^{(i)} \right)
-  = \sum_{i=0}^\infty \psi(f^{(i)})
+  = \sum_{i=0}^\infty \psi\left( f^{(i)} \right)
   = \sum_{i=0}^\infty \psi\left( \sum_j a_{ij} T^i \right)
-  = \sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i.
+  = \sum_{i=0}^\infty \sum_j \varphi(a_{ij}) s^i.
 \]
 Analog ergibt sich, dass auch die Reihe $\sum_{j=0}^\infty \psi(g^{(i)})$ konvergiert, und dass
 \[
     \psi\left( \sum_{j=0}^\infty g^{(j)} \right)
-  = \sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i.
+  = \sum_{j=0}^\infty \sum_i \varphi(a_{ij}) s^i.
 \]
-Also konvergieren die beiden Reihen $\sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i$ und $\sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i$.
-Da $\sum_{i=0}^\infty f^{(i)}$ und $\sum_{j=0}^\infty g^{(j)}$ ergibt sich außerdem, dass die beiden Reihen gleich sind.
+Also konvergieren die beiden Reihen $\sum_{i=0}^\infty \sum_j \varphi(a_{ij}) s^i$ und $\sum_{j=0}^\infty \sum_i \varphi(a_{ij}) s^i$, und aus der Gleichheit $\sum_{i=0}^\infty f^{(i)} = \sum_{j=0}^\infty g^{(j)}$ ergibt sich, dass
+\[
+    \sum_{i=0}^\infty \sum_j \varphi(a_{ij}) s^i
+  = \psi\left( \sum_{i=0}^\infty f^{(i)} \right)
+  = \psi\left( \sum_{j=0}^\infty g^{(j)} \right)
+  = \sum_{j=0}^\infty \sum_i \varphi(a_{ij}) s^i.
+\]
 
 
+\subsection*{Von Paaren $(\varphi, s)$ zu Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$}
 
-\subsection*{Paare $(\varphi, s)$ $\leadsto$ Ringhomomorphismen $\psi \colon \powerseries{R}{T} \to S$}
-
-Es sei nun $(\varphi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einem Element $s \in S$, so dass für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ die beiden Reihen $\sum_{i=0}^\infty \sum_{j=0}^\infty \varphi(a_{ij}) s^i$ und $\sum_{j=0}^\infty \sum_{i=0}^\infty \varphi(a_{ij}) s^i$ konvergieren und die beiden Grenzwerte übereinstimmen.
+Es sei nun $(\varphi, s)$ ein Paar, so dass jede zeilen- und spaltenendlich $a \colon \Natural^2 \to R$ kompatibel zu $(\varphi, s)$ ist.
 Wir konstruieren in mehreren Schritten einen stetigen Ringhomomorphismus $\psi \colon \powerseries{R}{T} \to S$ mit $\psi|_R = \varphi$ und $\psi(T) = s$.
 
 
+\subsubsection*{Schritt 0: Die Idee}
+Wegen der Stetigkeit von $\psi$ und Dichtheit von $R[T] \subseteq \powerseries{R}{T}$ sollte $\psi$ durch die Einschränkung $\psi|_{R[T]}$ bereits eindeutig bestimmt sein; dass $S$ Hausdorff ist, ist hierfür eine technische Voraussetzung.
+Die Einschränkung $\psi|_{R[T]} \colon R[T] \to S$ ist auf rein algebraisch Weise durch die Einschränkung $\psi|_R$ und das Bildelement $\psi(T)$ eindeutig bestimmt.
+
+Für die Konstruktion wollen wir diese Argumenation umgekehren:
+Wir erweitern das Paar $(\varphi, s)$ zu einem Ringhomomorphismus $\tilde{\psi} \colon R[T] \to S$, den wir eindeutig zu einer Abbildung $\psi \colon \powerseries{R}{T} \to S$ fortsetzen, indem wir beliebige Potenzreihen $f \in \powerseries{R}{T}$ durch Polynome $f^{(i)} \in R[T]$ approximieren. 
+Anschließend überprüfen wir, dass $\psi$ ein stetiger Ringhomomorphismus ist.
+
+Die angegebene technische Bedingung an $s \in S$ wird dabei auf zwei Weisen genutzt:
+Zum einen sorgt die Konvergenz der Reihen dafür, dass gewissen Grenwerte existieren, was die genutzten Approximationsargumente erlaubt.
+Die Gleichheit der beiden Reihen wird dafür genutzt diese Grenzwerte genauer zu bestimmen.
+
+
 \subsubsection*{Schritt 1: Konstruktion von $\tilde{\psi} \colon R[T] \to S$}
-Nach der universellen Eigenschaft des Polynomrings $R[T]$ entspricht das Paar $(\varphi, s)$ einem eindeutigen Ringhomomorphismus $\tilde{\psi} \colon R[T] \to S$ mit $\tilde{\psi}|_R = \varphi$ und $\tilde{\psi}(T) = s$.
+Nach der universellen Eigenschaft des Polynomrings $R[T]$ entspricht das Paar $(\varphi, s)$ einem eindeutigen Ringhomomorphismus $\tilde{\psi} \colon R[T] \to S$ mit $\tilde{\psi}|_R = \varphi$ und $\tilde{\psi}(T) = s$, und dieser ist gegeben durch
+\[
+    \tilde{\psi}\left( \sum_i a_i T^i \right)
+  = \sum_i \varphi(a_i) s^i
+  \qquad
+  \text{für alle $\sum_i a_i T^i \in R[T]$}.
+\]
 
 
-\subsubsection*{Schritt 2: $(f^{(i)})_i$ konvergiert in $\powerseries{R}{T}$ $\implies$ $\tilde{\psi}(f^{(i)})_i$ konvergiert in $S$}
-Ist $(f^{(i)})_i$ eine in $\powerseries{R}{T}$ konvergente Folge von Polynomen $f^{(i)} \in R[T]$ so konvergiert auch die Bildfolge $( \tilde{\psi}(f^{(i)}) )_i$:
+\subsubsection*{Schritt 2: Konvergiert $(f^{(i)})_i$ mit $f^{(i)} \in R[T]$ in $\powerseries{R}{T}$ so konvergiert $\tilde{\psi}(f^{(i)})_i$ in $S$}
+Ist $(f^{(i)})_i$ eine in $\powerseries{R}{T}$ konvergente Folge von Polynomen $f^{(i)} \in R[T]$ so konvergiert auch die Bildfolge $( \tilde{\psi}(f^{(i)}) )_i$.
 
 Wir definieren die Folge $( g^{(i)} )_i$ von Polynomen $g^{(i)} \in R[T]$ durch $g^{(0)} \coloneqq f^{(0)}$ und $g^{(i)} \coloneqq f^{(i)} - f^{(i-1)}$ für alle $i \geq 1$.
-Dann ist $\sum_{j=0}^i g^{(j)} = f^{(i)}$ für alle $i$.
-Damit ist insbesondere
+Dann ist $\sum_{j=0}^i g^{(j)} = f^{(i)}$ für alle $i \geq 0$, und somit auch
 \[
-    \tilde{\psi}(f^{(i)})
+    \tilde{\psi}\left( f^{(i)} \right)
   = \tilde{\psi}\left( \sum_{j=0}^i g^{(j)} \right)
-  = \sum_{j=0}^i \tilde{\psi}(g^{(j)})
+  = \sum_{j=0}^i \tilde{\psi}\left( g^{(j)} \right)
   \qquad
   \text{für alle $i \geq 0$}.
 \]
@@ -479,10 +560,14 @@ Da
 ist dies genau die Konvergenz der Reihe $\sum_{j=0}^\infty \tilde{\psi}(g^{(j)})$.
 
 
-\subsubsection*{Schritt 3: Falls $(f^{(i)})_i \to f$ in $\powerseries{R}{T}$, dann gilt $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$}
-Ist $(f^{(i)})_i$ eine Folge von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f \in \powerseries{R}{T}$, so gilt für den Grenzwert $\lim_{i \to \infty} \tilde{\varphi}(f^{(i)})$, dass $\lim_{i \to \infty} \tilde{\varphi}(f^{(i)}) = \sum_{i=0}^\infty \varphi(f_i) s^i$:
+\subsubsection*{Schritt 3: Konvergiert $R[T] \ni f^{(i)} \to f$ in $\powerseries{R}{T}$ so gilt $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$}
+Ist $(f^{(i)})_i$ eine Folge von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f \in \powerseries{R}{T}$, so gilt für den Grenzwert $\lim_{i \to \infty} \tilde{\varphi}(f^{(i)})$, der nach dem vorherigen Schritt existiert, dass
+\[
+    \lim_{i \to \infty} \tilde{\varphi}\left( f^{(i)} \right)
+  = \sum_{i=0}^\infty \varphi(f_i) s^i.
+\]
 
-Die Folge $(g^{(j)})$ von Polynomen $g^{(j)} \in R[T]$ sei definiert wie zuvor.
+Die Folge $(g^{(j)})_j$ von Polynomen $g^{(j)} \in R[T]$ sei definiert wie zuvor.
 Wie oben gesehen gilt $f = \lim_{i \to \infty} f^{(i)} = \sum_{j=0}^\infty g^{(j)}$, und die Matrix $\Natural^2 \to R$, $(i,j) \mapsto g^{(j)}_i$ ist zeilen- und spaltenendlich.
 Damit erhalten wir, dass
 \begin{align*}
@@ -499,26 +584,43 @@ Damit erhalten wir, dass
 \end{align*}
 
 
-\subsubsection*{Schritt 4: Konstruktion von $\psi$}
+\subsubsection*{Schritt 4: Definition von $\psi$}
 Wir können nun $\psi$ definieren:
 Es sei $f \in \powerseries{R}{T}$.
 Wegen der Dichtheit von $R[T]$ in $\powerseries{R}{T}$ gibt es eine Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f$.
-Nach den vorherigen Schritten konvergiert die Bildfolge $(\tilde{\psi}(f^{(i)}))_i$ und der Grenzwert $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$ hängt nur von $f$ ab.
-Wir definieren $\psi(f) \coloneqq \lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$.
-
-Man bemerke, dass $\psi|_{R[T]} = \tilde{\psi}$:
+Nach den vorherigen Schritten konvergiert die Bildfolge $(\tilde{\psi}(f^{(i)}))_i$, und der Grenzwert $\lim_{i \to \infty} \tilde{\psi}(f^{(i)}) = \sum_{i=0}^\infty f_i s^i$ hängt nur von $f$ ab.
+Daher ist
+\[
+            \psi(f)
+  \coloneqq \lim_{i \to \infty} \tilde{\psi}\left( f^{(i)} \right)
+  =         \sum_{i=0}^\infty f_i s^i
+\]
+wohldefiniert.
+Wir merken auch noch an, dass $\psi|_{R[T]} = \tilde{\psi}$.
 
 
 \subsubsection*{Schritt 5: Stetigkeit von $\psi$}
-Der Beweis der Stetigkeit von $\psi$ wird noch hinzugefügt.
+Es lässt sich zeigen, dass $\psi$ stetig ist;
+ein Beweis hierfür wird noch hinzugefügt werden.
 
-Wir wollen hier aber noch bemerken, dass $\psi$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$ auf $\powerseries{R}{T}$ ist:
-Ist $\psi' \colon \powerseries{R}{T} \to S$ eine stetige Fortsetzung von $\tilde{\psi}$, so gibt es für jedes $f \in \powerseries{R}{T}$ eine Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f$ mit $f^{(i)} \to f$, weshalb
+\begin{remark}
+  Beim Beweis der Stetigkeit von $\psi$ erweist sich unter den gegegebenen Bedingungen als problematisch:
+  
+  Nimmt man zusätzlich an, dass $S$ metrisierbar ist, so lässt sich ein relativ kurzes Diagonalfolgenargument nutzen.
+  Auch eine Argumentation über gleichmäßige Stetigkeit ist dann möglich.
+  Inbesondere können in beiden Fällen Sätze aus der Analysis zitiert werden.
+  
+  Dass $S$ jedoch a priori nur ein weiter hausdorffscher topologischer Ring ist, macht das ganze deutlich schwieriger.
+  Der einzige Beweis, den der Autor bisher gefunden hat, nutzt ein für diese Vorlesung übermäßiges Maß an point set topology, und nutzt (und beweist) ad-hoc einige Eigenschaften topologischer Gruppen.
+\end{remark}
+
+Wir wollen aber zumindest anmerken, dass $\psi$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$ auf $\powerseries{R}{T}$ ist:
+Ist $\psi' \colon \powerseries{R}{T} \to S$ eine stetige Fortsetzung von $\tilde{\psi}$, so gibt es für jedes $f \in \powerseries{R}{T}$ eine Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \in R[T]$ mit $f^{(i)} \to f$, weshalb
 \[
     \psi'(f)
   = \psi'\left( \lim_{i \to \infty} f^{(i)} \right)
-  = \lim_{i \to \infty} \psi'( f^{(i)} )
-  = \lim_{i \to \infty} \tilde{\psi}( f^{(i)} )
+  = \lim_{i \to \infty} \psi'\left( f^{(i)} \right)
+  = \lim_{i \to \infty} \tilde{\psi}\left( f^{(i)} \right)
   = \psi(f).
 \]
 
@@ -529,23 +631,23 @@ Aus der Stetigkeit der Addition von $\powerseries{R}{T}$ folgt, dass auch $f^{(i
 Aus der Stetigkeit der Addition von $S$ und der Stetigkeit von $\psi$ ergibt sich damit, dass
 \begin{align*}
         \psi(f) + \psi(g)
-  &=    \left( \lim_{i \to \infty} \tilde{\psi}(f^{(i)}) \right)
-      + \left( \lim_{i \to \infty} \tilde{\psi}(g^{(i)}) \right)
-   =  \lim_{i \to \infty} ( \tilde{\psi}(f^{(i)}) + \tilde{\psi}(g^{(i)} ) )
+  &=    \left( \lim_{i \to \infty} \tilde{\psi}\left( f^{(i)} \right) \right)
+      + \left( \lim_{i \to \infty} \tilde{\psi}\left( g^{(i)} \right) \right)
+   =  \lim_{i \to \infty} \left( \tilde{\psi}\left( f^{(i)} \right) + \tilde{\psi}\left( g^{(i)} \right) \right)
   \\
-  &=  \lim_{i \to \infty} \tilde{\psi}( f^{(i)} + g^{(i)} )
-   =  \tilde{\psi}\left( \lim_{i \to \infty} f^{(i)} + g^{(i)} \right)
+  &=  \lim_{i \to \infty} \tilde{\psi}\left( f^{(i)} + g^{(i)} \right)
+   =  \tilde{\psi}\left( \lim_{i \to \infty} \left( f^{(i)} + g^{(i)} \right) \right)
    =  \psi(f + g).
 \end{align*}
 Also ist $\psi$ additiv.
-Analog ergibt sich, dass $\psi$ multiplikativ ist (in der obigen Argumentation ersetzt man Addition durch Multiplikation).
+Analog ergibt sich, dass $\psi$ multiplikativ ist.
 Außerdem gilt
 \[
     \psi(1)
-  = \psi(T^0)
-  = \psi\left( \sum_{i=0}^\infty \delta_{i,0} T^i \right)
-  = \sum_{i=0}^\infty \varphi(\delta_{i,0}) s^i
-  = \sum_{i=0}^\infty \delta_{i,0} s^i
+  = \psi\left( T^0 \right)
+  = \psi\left( \sum_i \delta_{i,0} T^i \right)
+  = \sum_i \varphi(\delta_{i,0}) s^i
+  = \sum_i \delta_{i,0} s^i
   = s^0
   = 1.
 \]
@@ -554,12 +656,14 @@ Außerdem gilt
 \subsubsection*{Schritt 7: Die beiden Konstruktionen sind invers zueinender}
 Es sei $\psi \colon \powerseries{R}{T} \to S$ ein stetiger Ringhomomorphismus.
 Es seien $\varphi \coloneqq \psi|_R$ und $s \coloneqq \psi(T)$.
+Dann ist jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ kompatibel mit $(\varphi, s)$.
 Es sei $\tilde{\theta} \colon R[T] \to S$ der eindeutige Ringhomomorphismus mit $\tilde{\theta}|_R = \varphi$ und $\tilde{\theta}(T) = s$, und es sei $\theta \colon \powerseries{R}{T} \to S$ die eindeutige stetige Fortsetzung von $\tilde{\theta}$.
-Die Einschränkung $\tilde{\psi} \coloneqq \psi|_{R[T]}$ ist ein Ringhomomorphismus mit $\tilde{\psi}|_R = \psi|_{R[T]}|_R = \psi|_R = \varphi$ und $\tilde{\psi}(T) = \psi(T) = s$, weshalb $\tilde{\psi} = \tilde{\theta}$.
-Also ist $\psi$ eine stetige Fortsetzung von $\tilde{\psi} = \tilde{\theta}$ auf $\powerseries{R}{T}$; wegen der Eindeutigkeit dieser Fortsetzung ist $\psi = \theta$.
+Die Einschränkung $\tilde{\psi} \coloneqq \psi|_{R[T]} \colon R[T] \to S$ ist ein Ringhomomorphismus, für den $\tilde{\psi}|_R = \psi|_{R[T]}|_R = \psi|_R = \varphi$ und $\tilde{\psi}(T) = \psi(T) = s$ gilt.
+Deshalb gilt $\tilde{\psi} = \tilde{\theta}$ nach der Eindeutigkeit von $\tilde{\theta}$.
+Damit ist $\psi$ eine stetige Fortsetzung von $\tilde{\psi} = \tilde{\theta}$ auf $\powerseries{R}{T}$; wegen der Eindeutigkeit dieser Fortsetzung ist $\psi = \theta$.
 
-Es sei nun $(\varphi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einem Element $s \in S$ wie in der Aufgabenstellung.
-Es sei $\tilde{\psi} \colon R[T] \to S$ der eindeutige Ringhomomorphismus mit $\tilde{\psi}|_R = \varphi$ und $\psi \colon \powerseries{R}{T} \to S$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$.
+Es sei andererseits $(\varphi, s)$ ein Paar bestehend aus einem Ringhomomorphismus $\varphi \colon R \to S$ und einem Element $s \in S$, so dass jede zeilen- und spaltenendliche Matrix $\Natural^2 \to R$ kompatibel mit $(\varphi, s)$ ist.
+Es sei $\tilde{\psi} \colon R[T] \to S$ der eindeutige Ringhomomorphismus mit $\tilde{\psi}|_R = \varphi$ und $\tilde{\varphi}(T) = s$, und es sei $\psi \colon \powerseries{R}{T} \to S$ die eindeutige stetige Fortsetzung von $\tilde{\psi}$.
 Für das zu $\psi$ gehörige Paar $(\varphi', s')$ mit $\varphi' = \psi|_R$ und $s' = \psi(T)$ gilt $\varphi' = \psi|_R = \tilde{\psi}|_R = \varphi$ und $s' = \psi(T) = \tilde{\psi}(T) = s$, also $(\varphi', s') = (\varphi, s)$.
 
 
@@ -569,36 +673,29 @@ Für das zu $\psi$ gehörige Paar $(\varphi', s')$ mit $\varphi' = \psi|_R$ und 
 \section{}
 
 Es sei $\iota \colon R \to \powerseries{R}{T}$, $r \mapsto r = r T^0$ die kanonische Inklusion und $f \in T \cdot \powerseries{R}{T}$.
-Es gilt zu zeigen, dass das Paar $(\iota, f)$ im Sinne des vorherigen Aufgabenteiles einen wohldefinierten Ringendomorphismus
+Es gilt zu zeigen, dass das Paar $(\iota, f)$ im Sinne des vorherigen Aufgabenteiles einen wohldefinierten stetigen Ringendomorphismus
 \[
   \psi \colon \powerseries{R}{T} \to \powerseries{R}{T},
   \quad
-  \sum_{i=0}^\infty a_i T^i \mapsto \sum_{i=0}^\infty a_i f^i
+  \sum_i a_i T^i \mapsto \sum_{i=0}^\infty a_i f^i
 \]
 induziert.
-Hierfür müssen wir überprüfen, dass für jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ die beiden Reihen
-\[
-    \sum_{i=0}^\infty \left( \sum_j \iota(a_{ij}) f^i \right)
-  = \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right)
-  \quad\text{und}\quad
-    \sum_{j=0}^\infty \left( \sum_i \iota(a_{ij}) f^i \right)
-  = \sum_{j=0}^\infty \left( \sum_i a_{ij} f^i \right)
-\]
-konvergieren und gleichen Wert haben.
+(Auf dem Übungszettel wird die Inklusion $\iota$ unglücklicherweise mit $\id_R$ notiert.)
+Hierfür müssen wir überprüfen, dass jede zeilen- und spaltenendliche Matrix $a \colon \Natural^2 \to R$ mit $(\iota, f)$ kompatibel ist.
 
-Hierfür bemerken wir, dass aus $f \in T \cdot \powerseries{R}{T} = (T)$ folgt, dass $f^i \in (T^i)$ für alle $i \geq 0$ (da $f \in (T)$ ist $f = T g$ für ein $g \in \powerseries{R}{T}$, und somit $f^i = T^i g^i \in (T^i)$ für alle $i \geq 0$).
+Hierfür bemerken wir, dass aus $f \in T \cdot \powerseries{R}{T}$ folgt, dass $f^i \in T^i \cdot \powerseries{R}{T}$ für alle $i \geq 0$, denn wegen $f \in T \cdot \powerseries{R}{T}$ ist $f = T g$ für ein $g \in \powerseries{R}{T}$, und somit $f^i = T^i g^i$ für alle $i \geq 0$.
 
-Für jedes $i \geq 0$ gilt $f^i \in (T^i)$ und somit $\sum_j a_{ij} f^i \in (T^i)$.
-Deshalb gilt $(\sum_j a_{ij} f^i)_n = 0$ für alle $i > n$, und somit $\sum_j a_{ij} f^i \to 0$ für $i \to \infty$.
-Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert deshalb die Reihe $\sum_{i=0}^\infty (\sum_j a_{ij} f^i)$, und für alle $n \geq 0$ gilt
+Für jedes $i \geq 0$ gilt $f^i \in T^i \cdot \powerseries{R}{T}$ und somit auch $\sum_j a_{ij} f^i \in T^i \cdot \powerseries{R}{T}$.
+Deshalb gilt $(\sum_j a_{ij} f^i)_n = 0$ für alle $i > n$, also $\sum_j a_{ij} f^i \to 0$ für $i \to \infty$.
+Nach Aufgabenteil~\ref{section: convergence of power series} konvergiert deshalb die Reihe $\sum_{i=0}^\infty (\sum_j a_{ij} f^i)$, und für alle $n \geq 0$ ergibt sich durch koeffizientenweises Berechnen des Grenzwertes, dass
 \[
     \left( \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right) \right)_{\!\!\!n}
-  = \sum_{i=0}^\infty \left( \sum_j a_{ij} f^i \right)_{\!\!\!n}
+  = \sum_i \left( \sum_j a_{ij} f^i \right)_{\!\!\!n}
   = \sum_i \sum_j a_{ij} (f^i)_n.
 \]
 
 Für die Konvergenz der Reihe $\sum_{j=0}^\infty (\sum_i a_{ij} f^i)$ gilt es zu zeigen, dass $\sum_i a_{ij} f^i \to 0$ für $j \to \infty$, dass es also für jedes $n \geq 0$ ein $J \geq 0$ mit $(\sum_i a_{ij} f^i)_n = 0$ für alle $j \geq J$ gibt.
-Für jedes $j \geq 0$ gilt für alle $n \geq 0$, dass
+Für jedes $j \geq 0$ gilt wie zuvor für alle $n \geq 0$, dass
 \[
     \left( \sum_i a_{ij} f^i \right)_{\!\!\!n}
   = \sum_i a_{ij} (f^i)_n
@@ -608,7 +705,7 @@ Wegen der Zeilenendlichkeit von $a$ gibt es für jedes $i = 0, \dotsc, n$ ein $J
 Für $J \coloneqq \max_{i=1, \dotsc, n} J_i$ gilt dann $a_{ij} = 0$ für alle $i = 1, \dotsc, n$ und $j \geq J$.
 Für jedes $j \geq J$ ist also $(\sum_i a_{ij} f^i)_n = \sum_{i=0}^n a_{ij} (f^i)_n = 0$.
 
-Die Reihe $\sum_{j=0}^\infty (\sum_i a_{ij} f^i)$ konvergiert also, und für jedes $n \geq 0$ gilt
+Die Reihe $\sum_{j=0}^\infty (\sum_i a_{ij} f^i)$ konvergiert also, und für jedes $n \geq 0$ ergibt sich durch koeffizientenweises Berechnen des Grenzwertes, dass
 \[
     \left( \sum_{j=0}^\infty \left( \sum_i a_{ij} f^i \right) \right)_{\!\!\!n} 
   = \sum_j \left( \sum_i a_{ij} f^i \right)_{\!\!\!n}
@@ -629,21 +726,35 @@ für alle $n \geq 0$, und somit $\sum_{i=0}^\infty \sum_j a_{ij} f^i = \sum_{j=0
 
 \section{}
 
+Wir geben einen alternativen Beweis von Behauptung~\ref{claim: power series with constant term 1 are units}.
+Die Charakterisierung der Einheitengruppe $\powerseries{R}{T}^\times$ ergibt sich dann wie im Rest von Aufgabenteil~\ref{section: calculation of units}.
+
 Es sei $f \in \powerseries{R}{T}$ mit $f_0 = 1$.
-Die Potenzreihe $g \coloneqq f-1 = \sum_{i=1}^\infty f_i T^i \in T \cdot \powerseries{R}{T}$ liefert nach dem vorherigen Aufgabenteil einen stetigen Ringendomorphismus $\psi \colon \powerseries{R}{T} \to \powerseries{R}{T}$ mit $\psi(\sum_i a_i T^i) = \sum_{i=0}^\infty a_i g^i$ für alle $\sum_i a_i T^i \in \powerseries{R}{T}$.
+Die Potenzreihe
+\[
+            g
+  \coloneqq f-1
+  =         \sum_{i \geq 1} f_i T^i
+  \in       T \cdot \powerseries{R}{T}
+\]
+induziert nach dem vorherigen Aufgabenteil zu einen stetigen Ringendomorphismus
+\[
+  \psi \colon \powerseries{R}{T} \to \powerseries{R}{T},
+  \quad
+  \sum_i a_i T^i \mapsto \sum_{i=0}^\infty a_i g^i.
+\]
 Inbesondere gilt $f = 1 + g = \psi(1 + T)$.
 
-Da $(1 + T)(\sum_i (-1)^i T) = 1$ ist $1 + T$ eine Einheit mit $(1 + T)^{-1} = \sum_i (-1)^i T^i$.
+Da $(1 + T)(\sum_i (-1)^i T^i) = 1$ gilt, ist $1 + T$ eine Einheit in $\powerseries{R}{T}$.
 Deshalb ist auch $\psi(1 + T) = 1 + g = f$ eine Einheit in $\powerseries{R}{T}$ mit
 \[
-    \psi(1 + T)^{-1}
+    f^{-1}
+  = \psi(1 + T)^{-1}
   = \psi\left( (1 + T)^{-1} \right)
   = \psi\left( \sum_i (-1)^i T^i \right)
-  = \sum_i (-1)^i g^i.
+  = \sum_{i=0}^\infty (-1)^i g^i.
 \]
 
-Damit haben wir gezeigt, dass jede Potenzreihe $f \in \powerseries{R}{T}$ mit $f_0 = 1$ eine Einheit ist.
-Die Charakterisierung der Einheitengruppe $\powerseries{R}{T}^\times$ ergibt sich damit wie in Aufgabenteil~\ref{section: calculation of units}.
 
 
 
