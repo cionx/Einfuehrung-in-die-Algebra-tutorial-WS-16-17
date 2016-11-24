@@ -192,7 +192,31 @@ Deshalb ist eine Teilmenge $C \subseteq \powerseries{R}{T}$ genau dann folgenabg
 
 \subsection*{Stetigkeit der Ringoperationen}
 
-% TODO: Add the definition of a topological ring.
+\begin{recall}
+  \begin{enumerate}
+    \item
+      Ein topologischer Ring lässt sich auf verschiedene (offenbar) äquivalente Weisen definieren:
+      \begin{enumerate}
+        \item
+          Ein \emph{topologischer Ring} ist ein topologischer Raum $R$ zusammen mit stetigen Abbildungen $+ \colon R \times R \to R$ und $\cdot \colon R \times R \to R$ (wobei $R \times R$ mit der Produkttopologie versehen wird), so dass $(R, +, \cdot)$ ein Ring ist.
+        \item
+          Ein \emph{topologischer Ring} ist ein Ring $R$ zusammen mit einer Topologie $T$ auf $R$, so dass die Addition und Multiplikation $+, \cdot \colon R \times R \to R$ stetig sind (wobei $R \times R$ mit der durch $T$ induzierten Produkttopologie versehen wird).
+        \item
+          Ein \emph{topologischer Ring} ist eine Menge $R$ zusammen mit einer Teilmenge $T \subseteq 2^R$ und zwei binären Verknüpfungen $+, \cdot \colon R \times R \to R$, so dass die folgenden Bedingungen erfüllt sind:
+          \begin{itemize}
+            \item
+              $T$ ist eine Topologie auf $R$.
+            \item
+              $(R, +, \cdot)$ ist ein Ring.
+            \item
+              Die Abbildungen $+$ und $\cdot$ sind stetig, wobei $R \times R$ mit der durch $T$ induzierten Produkttopologie versehen wird.
+          \end{itemize}
+      \end{enumerate}
+    \item
+      Ist $M$ ein metrischer Raum, so ist eine Abbildung $f \colon M \times M \to M$ genau dann stetig bezüglich der Produkttopologie auf $M \times M$, wenn für je zwei in $M$ konvergente Folgen $(x_n)_n$ und $(y_n)_n$ mit $x_n \to x$ und $y_n \to y$ gilt, dass auch $f(x_n, y_n) \to f(x,y)$.
+  \end{enumerate}
+\end{recall}
+
 
 Es gilt zu zeigen, dass für je zwei konvergente Folgen $(f^{(i)})_i$ und $(g^{(i)})_i$ von Potenzreihen $f^{(i)}, g^{(i)} \in \powerseries{R}{T}$ auch die Folgen $(f^{(i)} + g^{(i)})_i$ und $(f^{(i)} \cdot g^{(i)})_i$ konvergieren, und dass
 \begin{align*}
@@ -381,7 +405,25 @@ Da auch $f_0 \in R^\times \subseteq \powerseries{R}{T}^\times$ ist $f = f_0 \cdo
 
 \section{}
 
-% TODO: Add definition of denseness.
+\begin{recall}
+  Eine Teilmenge $A \subseteq X$ eines topologischen Raums $X$ heißt \emph{dicht in $X$}, falls sie eine (und damit alle) der folgenden äquivalenten Bedingungen erfüllt:
+  \begin{enumerate}
+    \item
+      Es gilt $\overline{A} = X$.
+    \item
+      Für jede nicht-leere offene Menge $U \subseteq X$ gilt $U \cap X \neq \emptyset$.
+    \item
+      Für jeden Punkt $x \in X$ und jede Umgebung $U \subseteq X$ von $x$ gibt es ein $a \in A$ mit $a \in U$.
+    \item
+      Für jedes $x \in X$ gibt es ein Netz $(x_\alpha)_\alpha$ mit $x_\alpha \in A$ und $x_\alpha \to x$.
+  \end{enumerate}
+  Falls $X$ metrisierbar ist (insbesondere also, wenn $X$ ein metrischer Raum ist), bzw.\ $X$ erstabzählbar ist, so führt die Äquivalenz von Abgeschlossenheit und Folgenabschlossenheit in $X$ zu einer weiter äquivalenten Bedingung:
+  \begin{enumerate}[resume]
+    \item
+      Für jedes $x \in X$ gibt es eine Folge $(x_n)_n$ mit $x_n \in A$ und $x_n \to x$.
+  \end{enumerate}
+\end{recall}
+
 
 Für $f \in \powerseries{R}{T}$ gilt für die Folge $(f^{(i)})_i$ von Polynomen $f^{(i)} \coloneqq \sum_{j=0}^i f_j T^j \in R[T]$ nach Aufgabenteil~\ref{section: convergence of power series}, dass $f^{(i)} \to f$ für $i \to \infty$.
 Also ist $R[T]$ dicht in $\powerseries{R}{T}$.
