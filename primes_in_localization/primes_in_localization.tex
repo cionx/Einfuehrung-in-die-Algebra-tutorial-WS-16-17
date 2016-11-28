@@ -1,0 +1,264 @@
+\documentclass[a4paper,10pt,numbers=noenddot]{scrartcl}
+
+\usepackage{../generalstyle}
+\usepackage{specificstyle}
+
+\title{Lösung zu Zettel~5, \\ Aufgaben 3 und 4}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+
+
+
+
+
+
+
+
+
+
+\maketitle
+
+\addtocounter{section}{2}
+
+
+
+
+
+
+
+
+
+
+\section{}
+
+Sofern nicht anders angegeben, handelt es sich bei $R$ und $S$ im folgenden jeweils um den kommutativen Ring $R$ und die multiplikative Teilmenge $S \subseteq R$ aus der Aufgabenstellung.
+Wir betrachten im Folgenden nur den Fall, dass $0 \notin S$, denn sonst ist ohnehin $R_S = 0$.
+
+Bevor wir mit der Aufgabe beginnen, merken wir an, dass
+\[
+        \frac{r_1}{s_1} = \frac{r_2}{s_2}
+  \iff  r_1 s_2 = r_2 s_1
+  \qquad
+  \text{für alle $\frac{r_1}{s_1}, \frac{r_2}{s_2} \in R_S$},
+\]
+da $R$ ein Integritätsbereich ist.
+Diese einfache Form des Vergleichs zweier Brüche wird uns im Folgenden das Leben erleichtern, und wir werden sie verwenden, ohne explizit auf sie hinzuweisen.
+
+Unter anderen erhalten wir damit das folgende (hoffentlich bekannte) Resultat, an das wir hier erinnern möchten:
+\begin{lemma}
+  \label{lemma: localization of integral domains are integral domains}
+  Ist $R$ ein Integritätsbereich und $S \subseteq R$ eine multiplikative Teilmenge mit $0 \notin S$, so ist auch $R_S$ ein Integritätsbereich.
+\end{lemma}
+\begin{proof}
+  Da $0 \notin S$ gilt $R_S \neq 0$.
+  Für $r_1/s_1, r_2/s_2 \in R_S$ mit
+  \[
+      \frac{0}{1}
+    = \frac{r_1}{s_1} \frac{r_2}{s_2}
+    = \frac{r_1 r_2}{s_1 s_2}
+  \]
+  gilt $r_1 r_2 = 0$.
+  Da $R$ ein Integritätsbereich ist, gilt damit bereits $r_1 = 0$ oder $r_2 = 0$, und somit bereits $r_1/s_1 = 0$ oder $r_2/s_2 = 0$.
+\end{proof}
+
+Wir erinnern auch an die folgende grundlegende Aussage über Einheiten in einem beliebigen kommutativen Ring:
+
+\begin{lemma}
+  \label{lemma: divisors of units are units themselves}
+  Es sei $R$ ein kommutativer Ring, $r \in R$ und $\varepsilon \in R^\times$ eine Einheit.
+  Gilt $r \mid \varepsilon$, so ist auch $r$ eine Einheit.
+\end{lemma}
+\begin{proof}
+  Da $r \mid \varepsilon$ gibt es $s \in S$ mit $rs = \varepsilon$.
+  Dann ist $1 = \varepsilon \varepsilon^{-1} = r s \varepsilon^{-1}$ und somit $r$ eine Einheit mit $r^{-1} = s \varepsilon^{-1}$.
+\end{proof}
+
+Hieraus ergibt sich ein für diese Aufgabe wichtiges Resultat:
+
+\begin{claim}
+  \label{claim: divisors become units in the localization}
+  Ein Element $r/s \in R_S$ ist genau dann eine Einheit, wenn $r \mid s'$ für ein $s' \in S$.
+\end{claim}
+\begin{proof}
+  Da $(1/s) \in R_S^{\times}$ (mit $(1/s)^{-1} = (s/1)$) ist genau dann $r/s \in R_S^\times$ wenn $r/1 \in R_S^\times$.
+  Wir können also o.B.d.A.\ davon ausgehen, dass $s = 1$.
+  
+  Gilt $r \mid s'$ für ein $s' \in S$, so gilt auch $(r/1) \mid (s'/1)$, und da $s'/1 \in R_S^{\times}$ gilt dann nach Lemma~\ref{lemma: divisors of units are units themselves} auch $r/1 \in R_S^{\times}$.
+  Gilt andererseits $r/1 \in R_S^\times$, so gibt es $r'/s' \in R_S$ mit
+  \[
+      \frac{1}{1}
+    = \frac{r}{1} \frac{r'}{s'}
+    = \frac{r r'}{s'}.
+  \]
+  Dann gilt $r r' = s'$ und somit inbesondere $r \mid s'$.
+\end{proof}
+
+
+\begin{remark}
+  % TODO: Localization at saturated sets.
+\end{remark}
+
+
+
+
+
+\subsection{}
+
+Wir müssen zunächst zeigen, dass die Elemente $p/1 \in R_S$ mit $p \in P_S$ keine Einheiten sind.
+Dies ergibt sich aus der folgenden Behauptung.
+
+\begin{claim}
+  \label{claim: prime elements which become units in the localization}
+  Ist $p \in R$ ein Primelement, so ist $p/1 \in R_S$ genau dann eine Einheit, wenn $p \notin P_S$.
+  Es ist also $P_S$ die Menge aller Primelement aus $R$, die in $R_S$ nicht zu einer Einheit werden.
+\end{claim}
+
+\begin{proof}
+  Man schränke Behauptung~\ref{claim: divisors become units in the localization} auf die Primelemente von $R$ ein.
+\end{proof}
+
+Es seien nun $r_1/s_2, r_2/s_2 \in R_S$ mit
+\[
+  \left. \frac{p}{1} \,\middle|\, \frac{r_1}{s_1} \frac{r_2}{s_2} \right..
+\]
+Dann gibt es ein $r_3/s_3 \in R_S$ mit
+\[
+    \frac{p}{1} \frac{r_3}{s_3}
+  = \frac{r_1}{s_1} \frac{r_2}{s_2},
+\]
+also $p r_3 s_1 s_2 = r_1 r_2 s_3$.
+Dann ist $p \mid (r_1 r_2 s_3)$ und somit $p \mid r_1$, $p \mid r_2$ oder $p \mid s_3$.
+Da $p \in P_S$ gilt inbesondere $p \nmid s_3$, weshalb $p \mid r_1$ oder $p \mid r_2$.
+Damit ist auch $(p/1) \mid (r_1/1)$ oder $(p/1) \mid (r_2/1)$, und somit $(p/1) \mid (r_1/s_1)$ oder $(p/1) \mid (r_2/s_2)$.
+
+
+
+
+
+\subsection{}
+
+Es sei $p/s \in R_S$ ein Primelement.
+Da $R$ faktoriell ist gibt es eine Primfaktorzerlegung $p  = p_1^{n_1} \dotsm p_t^{n_t}$, wobei $n_1, \dotsc, n_t \geq 1$ und $p_1, \dotsc, p_t \in R$ paarweise nicht-assoziierte Primelemente sind
+
+Hierbei gibt es ein $1 \leq i \leq t$ mit $p_i \in P_S$:
+Andernfalls gebe es für jedes $i = 1, \dotsc, t$ ein $s_i \in S$ mit $p_i \mid s_i$.
+Für $s' \coloneqq s_1^{n_1} \dotsm s_t^{n_t} \in S$ würde dann $p \mid s'$ gelten, und nach Behauptung~\ref{claim: divisors become units in the localization} wäre dann $p/s \in R_S$ eine Einheit.
+Dies stünde im Widerspruch dazu, dass $p/s$ prim ist.
+
+Durch passende Nummerierung der $p_i$ kann davon ausgegangen werden, dass $p_1 \in P_S$.
+Für $q \coloneqq p_1^{n_1-1} p_2^{n_2} \dotsm p_t^{n_t}$ gilt dann $p = p_1 q$ und somit
+\begin{equation}
+  \label{eqn: association}
+    \frac{p}{s}
+  = \frac{p_1 q}{s}
+  = \frac{p_1}{1} \frac{q}{s}.
+\end{equation}
+
+Nach Lemma~\ref{lemma: localization of integral domains are integral domains} ist $R_S$ ein Integritätsbereich.
+Da $p/s$ prim ist, folgt daraus, dass $p_1/s$ oder $q/s$ eine Einheit in $R_S$ ist.
+Wegen $p_1 \in P_S$ wissen wir aus dem vorherigen Aufgabenteil, dass $p_1/1$ prim in $R_S$ ist, und somit inbesondere keine Einheit.
+Folglich ist $q/s$ eine Einheit in $R_S$.
+Nach \eqref{eqn: association} ist $p_1/1$ deshalb assoziiert zu $p_1 \in P_S$.
+
+
+
+
+
+\subsection{}
+
+Es seien $p_1, p_2 \in P_S$.
+
+Gilt $p_1 \sim p_2$, so gibt es ein $\varepsilon \in R^\times$ mit $p_1 = \varepsilon p_2$.
+Dann gilt auch $(p_1/1) = (\varepsilon/1)(p_2/1)$ mit $\varepsilon/1 \in R_S^\times$ und somit $(p_1/1) \sim (p_2/1)$.
+
+Gilt $(p_1/1) \sim (p_2/1)$, so gibt es ein $r/s \in R_S^\times$ mit
+\[
+    \frac{p_1}{1}
+  = \frac{r}{s} \frac{p_2}{1}.
+\]
+Dann gilt $p_1 s = r p_2$ und somit $p_2 \mid (p_1 s)$.
+Da $p_2$ prim ist, folgt daraus, dass $p_2 \mid p_1$ oder $p_2 \mid s$.
+Da $p_2 \in P_S$ gilt $p_2 \nmid s$, also muss $p_2 \mid p_1$.
+Da $p_1$ und $p_2$ prim in $R$ sind, folgt hieraus bereits, dass $p_1 \sim p_2$.
+
+
+
+
+
+\subsection{}
+
+Wir übelegen uns zunächst, dass jedes Primelement $p \in R$ mit $p \notin P_S$ in $R_S$ invertierbar wird:
+
+\begin{claim}
+  Ist $p \in R$ prim mit $p \notin P_S$, so ist $p/1 \in R_S^\times$.
+\end{claim}
+\begin{proof}
+  Da $p \notin P_S$ gibt es ein $s \in S$ mit $p \mid s$.
+  Dann gilt auch $(p/1) \mid (s/1)$.
+  Da $s/1 \in R_S^\times $ folgt nach TODO, dass auc
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{}
+
+Wir nehmen an, es gebe eine Nullstelle $x \in Q(R)$ von $f$, die nicht schon in $R$ liegt.
+Für $x = p/q$ ist dann insbesondere $x \neq 0$ und somit $p \neq 0$.
+Wir können o.B.d.A.\ davon ausgehen, dass $\ggT(p,q) = 1$.
+Deshalb gibt es Primfaktorzerlegungen $p = p_1^{n_1} \dotsm p_s^{n_s}$ und $q = q_1^{m_1} \dotsm q_t^{n_t}$, so dass die Primelemente $p_1, \dotsc, p_s, q_1, \dotsc, q_t \in P$ paarweise nicht assoziiert sind, und $n_i, m_j \geq 1$ für alle $i = 1, \dotsc, s$ und $j = 1, \dotsc, t$.
+Ist $f(X) = X^d + \sum_{i=0}^n a_i X^i$, so erhalten wir, dass
+\begin{align*}
+      0
+   =  f(x)
+   =  x^d + \sum_{i=0}^{d-1} a_i x^i
+  &=                 \left( \frac{p_1^{n_1} \dotsm p_s^{n_s}}{q_1^{m_1} \dotsm q_t^{m_t}} \right)^d
+      + \sum_{i=0}^d a_i \left( \frac{p_1^{n_1} \dotsm p_s^{n_s}}{q_1^{m_1} \dotsm q_t^{m_t}} \right)^i
+  \\
+  &=                         \frac{(p_1^{n_1} \dotsm p_s^{n_s})^d}{(q_1^{m_1} \dotsm q_t^{m_t})^d}
+      + \sum_{i=0}^{d-1} a_i \frac{(p_1^{n_1} \dotsm p_s^{n_s})^i}{(q_1^{n_1} \dotsm q_s^{n_s})^i}.
+\end{align*}
+Durch Multiplikation mit $(q_1^{m_1} \dotsm q_t^{m_t})^d$ erhalten wir in $R$ die Gleichung
+\begin{equation}
+  \label{eqn: long term}
+    0
+  = (p_1^{n_1} \dotsm p_s^{n_s})^d + \sum_{i=0}^{d-1} a_i (p_1^{n_1} \dotsm p_s^{n_s})^i (q_1^{m_1} \dotsm q_s^{m_t})^{d-i}.
+\end{equation}
+Wegen der Annahme $x \notin R$ gilt $t \geq 1$.
+Damit erhalten wir aus \eqref{eqn: long term}, dass
+\begin{gather*}
+          0
+  \equiv  (p_1^{n_1} \dotsm p_s^{n_s})^d
+  \mod    q_1
+\shortintertext{und somit}
+        q_1
+  \mid  (p_1^{n_1} \dotsm p_s^{n_s})^d
+  =     \underbrace{p_1 \dotsm p_1}_{n_1 d} \underbrace{p_2 \dotsm p_2}_{n_2 d} \dotsm \underbrace{p_s \dotsm p_s}_{n_s d}.
+\end{gather*}
+Da $q_1$ prim ist, folgt hieraus, dass $q_1 \mid p_i$ für ein $1 \leq i \leq n$.
+Dann ist aber $q_1 \sim p_i$, im Widerspruch dazu, dass $p_1, \dotsc, p_s, q_1, \dotsc, q_t$ paarweise nicht-assoziiert sind.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
