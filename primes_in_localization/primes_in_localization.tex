@@ -79,25 +79,68 @@ Hieraus ergibt sich ein für diese Aufgabe wichtiges Resultat:
 
 \begin{claim}
   \label{claim: divisors become units in the localization}
-  Ein Element $r/s \in R_S$ ist genau dann eine Einheit, wenn $r \mid s'$ für ein $s' \in S$.
+  Es sei $R$ ein kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge.
+  Ein Element $r/s \in R_S$ ist genau dann eine Einheit, wenn $r \mid s'$ für ein $s' \in S$ gilt.
 \end{claim}
 \begin{proof}
   Da $(1/s) \in R_S^{\times}$ (mit $(1/s)^{-1} = (s/1)$) ist genau dann $r/s \in R_S^\times$ wenn $r/1 \in R_S^\times$.
   Wir können also o.B.d.A.\ davon ausgehen, dass $s = 1$.
   
   Gilt $r \mid s'$ für ein $s' \in S$, so gilt auch $(r/1) \mid (s'/1)$, und da $s'/1 \in R_S^{\times}$ gilt dann nach Lemma~\ref{lemma: divisors of units are units themselves} auch $r/1 \in R_S^{\times}$.
+  
   Gilt andererseits $r/1 \in R_S^\times$, so gibt es $r'/s' \in R_S$ mit
   \[
       \frac{1}{1}
     = \frac{r}{1} \frac{r'}{s'}
     = \frac{r r'}{s'}.
   \]
-  Dann gilt $r r' = s'$ und somit inbesondere $r \mid s'$.
+  Dann gibt es $t \in S$ mit $t r r' = t s'$ und somit inbesondere $r \mid t s' \in S$.
 \end{proof}
 
 
 \begin{remark}
-  % TODO: Localization at saturated sets.
+  Ist $R$ eine kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge, so heißt $S$ \emph{saturiert}, falls
+  \[
+    x y \in S \implies x, y \in S
+    \qquad
+    \text{für alle $x, y \in R$}.
+  \]
+  
+  Jede multiplikative Teilmenge $S \subseteq R$ ist in einer saturierten multiplikativen Teilmenge $\overline{S} \subseteq R$ enthalten, die minimial mit dieser Eigenschaft ist.
+  Man bezeichnet diese als die \emph{Saturierung} von $S$.
+  Abstrakt lässt sie sich als
+  \[
+      \overline{S}
+    = \bigcap \{
+                T \subseteq R
+              \mid
+                \text{$T$ ist eine saturierte multiplikative Menge mit $S \subseteq T$}
+              \}
+  \]
+  konstruieren; man beachte dabei, dass $R$ selbst eine saturierte multiplikative Menge ist, die $S$ enthält, und somit die obige Menge nicht leer.
+  Etwas konkreter (und für uns interessanter) lässt sich $\overline{S}$ auch als
+  \[
+      \overline{S}
+    = \{
+        r \in R
+        \mid
+        \text{es gibt $s \in S$ mit $r \mid s$}
+      \}
+  \]
+  konstruieren.
+  
+  Die Saturierung $\overline{S}$ hat die angenehme Eigenschaft, dass die Identitäts $\id_R \colon R \to R$ einen Isomorphismus
+  \[
+    R_S \to R_{\overline{S}},
+    \quad
+    \frac{r}{s} \mapsto \frac{r}{s}
+  \]
+  induziert; die Lokalisierung $R_S$ hängt also gar nicht von $S$ selbst ab, sondern nur von der Saturierung $\overline{S}$.
+  
+  Inbesondere wird jedes Element $r \in R$ mit $r \in \overline{S}$ zu einer Einheit in $R_{\overline{S}}$, und wegen des obigen Isomorphismus’ auch zu einer Einheit in $R_S$.
+  Behauptung~\ref{claim: divisors become units in the localization} ist eine Verschärfung dieser Beobachtung, und zeigt, dass ein Element $r/s \in R_S$ genau dann eine Einheit in $R_S$ ist, wenn $r \in \overline{S}$; die Einheiten in $R_S$ sind also genau die Brüche, deren Zähler in der Saturierung von $S$ enthalten sind.
+  
+  Wenn wir, wie in dieser Aufgabe, nicht nur mit Elementen aus $S$ hantieren, sondern auch noch mit Teilbarkeitsbedingungen der Form $r \mid s$ mit $r \in R$ und $s \in S$, so können wir uns dies als ein verstecktes Auftreten der Saturierung $\overline{S}$ verstehen.
 \end{remark}
 
 
@@ -105,6 +148,7 @@ Hieraus ergibt sich ein für diese Aufgabe wichtiges Resultat:
 
 
 \subsection{}
+\label{subsec: primes become primes in the localization}
 
 Wir müssen zunächst zeigen, dass die Elemente $p/1 \in R_S$ mit $p \in P_S$ keine Einheiten sind.
 Dies ergibt sich aus der folgenden Behauptung.
@@ -138,6 +182,7 @@ Damit ist auch $(p/1) \mid (r_1/1)$ oder $(p/1) \mid (r_2/1)$, und somit $(p/1) 
 
 
 \subsection{}
+\label{subsec: every prime element in the localization is associated to one in the ground ring}
 
 Es sei $p/s \in R_S$ ein Primelement.
 Da $R$ faktoriell ist gibt es eine Primfaktorzerlegung $p  = p_1^{n_1} \dotsm p_t^{n_t}$, wobei $n_1, \dotsc, n_t \geq 1$ und $p_1, \dotsc, p_t \in R$ paarweise nicht-assoziierte Primelemente sind
@@ -156,11 +201,16 @@ Für $q \coloneqq p_1^{n_1-1} p_2^{n_2} \dotsm p_t^{n_t}$ gilt dann $p = p_1 q$ 
   = \frac{p_1}{1} \frac{q}{s}.
 \end{equation}
 
-Nach Lemma~\ref{lemma: localization of integral domains are integral domains} ist $R_S$ ein Integritätsbereich.
-Da $p/s$ prim ist, folgt daraus, dass $p_1/s$ oder $q/s$ eine Einheit in $R_S$ ist.
+Nach Lemma~\ref{lemma: localization of integral domains are integral domains} ist $R_S$ ein Integritätsbereich, und das Primelement $p/s$ deshalb irreduzibel.
+Wegen der Irreduziblität von $p/s$ folgt aus \eqref{eqn: association}, dass $p_1/s$ oder $q/s$ eine Einheit in $R_S$ ist.
 Wegen $p_1 \in P_S$ wissen wir aus dem vorherigen Aufgabenteil, dass $p_1/1$ prim in $R_S$ ist, und somit inbesondere keine Einheit.
 Folglich ist $q/s$ eine Einheit in $R_S$.
-Nach \eqref{eqn: association} ist $p_1/1$ deshalb assoziiert zu $p_1 \in P_S$.
+Nach \eqref{eqn: association} ist $p/s$ somit assoziiert zu $p_1/1$ mit $p_1 \in P_S$.
+
+\begin{warning}
+  Es gilt für ein Primelement $p/s \in R_S$ nicht notwendigerweise, dass $p \in R$ ebenfalls ein Primelement ist!
+\end{warning}
+
 
 
 
@@ -183,22 +233,42 @@ Da $p_2$ prim ist, folgt daraus, dass $p_2 \mid p_1$ oder $p_2 \mid s$.
 Da $p_2 \in P_S$ gilt $p_2 \nmid s$, also muss $p_2 \mid p_1$.
 Da $p_1$ und $p_2$ prim in $R$ sind, folgt hieraus bereits, dass $p_1 \sim p_2$.
 
+\begin{remark}
+  \begin{enumerate}
+    \item
+      Zusammen mit Aufgabenteil~\ref{subsec: every prime element in the localization is associated to one in the ground ring} erhalten wir, dass die Assoziiertheitsklassen der Primelemente $q \in R_S$ genau dan Assoziiertheitsklassen der Primelemente $p \in R$ entsprechen, für die $p \in P_S$; nach Behauptung~\ref{claim: prime elements which become units in the localization} sind dies genau die Primelemente von $R$, die in $R_S$ keine Einheit werden.
+      
+      Anschaulich sind die Primelemente aus $R_S$ also (bis auf Assoziiertheit) die Primelemente aus $R$, die beim Übergang zu $R_S$ nicht invertierbar werden.
+    \item
+      Dieser guter Zusammenhang zwischen den Primelementen aus $R$ und $R_S$ beruhrt darauf, dass $R$ faktoriell ist.
+      Ist $R$ ein beliebiger kommutativer Ring und $S \subseteq R$ eine multiplikative Teilmenge, so betrachtet man anstelle der Primelemente von $R$, bzw.\ $R_S$, die Primideale dieser Ringe.
+      Zwischen diesen gibt es dann immer noch einen wichtigen Zusammenhang:
+      Es gibt eine Bijektion
+      \begin{align*}
+                              \{\text{Primideale $\pideal \subseteq R$ mit $\pideal \cap S = \emptyset$}\}
+        &\longleftrightarrow  \{\text{Primideale $\qideal \subseteq R_S$}\},
+         \\
+                              \pideal
+        &\longmapsto          \left\{ \frac{r}{s} \,\middle|\, r \in \pideal, s \in S \right\},
+        \\
+                              \left\{ r \in R \,\middle|\, \frac{r}{1} \in \qideal \right\}
+        &\longmapsfrom        \qideal.
+      \end{align*}
+      Man bemerke, dass für ein Primelement $p \in R$ genau dann $(p) \cap S = \emptyset$, wenn $S$ kein Vielfaches von $p$ enhtält, d.h.\ wenn $p$ kein Element aus $S$ teilt.
+      Sieht man Primideale $\pideal \subseteq R$ als Verallgemeinerung von Primelementen $p \in R$, so ist daher die Bedingung, dass $\pideal \cap S = \emptyset$ gilt, eine Verallgemeinerung der in dieser Aufgaben genutzten Bedingung, dass $p$ kein Element aus $S$ teilt.
+      
+      Umgekehrt lässt sich Aufgabenteil~\ref{subsec: primes become primes in the localization} auch aus diesem allgemeineren Zusammenhang herleiten.
+  \end{enumerate}
+\end{remark}
+
 
 
 
 
 \subsection{}
 
-Wir übelegen uns zunächst, dass jedes Primelement $p \in R$ mit $p \notin P_S$ in $R_S$ invertierbar wird:
-
-\begin{claim}
-  Ist $p \in R$ prim mit $p \notin P_S$, so ist $p/1 \in R_S^\times$.
-\end{claim}
-\begin{proof}
-  Da $p \notin P_S$ gibt es ein $s \in S$ mit $p \mid s$.
-  Dann gilt auch $(p/1) \mid (s/1)$.
-  Da $s/1 \in R_S^\times $ folgt nach TODO, dass auc
-\end{proof}
+Wir bemerken zunächst, dass nach Behauptung~\ref{claim: prime elements which become units in the localization} die Elemente $p/1$ für $p \in R$ prim mit $p \notin P_S$ Einheiten sind.
+Daher ergibt der Ausdruck $(p/1)^n$ mit $p \in R$ prim und $p \notin P_S$ für alle $n \in \Integer$ Sinn.
 
 
 
