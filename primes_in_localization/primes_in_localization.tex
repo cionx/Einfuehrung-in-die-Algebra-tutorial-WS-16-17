@@ -48,20 +48,41 @@ Diese einfache Form des Vergleichs zweier Brüche wird uns im Folgenden das Lebe
 
 Unter anderen erhalten wir damit das folgende (hoffentlich bekannte) Resultat, an das wir hier erinnern möchten:
 \begin{lemma}
-  \label{lemma: localization of integral domains are integral domains}
-  Ist $R$ ein Integritätsbereich und $S \subseteq R$ eine multiplikative Teilmenge mit $0 \notin S$, so ist auch $R_S$ ein Integritätsbereich.
+  \label{lemma: localization of integral domains}
+  Es sei $R$ ein Integritätsbereich und $S \subseteq R$ eine multiplikative Teilmenge mit $0 \notin S$.
+  \begin{enumerate}
+    \item
+      Die Lokalisierung $R_S$ ist ebenfalls ein Integritätsbereich.
+    \item
+      Der kanonische Ringhomomorphismus $i \colon R \to R_S$, $r \mapsto r/1$ ist injektiv.
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  Da $0 \notin S$ gilt $R_S \neq 0$.
-  Für $r_1/s_1, r_2/s_2 \in R_S$ mit
-  \[
-      \frac{0}{1}
-    = \frac{r_1}{s_1} \frac{r_2}{s_2}
-    = \frac{r_1 r_2}{s_1 s_2}
-  \]
-  gilt $r_1 r_2 = 0$.
-  Da $R$ ein Integritätsbereich ist, gilt damit bereits $r_1 = 0$ oder $r_2 = 0$, und somit bereits $r_1/s_1 = 0$ oder $r_2/s_2 = 0$.
+  \begin{enumerate}
+    \item
+      Da $0 \notin S$ gilt $R_S \neq 0$.
+      Für $r_1/s_1, r_2/s_2 \in R_S$ mit
+      \[
+          \frac{0}{1}
+        = \frac{r_1}{s_1} \frac{r_2}{s_2}
+        = \frac{r_1 r_2}{s_1 s_2}
+      \]
+      gilt $r_1 r_2 = 0$.
+      Da $R$ ein Integritätsbereich ist, gilt damit bereits $r_1 = 0$ oder $r_2 = 0$, und somit bereits $r_1/s_1 = 0$ oder $r_2/s_2 = 0$.
+    \item
+      Für $r \in \ker \iota$ gilt $r/1 = 0/1$ und somit $r = 0$.
+  \end{enumerate}
 \end{proof}
+
+\begin{remark}
+  \label{remark: everythin lives in the quotient fields}
+  Ist $R$ ein Integritätsbereich und $S \subseteq R$ eine multiplikative Teilmenge mit $0 \notin S$, so können wir die Lokalisierung $R_S$ mit dem Unterring
+  \[
+    \left\{ \frac{r}{s} \,\middle|\, r \in R, s \in S \right\}
+    \subseteq Q(R)
+  \]
+  des Quotientenkörpers $Q(R)$ identifzieren.
+\end{remark}
 
 Wir erinnern auch an die folgende grundlegende Aussage über Einheiten in einem beliebigen kommutativen Ring:
 
@@ -201,14 +222,19 @@ Für $q \coloneqq p_1^{n_1-1} p_2^{n_2} \dotsm p_t^{n_t}$ gilt dann $p = p_1 q$ 
   = \frac{p_1}{1} \frac{q}{s}.
 \end{equation}
 
-Nach Lemma~\ref{lemma: localization of integral domains are integral domains} ist $R_S$ ein Integritätsbereich, und das Primelement $p/s$ deshalb irreduzibel.
+Nach Lemma~\ref{lemma: localization of integral domains} ist $R_S$ ein Integritätsbereich, und das Primelement $p/s$ deshalb irreduzibel.
 Wegen der Irreduziblität von $p/s$ folgt aus \eqref{eqn: association}, dass $p_1/s$ oder $q/s$ eine Einheit in $R_S$ ist.
 Wegen $p_1 \in P_S$ wissen wir aus dem vorherigen Aufgabenteil, dass $p_1/1$ prim in $R_S$ ist, und somit inbesondere keine Einheit.
 Folglich ist $q/s$ eine Einheit in $R_S$.
 Nach \eqref{eqn: association} ist $p/s$ somit assoziiert zu $p_1/1$ mit $p_1 \in P_S$.
 
 \begin{warning}
-  Es gilt für ein Primelement $p/s \in R_S$ nicht notwendigerweise, dass $p \in R$ ebenfalls ein Primelement ist!
+  Es gilt für ein Primelement $p/s \in R_S$ nicht notwendigerweise, dass $p \in R$ ebenfalls ein Primelement ist.
+  
+  Man betrachte etwa den faktoriellen Ring $R = \Integer$ sowie die multiplikative Teilmenge $S = \{2^n \mid n \in \Natural\} \subseteq R$.
+  Da $3 \nmid 2^n$ für alle $n \in \Natural$ ist $3/1 \in R_S$ nach Aufgabenteil~\ref{subsec: primes become primes in the localization} ein Primelement.
+  Damit ist auch $6/1 \in R_S$ ein Primelement, denn $3/1$ und $6/1$ sind über die Einheit $2/1 \in R_S^{\times}$ assoziiert zueinander.
+  Aber $6$ ist ein Primelement in $\Integer$.
 \end{warning}
 
 
@@ -266,10 +292,74 @@ Da $p_1$ und $p_2$ prim in $R$ sind, folgt hieraus bereits, dass $p_1 \sim p_2$.
 
 
 \subsection{}
+Es sei $P \subset R$ ein Repräsentantensystem der Assoziiertheitsklassen von Primelementen aus $R$.
 
 Wir bemerken zunächst, dass nach Behauptung~\ref{claim: prime elements which become units in the localization} die Elemente $p/1$ für $p \in R$ prim mit $p \notin P_S$ Einheiten sind.
 Daher ergibt der Ausdruck $(p/1)^n$ mit $p \in R$ prim und $p \notin P_S$ für alle $n \in \Integer$ Sinn.
 
+Ist nun $r/s \in R_S$ mit $r/s \neq 0$, so gibt es in $R$ Primfaktorzerlegungen $r = u_1 \prod_{p \in P} p^{n_p}$ und $s = u_2 \prod_{p \in P} p^{m_p}$ mit $u_1, u_2 \in R^\times$.
+Für jedes Primelement $p \in P$ mit $p \in P_S$ gilt $p \nmid s$ und somit $m_p = 0$;
+deshalb ist $(1/p)^{-m_p}$ nicht nur für $p \notin P \cap P_S$ definiert, sondern für alle $p \in P$.
+
+Da nach Lemma~\ref{lemma: localization of integral domains} der kanonische Ringhomomorphismus $\iota \colon R \to R_S$, $x \mapsto x/1$ injektiv ist, können wir im Folgendem außerdem $R$ mit dem Unterring $\im \iota \subseteq R$ identifizieren.
+Wir unterscheiden also nicht zwischen $r \in R$ und $r/1 \in R_S$.
+
+\begin{remark}
+  Wir hätten diese Identifikation bereits früher machen können, haben dies aber bewusst nicht getan.
+  Die Leser, denen diese Identifikation mitfällt, mögen sich an Bemerkung~\ref{remark: everythin lives in the quotient fields} erinnern:
+  Wir können $R_S$ also Unterring des Quotientenkörpers $Q(R)$ auffassen, und auch $R$ fasst man für gewöhnlich als Unterring von $Q(R)$ auffasst, siehe etwa $\Integer$ als Unterring von $\Rational$.
+  Unter diesen Identifikationen ergibt sich in $Q(R)$ dann die Inklusion $R \subseteq R_S$.
+\end{remark}
+
+Damit ergibt sich nun insgesamt, dass
+\[
+    \frac{r}{s}
+  = \frac{u_1 \prod_{p \in P} p^{n_p}}{u_2 \prod_{p \in P \setminus P} p^{m_p}}
+  = u_1 \prod_{p \in P} p^{n_p} u_2^{-1} \prod_{p \in P} p^{-m_p}
+  = u_1 u_2^{-1} \prod_{p \in P} p^{n_p - m_p}.
+\]
+Da $u_1 u_2^{-1} \in R^\times$ und $n_p - m_p \geq n_p \geq 0$ für alle $p \in P \cap P_S$ gelten, zeigt dies die Existenz.
+
+Zum Beweis der Eindeutigkeit seien $u_1, u_2 \in R^\times$ und $n_p, m_p \in \Integer$ für $p \in P$ mit $n_p = 0$ und $m_p = 0$ für fast alle $p \in P$, sowie $n_p, m_p \geq 0$ für alle $p \in P_S \cap P$, so dass
+\[
+    u_1 \prod_{p \in P} p^{n_p}
+  = u_2 \prod_{p \in P} p^{m_p}.
+\]
+Um zu zeigen, dass $u_1 = u_2$ und $n_p = m_p$ für alle $p \in P$ dürfen wir diese Gleichung zunächst beliebig mit Elementen $p \in P$ multiplizieren; hierbei ändern sich auf beiden Seiten die Exponenten $n_p$ und $m_p$ um gleiche Weise.
+Durch Multiplikation mit $\prod_{p \in P} p^{|n_p| + |m_p|}$ können wir deshalb davon ausgehenn, dass bereits $n_p, m_p \geq 0$ für alle $p \in P$.
+Da die Elemente $p \in P$ paarweise nicht assoziierte Primelemente sind, folgt die Eindeutigkeit nun daraus, dass $R$ faktoriell ist.
+
+\begin{remark}
+  In der Aufgabenstellung wird nicht mit einem Repräsentantensystem $P \subseteq R$ der Assozziertheitsklassen der Primelemente von $R$ gearbeitet, sondern wird direkt ein Produkt $\prod_{[p]}$ über alle Assoziiertheitsklassen von Primelementen von $R$ genutzt.
+  
+  Dieses Vorgehen führt allerdings zu einem Problem:
+  Die Assozziertheitsklasse $[p]$ definiert ein Primelement $p \in R$ nur bis auf Assozziertheit.
+  Dies führt dazu, dass auch der Ausdruck $\prod_{[p]} p^{n_p}$ nur bis auf Assoziiertheit mit einer Einheit aus $R$ Sinn ergibt.
+  In der auf dem Aufgabenzettel angegeben Darstellung $u \prod_{[p]} p^{n_p}$ sind dann zwar die Potenten $n_p \in \Integer$ wohldefiniert, nicht aber die Einheit $u \in R^\times$.
+  
+  Als ein konkretes Beispiel betrachte man den Ring $R = \Integer$ und die multiplikatve Menge $S = \Integer \setminus \{0\}$.
+  Dann gilt $R_S = Q(R) = Q(\Integer) = \Rational$.
+  Betrachtet man das Element $x = 1/8 \in \Rational$, so lässt sich dieses als $1/8 = 1 \cdot 2^{-3}$ schreiben, aber auch als $(-1) \cdot (-2)^{-3}$.
+  Die Potenz $-3$ ist zwar gleich, die Vorfaktoren $1, -1 \in \Integer^\times$ unterscheiden sich jedoch.
+  Da $2$ und $-2$ die gleiche Assoziiertheitsklasse darstellen, müssen wir, um dieses Problem zu lösen, angeben, welchen dieser beiden Repräsentanten wir nutzen.
+  
+  Fixiert man beispielsweise das Repräsentantensystem
+  \[
+      P
+    = \{ 2, 3, 5, 7, \dotsc \}
+    = \{p \in \Integer \mid \text{$p$ ist prim und positiv}\},
+  \]
+  so ergibt sich bezüglich $P$ die Schreibweise $1/8 = 1 \cdot \prod_{p \in P} p^{n_p}$ $n_2 = -3$, wobei $1 \in \Integer^\times$, sowie $n_2 = -3$ und $n_p = 0$ für alle $p \in P$ mit $p \neq 2$.
+  Fixiert man hingegen das Repräsentantensystem
+  \[
+      P'
+    = \{ -2, 3, 5, 7, \dotsc, \}
+    = \{ -2 \} \cup \{p \in \Integer \mid \text{$p$ ist prim mit $p \geq 5$}\}
+  \]
+  so ergibt bezüglich $P'$ die eindeutige Schreibweise $1/8 = (-1) \cdot \prod_{p \in P} p^{m_p}$ mit $m_{-2} = -3$ und $m_p = 0$ für alle $p \in P$ mit $p \neq -2$.
+  
+  Der Preis für die Eindeutigkeit des Vorfaktors $u \in R^\times$ liegt also darin, dass wir festlegen müssen, welche Primelement wir verwenden.
+\end{remark}
 
 
 
