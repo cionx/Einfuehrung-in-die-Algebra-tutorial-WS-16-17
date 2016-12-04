@@ -19,6 +19,7 @@
 Es seien $\primes$ ein Repräsentantensystem der Assoziiertheitsklassen der Primelemente von $R$.
 
 \begin{lemma}
+  \label{lemma: divisability via prime factors}
   \begin{enumerate}
     \item
       Für alle $x, y \in R$ und $p \in \primes$ gilt $\nu_p(x y) = \nu_p(x) + \nu_p(y)$.
@@ -28,17 +29,16 @@ Es seien $\primes$ ein Repräsentantensystem der Assoziiertheitsklassen der Prim
 \end{lemma}
 
 \begin{proof}
-  Wir fixieren ein $p \in \primes$.
+  Es gibt Primfaktorzerlegungen $x  = u_1 \prod_{p \in \primes} p^{\nu_p(x)}$ und $y = u_2 \prod_{p \in \primes} p^{\nu_p(y)}$ mit $u_1, u_2 \in R^\times$.
   \begin{enumerate}
     \item
-      Es gibt Primfaktorzerlegungen $x = u_1 \prod_{p \in \primes} p^{\nu_p(x)}$ und $y = u_2 \prod_{p \in \primes} p^{\nu_p(y)}$.
-      Hieraus ergibt sich für das Produkt $x y$ eine Primfaktorzerlegung
+      Für das Produkt $x y$ ergibt sich eine Primfaktorzerlegung
       \[
           x y
         = u_1 \prod_{p \in \primes} p^{\nu_p(x)} \cdot u_2 \prod_{p \in \primes} p^{\nu_p(y)}
         = (u_1 u_2) \prod_{p \in \primes} p^{\nu_p(x) + \nu_p(y)},
       \]
-      weshalb $\nu_p(x y) = \nu_p(x) + \nu_p(y)$.
+      weshalb $\nu_p(x y) = \nu_p(x) + \nu_p(y)$ für alle $p \in \primes$.
     \item
       Gilt $x \mid y$, so gibt es $z \in R$ mit $y = x z$, weshalb
       \[
@@ -47,22 +47,13 @@ Es seien $\primes$ ein Repräsentantensystem der Assoziiertheitsklassen der Prim
         =     \nu_p(x) + \nu_p(z)
         \geq  \nu_p(x).
       \]
-      Gilt andererseits $\nu_p(x) \leq \nu_p(y)$ für alle $p \in \primes$, so betrachte man für die existierenden Primfaktorzerlegungen $x  = u_1 \prod_{p \in \primes} p^{\nu_p(x)}$ und $y = u_2 \prod_{p \in \primes} p^{\nu_p(y)}$ mit $u_1, u_2 \in R^\times$ das Element $z \coloneqq u_1^{-1} u_2 \prod_{p \in \primes} p^{\nu_p(y) - \nu_p(x)} \in R$.
-      Für dieses gilt
-      \[
-          x z
-        = \left( u_1 \prod_{p \in \primes} p^{\nu_p(x)} \right)
-          \left( u_1^{-1} u_2 \prod_{p \in \primes} p^{\nu_p(y) - \nu_p(x)} \right)
-        = u_2 \prod_{p \in \primes} p^{\nu_p(y)}
-        = y,
-      \]
-      weshalb $x \mid y$.
+      Gilt andererseits $\nu_p(x) \leq \nu_p(y)$ für alle $p \in \primes$, so ist $z \coloneqq u_1^{-1} u_2 \prod_{p \in \primes} p^{\nu_p(y) - \nu_p(x)} \in R$ wohldefiniert, und wegen $xy = z$ gilt $x \mid y$.
     \qedhere
   \end{enumerate}
 \end{proof}
 
 Für das Element $z \coloneqq \prod_{p \in \primes} p^{\min(\nu_p(x), \nu_p(y))} \in R$ gilt $\nu_p(z) = \min( \nu_p(x), \nu_p(y) )$ für alle $p \in \primes$.
-Deshalb ist $z$ ein größter gemeinsamer Teiler von $x$ und $y$, denn für jedes $z' \in R$ gilt
+Für jedes $z' \in R$ gilt nach Lemma~\ref{lemma: divisability via prime factors}, dass
 \begin{align*}
           z' \mid x,y
   \iff&\, \text{$\nu_p(z') \leq \nu_p(x), \nu_p(y)$ für alle $p \in \primes$}
@@ -73,7 +64,7 @@ Deshalb ist $z$ ein größter gemeinsamer Teiler von $x$ und $y$, denn für jede
   \\
   \iff&\, z' \mid z.
 \end{align*}
-
+Somit ist $z$ ein größter gemeinsamer Teiler von $x$ und $y$.
 
 
 
@@ -91,29 +82,29 @@ Das Gleichungssystem
     \end{matrix}
   \right.
 \]
-für $x \in \Integer$ ist also äquivalent zum Gleichungssystem
+für $x \in \Integer$ ist mit dieser Notation äquivalent zu dem Gleichungssystem
 \[
   \left\{
     \begin{matrix}
-      [4]_9 [x]_9       & = & [5]_9
+      [4]_{9\phantom{1}}  [x]_{9\phantom{1}}  & = & [5]_9,
     \\
-      [3]_{11} [x]_{11} & = & [10]_{11}
+      [3]_{11}            [x]_{11}            & = & [10]_{11}.
     \end{matrix}
   \right.
 \]
-Da $4$ und $9$ teilerfremd sind, ist $[4]_9 \in \Integer/9\Integer$ eine Einheit (siehe Übungszettel~4), und es ergibt sich, dass $[4]_9^{-1} = [7]_9$.
+Da $4$ und $9$ teilerfremd sind, ist $[4]_9 \in \Integer/9\Integer$ eine Einheit (siehe Übungszettel~4), und es gilt $[4]_9^{-1} = [7]_9$.
 Für alle $x \in \Integer$ ist deshalb
 \[
-        [4]_9 [x]_9       = [5]_9
+              [4]_9 [x]_9 = [5]_9
   \iff  [7]_9 [4]_9 [x]_9 = [7]_9 [5]_9
-  \iff  [x]_9             = [8]_9.
+  \iff              [x]_9 = [8]_9.
 \]
 Analog ergibt sich, dass $[3]_{11} \in \Integer/11\Integer$ eine Einheit ist, und mit $[3]_{11}^{-1} = [4]_{11}$ ergibt sich für alle $x \in \Integer$, dass
 \[
-        [3]_{11} [x]_{11} = [10]_{11}
-  \iff  [x]_{11}          =  [7]_{11}.
+                 [3]_{11} [x]_{11}  = [10]_{11}
+  \iff  [4]_{11} [3]_{11} [x]_{11}  = [4]_{11} [10]_{11}
+  \iff                    [x]_{11}  = [7]_{11}.
 \]
-% TODO: Finden von Inversen in Z/nZ.
 Es gilt also die Lösungen $x \in \Integer$ des Gleichungssystems
 \[
   \left\{
@@ -124,7 +115,7 @@ Es gilt also die Lösungen $x \in \Integer$ des Gleichungssystems
     \end{matrix}
   \right.
 \]
-zu finden, also die Urbilder von $([8]_9, [7]_{11}) \in (\Integer/9\Integer) \times (\Integer/11\Integer)$ unter dem Ringhomomorphismus
+zu finden, also die Urbilder von $([8]_9, [7]_{11}) \in (\Integer/9\Integer) \times (\Integer/11\Integer)$ bezüglich des Ringhomomorphismus
 \[
   \Integer \to (\Integer/9\Integer) \times (\Integer/11\Integer),
   \quad
@@ -145,8 +136,8 @@ und da $5 \cdot 9 + (-4) \cdot 11 = 1$ ist $\varphi^{-1}$ durch
           ([x]_9, [y]_{11})                                 &\mapsto  [5 \cdot 9 \cdot y + (-4) \cdot 11 \cdot x]_{99}
                                                              =        [55 x + 45 y]_{99}
 \end{align*}
-gegeben (man vergleiche dies mit dem Beweis des chinesischen Restklassensatzes aus der Vorlesung).
-Dieser Isomorphismus bringt das folgende Diagram zum kommutieren:
+gegeben.
+Der Isomorphismus $\varphi$ bringt das folgende Diagram zum kommutieren:
 \begin{equation}
   \label{eqn: commutative diagram}
   \begin{tikzcd}
@@ -170,40 +161,43 @@ Zusammen mit $\varphi^{-1}([8]_9, [7]_{11}) = [755]_{99} = [62]_{99}$ erhalten w
   = \pi_{99}^{-1}( [62]_{99} )
   = 62 + 99 \Integer.
 \]
-Dies ist die Lösungsmenge des gegebenen Gleichungssystems.
+Dies ist die gesuchte Lösungsmenge des gegebenen Gleichungssystems.
 
 \begin{remark}
-  Aus der Kommutativität der Diagrams~\eqref{eqn: commutative diagram} ergibt bereits, dass die gesuchte Lösungsmenge von der Form $x_0 + 99\Integer$ ist, wobei $x_0$ eine spezielle Lösung ist.
-  Um eine solche spezielle Lösung zu finden, haben wir die konkrete Berechnung von $\varphi^{-1}$ genutzt, um $\varphi^{-1}([8]_9, [7]_{11}) = [62]_{99}$ zu bestimmen.
-  
-  In dem konkreten Beispiel dieser Aufgabe ist es allerdings einfacher, eine spezielle Lösung zu bruteforcen, als $\varphi^{-1}$ zu berechnen:
-  Möglichen Lösungen der Gleichung $[x]_9 = [8]_9$ sind nämlich
-  \[
-    8, 17, 26, 35, 44, 53, 62, 71, 80, 89, 98, \dotsc,
-  \]
-  und mögliche Lösungen der Gleichung $[x]_{11} = [7]_{11}$ sind
-  \[
-    7, 18, 29, 40, 51, 62, 73, 84, 95, \dotsc,
-  \]
-  woraus sich durch direkten Vergleich die gemeinsame Lösung $62$ ergibt.
+  \begin{enumerate}
+    \item
+      Aus der Kommutativität der Diagrams~\eqref{eqn: commutative diagram} ergibt bereits, dass die gesuchte Lösungsmenge von der Form $x_0 + 99\Integer$ ist, wobei $x_0$ eine spezielle Lösung ist.
+      Um eine solche spezielle Lösung zu finden, haben wir die konkrete Berechnung von $\varphi^{-1}$ genutzt, um $\varphi^{-1}([8]_9, [7]_{11}) = [62]_{99}$ zu bestimmen.
+      
+      In dem konkreten Beispiel dieser Aufgabe ist es allerdings einfacher, eine spezielle Lösung zu bruteforcen, als $\varphi^{-1}$ zu berechnen:
+      Möglichen Lösungen der Gleichung $[x]_9 = [8]_9$ sind nämlich
+      \[
+        8, 17, 26, 35, 44, 53, 62, 71, 80, 89, 98, \dotsc,
+      \]
+      und mögliche Lösungen der Gleichung $[x]_{11} = [7]_{11}$ sind
+      \[
+        7, 18, 29, 40, 51, 62, 73, 84, 95, \dotsc,
+      \]
+      woraus sich durch direkten Vergleich die gemeinsame Lösung $62$ ergibt.
+    \item
+      Auf Ähnliche Weise lassen sich auch die Inversen $[4]_9^{-1}$ und $[3]_{11}^{-1}$ schnell durch Bruteforcen bestimmen:
+      Mögliche $z \in \Integer$ mit $[z]_9 = [1]_9$ sind
+      \[
+        1, 10, 19, 28, \dotsc,
+      \]
+      wobei $28$ ein Vielfaches von $4$ ist, nämlich das $7$-fache.
+      Folglich ist $[4]_9^{-1} = [7]_9$.
+      Mögliche $z \in \Integer$ mit $[z]_{11} = [1]_{11}$ sind
+      \[
+        1, 12, \dotsc,
+      \]
+      wobei $12$ ein Vielfaches von $3$ ist, nämlich das $4$-fache.
+      Folglich ist $[3]_{11}^{-1} = [4]_{11}$.
+      
+      Für kleine $n$ kann dieses Verfahren zum Bestimmen von Inversen in $\Integer/n\Integer$ von Hand einfacher und schneller sein als die Maschinerie des euklidischer Algorithmus.
+      (Inbesondere ist weniger Nachdenken und deutlich weniger Verwalten von Zwischenschritten erforderlich).
+  \end{enumerate}
 \end{remark}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -225,13 +219,11 @@ Wir erinnern an das folgende Resultat aus der Vorlesung:
   Sind $M$ und $N$ endlich erzeugt, so ist auch $P$ endlich erzeugt.
 \end{lemma}
 
-Es sei $0 \to M \xrightarrow{f} P \xrightarrow{g} N \to 0$ eine kurze exakte Sequenz von $R$-Moduln.
-
 
 
 \subsection*{$M$ und $N$ sind noethersch $\implies$ $P$ ist noethersch}
 
-Wir fixieren einen Untermoduln $P' \subseteq P$.
+Wir fixieren einen Untermodul $P' \subseteq P$.
 Es seien $M' \coloneqq f^{-1}(P')$ und $N' \coloneqq g(P')$, sowie $f' \coloneqq f|_{M'} \colon M' \to P'$, $m \mapsto f(m)$ und $g' \colon g|_{P'} \colon P' \to N'$, $p \mapsto g(p)$.
 Die Sequenz
 \begin{equation}
@@ -247,8 +239,8 @@ Die Exaktheit der Sequenz~\eqref{eqn: restricted short exact sequence} an $P'$ e
   = P' \cap \ker g
   = P' \cap \im f
   = f(f^{-1}(P'))
-  = f(N')
-  = f'(N')
+  = f(M')
+  = f'(M')
   = \im f'.
 \]
 Die Untermoduln $M' \subseteq M$ und $N' \subseteq N$ sind endlich erzeugt, da $M$ und $N$ noethersch sind.
