@@ -1,0 +1,215 @@
+\documentclass[a4paper,10pt,numbers=noenddot]{scrartcl}
+
+\usepackage{../generalstyle}
+\usepackage{specificstyle}
+
+\title{Lösung zu Zettel~10, Aufgabe 4}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+
+
+
+
+
+\maketitle
+
+
+
+
+
+\begin{lemma}
+  \label{lemma: quotients via diagonal matrices}
+  Es sei $R$ ein Ring.
+  \begin{enumerate}
+    \item
+      Es sei $(M_i)_{i \in I}$ eine Familie von $R$-Moduln, und für jedes $i \in I$ sei $N_i \subseteq M_i$ ein Untermodul.
+      Dann ist $\bigoplus_{i \in I} N_i \subseteq \bigoplus_{i \in I} M_i$ ein Untermodul, und die Abbildung
+      \[
+            \left( \bigoplus_{i \in I} M_i \right) / \left( \bigoplus_{i \in I} N_i \right)
+        \to \bigoplus_{i \in I} (M_i / N_i),
+        \qquad
+        [(m_i)_{i \in I}] \mapsto ([m_i])_{i \in I}
+      \]
+      ist ein wohldefinierter Isomorphismus von $R$-Moduln.
+    \item
+      Es sei $\phi \colon F \to G$ ein Modulhomomorphismus zwischen freien $R$-Moduln endlichen Ranks;
+      es gebe eine Basis $\basis{B} = (b_1, \dotsc, b_n)$ von $F$ und eine Basis $\basis{C} = (c_1, \dotsc, c_m)$ von $G$, so dass $\phi$ bezüglich dieser Basen durch eine Matrix $A \in \Mat(m \times n, R)$ der Form
+      \[
+          A
+        = \begin{pmatrix}
+            a_1     &         &         & 0       & \cdots  & 0       \\
+                    & \ddots  &         & \vdots  & \ddots  & \vdots  \\
+                    &         & a_r     & 0       & \cdots  & 0       \\
+            0       & \cdots  & 0       & 0       & \cdots  & 0       \\
+            \vdots  & \ddots  & \vdots  & \vdots  & \ddots  & \vdots  \\
+            0       & \cdots  & 0       & 0       & \cdots  & 0
+          \end{pmatrix}
+      \]
+      dargestellt wird.
+      Dann gilt $G / \im \phi \cong R/(a_1) \oplus \dotsb \oplus R/(a_r) \oplus R^{m-r}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Es ist klar, dass $\bigoplus_{i \in I} N_i \subseteq \bigoplus_{i \in I} M_i$ ein Untermodul ist.
+      Die Abbildung
+      \[
+                \varphi
+        \colon  \bigoplus_{i \in I} M_i \to \bigoplus_{i \in I} (M_i / N_i),
+        \quad
+                (m_i)_{i \in I} \mapsto ([m_i])_{i \in I}
+      \]
+      ist ein surjektiver Homomorphismus von $R$-Moduln, und induziert daher einen Isomorphismus von $R$-Moduln
+      \[
+                \overline{\varphi}
+        \colon  \left( \bigoplus_{i \in I} M_i \right) / \ker \varphi \to \bigoplus_{i \in I} (M_i / N_i),
+        \quad
+                [(m_i)_{i \in I}] \mapsto ([m_i])_{i \in I}
+      \]
+      Für $(m_i)_{i \in I} \in \bigoplus_{i \in I} M_i$ gilt
+      \[
+              (m_i)_{i \in I} \in \ker \varphi
+        \iff  \text{$[m_i] = 0$ für alle $i \in I$}
+        \iff  \text{$m_i \in N_i$ für alle $i \in I$},
+      \]
+      weshalb $\ker \varphi = \bigoplus_{i \in I} N_i$.
+    \item
+      Es gilt
+      \[
+          G
+        = R c_1 \oplus \dotsb \oplus R c_m
+      \quad\text{und}\quad
+          \im \phi
+        = (a_1) c_1 \oplus \dotsb \oplus (a_r) c_r
+      \]
+      und deshalb
+      \begin{align*}
+                G / \im \phi
+        &=      (R c_1 \oplus \dotsb \oplus R c_m) / \left( (a_1) c_1 \oplus \dotsb \oplus (a_r) c_r \right)
+        \\
+        &\cong  ( \underbrace{R \oplus \dotsb \oplus R}_{m} )
+                / ( (a_1) \oplus \dotsb \oplus (a_r) \oplus \underbrace{0 \oplus \dotsb \oplus 0}_{m-r} )
+        \\
+        &\cong  R/(a_1) \oplus \dotsb \oplus R/(a_r) \oplus \underbrace{R/0 \oplus \dotsb \oplus R/0}_{m-r}
+        \\
+        &\cong  R/(a_1) \oplus \dotsb \oplus R/(a_r) \oplus R^{m-r}.
+      \qedhere
+      \end{align*}
+  \end{enumerate}
+\end{proof}
+
+Es sei nun $R$ ein euklidischer Ring und $\phi \colon R^n \to R^m$ ein Homomorphismus von $R$-Moduln.
+Um den Quotienten $R^m / \im \phi$ bis auf Isomorphie zu bestimmen, lässt sich wie folgt vorgehen:
+\begin{enumerate}
+  \item
+    Bezüglich der Standardbasen von $R^n$ und $R^m$ wird der Homomorphismus $\phi$ durch eine Matrix $A \in \Mat(m \times n, R)$ dargestellt.
+    (Die Matrix $A$ ist dadurch gegeben, dass $\phi(x) = Ax$ für alle $x \in R^n$.)
+  \item
+    Durch elementare Zeilen- und Spaltenumformungen entsteht aus der Matrix $A$ eine Matrix $A' \in \Mat(m \times n, R)$ in Smith-Normalform.
+    D.h.\ es ist
+    \[
+        A'
+      = \begin{pmatrix}
+          a_1     &         &         & 0       & \cdots  & 0       \\
+                  & \ddots  &         & \vdots  & \ddots  & \vdots  \\
+                  &         & a_r     & 0       & \cdots  & 0       \\
+          0       & \cdots  & 0       & 0       & \cdots  & 0       \\
+          \vdots  & \ddots  & \vdots  & \vdots  & \ddots  & \vdots  \\
+          0       & \cdots  & 0       & 0       & \cdots  & 0
+        \end{pmatrix}.
+    \]
+    mit $a_i \mid a_{i+1}$ für alle $i = 1, \dotsc, r-1$.
+  \item
+    Es gibt eine Basis $\basis{B}$ von $R^n$ und eine Basis $\basis{C}$ von $R^m$, so dass $\phi$ bezüglich dieser Basen durch die Matrix $A'$ dargestellt wird.
+    Nach Lemma~\ref{lemma: quotients via diagonal matrices} ist deshalb
+    \[
+            R^m / \im \phi
+      \cong R/(a_1) \oplus \dotsb \oplus R/(a_r) \oplus R^{m-r}.
+    \]
+\end{enumerate}
+
+
+\begin{remark}
+  \begin{enumerate}
+    \item
+      Die Bedingung $a_i \mid a_{i+1}$ ist für die Berechnung des Quotienten nicht notwendig.
+      Die Matrix $A'$ muss also nicht in der Smith-Normalform sein, sondern nur in passender Diagonalgestalt.
+    \item
+      Die obige Berechnungsmethode zeigt, dass für eine Matrix $A \in \Mat(m \times n, R)$ der Quotient $R^m / A R^n$ bis auf Isomorphie nur von der Smith-Normalform von $A$ abhängt.
+  \end{enumerate}
+\end{remark}
+
+
+Wir betrachten nun die folgenden Matrizen mit ganzzahligen Einträgen:
+\[
+    A
+  = \begin{pmatrix}
+      0 & 1 & 2 \\
+      3 & 4 & 5 \\
+      6 & 7 & 8
+    \end{pmatrix},
+  \quad
+    B
+  = \begin{pmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9
+    \end{pmatrix},
+  \quad
+    C
+  = \begin{pmatrix}
+      2 & 3 &  4  \\
+      5 & 6 &  7  \\
+      8 & 9 & 10
+    \end{pmatrix},
+  \quad
+    D
+  = \begin{pmatrix}
+      -10 & 12  \\
+      -16 & 18
+    \end{pmatrix}
+\]
+Für diese Matrizen ergeben sich über $\Integer$ die folgenden Smith-Normalformen:
+\[
+    A'
+  = B'
+  = C'
+  = \begin{pmatrix}
+      1 &   &   \\
+        & 3 &   \\
+        &   & 0
+    \end{pmatrix},
+  \quad
+    D'
+  = \begin{pmatrix}
+      2 &    \\
+        & 6
+    \end{pmatrix}
+\]
+Damit ergibt sich, dass
+\[
+        \Integer^3 / A \Integer^3
+  \cong \Integer/(1) \oplus \Integer/(3) \oplus \Integer^1
+  \cong \Integer/3 \oplus \Integer
+\]
+und ebenso $\Integer^3 / B \Integer^3 \cong \Integer/3 \oplus \Integer$ und $\Integer^3 / C \Integer^3 \cong \Integer/3 \oplus \Integer$.
+Außerdem ergibt sich, dass
+\[
+        \Integer^2 / D \Integer^2
+  \cong \Integer/2 \oplus \Integer/6.
+\]
+
+
+
+
+
+
+
+
+
+
+\end{document}
