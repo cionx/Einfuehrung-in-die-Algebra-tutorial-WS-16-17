@@ -78,8 +78,65 @@
 \end{question}
 
 
-% TODO: Adding a solution.
+\begin{solution}
+  \begin{enumerate}
+    \item
+      Es seien $m_1, \dotsc, m_t \in M$ mit $M = \generate{m_1, \dotsc, m_t}_R$.
+      Wegen der Surjektivität von $g$ gilt dann
+      \[
+          P
+        = g(M)
+        = g(\generate{m_1, \dotsc, m_t}_R)
+        = \generate{g(m_1), \dotsc, g(m_t)}_R,
+      \]
+      weshalb $P$ endlich erzeugt ist.
+    \item
+      Es seien $n_1, \dotsc, n_s \in N$ und $p_{s+1}, \dotsc, p_t \in P$ endliche Erzeugendensysteme.
+      Für alle $i = 1, \dotsc, s$ sei $m_i \coloneqq f(n_i) \in M$;
+      wegen der Surjektivität gibt es für jedes $i = s+1, \dotsc, t$ ein $m_i \in M$ mit $g(m_i) = p_i$.
+      Dann gilt $\generate{m_1, \dotsc, m_s, m_{s+1}, \dotsc, m_t}_R = M$:
+      
+      Für $m \in M$ ist $g(m) \in P$ und deshalb $g(m) = r_{s+1} p_{s+1} + \dotsb + r_t p_t$ für passende $r_{s+1}, \dotsc, r_t \in R$.
+      Es sei $m' \coloneqq r_{s+1} m_{s+1} + \dotsb + r_t m_t \in M$.
+      Es gilt
+      \[
+          g(m')
+        = r_{s+1} g(m_{s+1}) + \dotsb + r_t g(m_t)
+        = r_{s+1} p_{s+1} + \dotsb + r_t p_t
+        = g(m)
+      \]
+      und somit $m - m' \in \ker g = \im N$.
+      Es sei $n \in N$ mit $f(n) = m - m'$.
+      Dann gilt $n = r_1 n_1 + \dotsb + r_s n_s$ für passende $r_1, \dotsc, r_s \in R$, und somit
+      \[
+          m - m'
+        = f(n)
+        = r_1 f(n_1) + \dotsb + r_s f(n_s)
+        = r_1 m_1 + \dotsb + r_s m_s.
+      \]
+      Ingesamt erhalten wir, dass
+      \[
+          m
+        = m - m' + m'
+        = r_1 m_1 + \dotsb + r_s m_s + r_{s+1} m_{s+1} + \dotsb + r_t m_t.
+      \]
+  \end{enumerate}
+\end{solution}
 
+
+\begin{question}
+  Es sei $R$ ein Hauptidealring und $M$ ein endlich erzeugter $R$-Modul.
+  Zeigen Sie, dass auch jeder Untermodul $N \subseteq M$ endlich erzeugt ist.
+\end{question}
+
+
+\begin{solution}
+  Es sei $m_1, \dotsc, m_t \in M$ ein endliches Erzeugendensystem und $\varphi \colon R^t \to M$ der eindeutige Homomorphismus von $R$-Moduln mit $\varphi(e_i) = m_i$ für alle $i = 1, \dotsc, t$ (hier bezeichnet $e_1, \dotsc, e_t \in R^t$ die Standardbasis).
+  Dann ist $\varphi$ surjektiv, und deshalb $F \coloneqq \varphi^{-1}(N)$ ein Untermodul von $R^t$, für den $\varphi(F) = N$ gilt.
+  Der $R$-Modul $R^t$ ist frei vom Rang $t$; da $R$ ein Hauptidealring ist, folgt daraus, dass der Untermodul $F \subseteq R^t$ frei vom Rang $s \leq t$ ist.
+  Insbesondere ist $F$ endlich erzeugt.
+  Somit ist auch $N = \varphi(F)$ endlich erzeugt.
+\end{solution}
 
 
 \begin{question}[subtitle=Charakterisierungen noetherscher Moduln]
@@ -87,20 +144,140 @@
   Zeigen Sie, dass die folgenden Bedingungen äquivalent sind:
   \begin{enumerate}
     \item
+      \label{enum: every submodule is finitely generated}
       Jeder $R$-Untermodul von $M$ ist endlich erzeugt.
     \item
+      \label{enum: every ascending chain of submodules stabilizes}
       Jede aufsteigende Kette
       \[
         N_0 \subseteq N_1 \subseteq N_2 \subseteq N_3 \subseteq N_4 \subseteq \dotso
       \]
-      von $R$-Moduln stabilisiert, i.e.\ es gibt ein $i \geq 0$ mit $N_j = N_i$ für alle $j \geq i$.
+      von Untermoduln von $M$ stabilisiert, i.e.\ es gibt ein $i \geq 0$ mit $N_j = N_i$ für alle $j \geq i$.
     \item
-      Jede nicht-leere Menge $\mathcal{S}$ bestehend aus $R$-Untermoduln von $M$ besitzt ein (bezüglich der Inklusion) maximales Element.
+      \label{enum: every non empty collection of submodules has a maximal element}
+      Jede nicht-leere Menge $\mathcal{S}$ bestehend aus $R$-Untermoduln von $M$ besitzt ein maximales Element, d.h.\ ein Element $N \in \mathcal{S}$, das in keinem anderen Element von $\mathcal{S}$ echt enthalten ist.
   \end{enumerate}
 \end{question}
 
 
-% TODO: Adding a solution
+\begin{solution}
+  Der Vollständigkeit halber geben wir mehr Implikationen an, als notwendig sind.
+  
+  (
+  \ref{enum: every submodule is finitely generated}
+  $\implies$
+  \ref{enum: every ascending chain of submodules stabilizes}
+  )
+  Es sei
+  \begin{equation}
+    \label{eqn: an ascending chain of submodules}
+              N_0
+    \subseteq N_1
+    \subseteq N_2
+    \subseteq N_3
+    \subseteq N_4
+    \subseteq \dotso
+  \end{equation}
+  eine aufsteigende Kette von Untermoduln von $M$.
+  Dann ist $N \coloneqq \bigcup_{i \geq 0} N_i$ ein Untermodul von $M$.
+  Nach Annahme ist $N$ endlich erzeugt; es sei $n_1, \dotsc, n_t \in N$ ein endliches Erzeugendensystem.
+  Da $n_1, \dotsc, n_t \in N = \bigcup_{i \geq 0} N_i$ gibt es für jedes $j = 1, \dotsc, t$ ein $i_j \geq 0$ mit $n_j \in N_{i_j}$;
+  da $N_i \subseteq N_{i+1}$ für alle $i \geq 0$ gibt es bereits ein $I \geq 0$ mit $n_1, \dotsc, n_t \subseteq N_I$.
+  Damit gilt
+  \[
+              N
+    =         \generate{n_1, \dotsc, n_t}_R
+    \subseteq N_I
+    \subseteq \bigcup_{i \geq 0} N_i
+    =         N
+  \]
+  und deshalb bereits $N = N_I$.
+  Für alle $i \geq I$ git dann $N = N_I \subseteq N_i \subseteq N$ und somit $N_i = N_I$.
+  Also stabilisiert die Kette \eqref{eqn: an ascending chain of submodules}.
+  
+  (
+  \ref{enum: every ascending chain of submodules stabilizes}
+  $\implies$
+  \ref{enum: every submodule is finitely generated}
+  )
+  Es gebe einen Untermodul $N \subseteq M$, der nicht endlich erzeugt ist.
+  Es gilt notwendigerweise $N \neq 0$.
+  Wir konstruieren eine nicht-stabilisierende Kette
+  \[
+                N_0
+    \subsetneq  N_1
+    \subsetneq  N_2
+    \subsetneq  N_3
+    \subsetneq  N_4
+    \subsetneq \dotso
+    \subsetneq  N
+    \subseteq   M
+  \]
+  von endlich erzeugten von $N$ wie folgt:
+  Wir beginnen mit $N_0 \coloneqq 0$.
+  Ist $N_i$ definiert, so gilt $N_i \subsetneq N$, da $N_i$ endlich erzeugt ist, $N$ aber nicht. 
+  Es gibt also $f \in N$ mit $f \notin N_i$.
+  Da $N_i$ endlich erzeugt ist, gilt dies auch für $N_{i+1} \coloneqq N_i + \generate{f}_R$, und nach Wahl von $f$ gilt $N_i \subsetneq N_{i+1}$.
+  
+  
+  (
+  \ref{enum: every ascending chain of submodules stabilizes}
+  $\implies$
+  \ref{enum: every non empty collection of submodules has a maximal element}
+  )
+  Es gebe eine nicht-leere Menge $\mathcal{S}$ von Untermoduln von $M$, die kein maximales Element besitzt.
+  Dann gibt es für jedes $N \in \mathcal{S}$ ein $N' \in \mathcal{S}$ mit $N \subsetneq N'$.
+  Ausgehend von einem beliebigen $N_0 \in \mathcal{S}$ erhalten wir somit eine Kette
+  \[
+                N_0
+    \subsetneq  N_1
+    \subsetneq  N_2
+    \subsetneq  N_3
+    \subsetneq  N_4
+    \subsetneq \dotso
+  \]
+  von Untermoduln von $M$, die nicht stabilisiert.
+  
+  
+  (
+  \ref{enum: every non empty collection of submodules has a maximal element}
+  $\implies$
+  \ref{enum: every ascending chain of submodules stabilizes}
+  )
+  Es sei
+  \[
+              N_0
+    \subseteq N_1
+    \subseteq N_2
+    \subseteq N_3
+    \subseteq N_4
+    \subseteq \dotso
+  \]
+  eine aufsteigende Kette von Untermoduln von $M$.
+  Dann ist $\mathcal{S} \coloneqq \{N_i \mid i \in I\}$ eine nicht-leere Menge von Untermoduln von $M$.
+  Nach Annahme hat $\mathcal{S}$ ein maximales Element, d.h.\ es gibt ein $i \in I$ mit $N_i \subsetneq N_j$ für alle $j \geq 0$.
+  Es muss also bereits $N_i = N_j$ für alle $j \geq i$ gelten, weshalb die Kette stabilisiert.
+  
+  (
+  \ref{enum: every non empty collection of submodules has a maximal element}
+  $\implies$
+  \ref{enum: every submodule is finitely generated}
+  )
+  Es sei $N \subseteq M$ ein Untermodul von $M$ und
+  \[
+      \mathcal{S}
+    = \{
+        P \subseteq N
+      \mid
+        \text{$P$ ist ein endlich erzeugter Untermodul von $N$}
+      \}.
+  \]
+  Dann ist $\mathcal{S}$ eine nicht-leere ($0 \in \mathcal{S}$) Menge von Untermoduln von $M$, und besitzt daher nach Annahme ein maximales Element $N'$.
+  Wäre $N' \subsetneq N$, so gebe es ein $f \in N$ mit $f \notin N'$.
+  Dann wäre aber $N'' \coloneqq N' + \generate{f}_R$ ein endlich erzeugter Untermodul von $N$, also ein Element von $\mathcal{S}$, mit $N' \subseteq N''$, was der Maximalität von $N'$ widerspricht.
+  Also muss bereits $N = N'$, und $N$ somit endlich erzeugt sein.
+\end{solution}
+
 
 
 \begin{question}
@@ -109,12 +286,40 @@
       Geben Sie für einen passenden Ring $R$ eine kurze exakte Sequenz $0 \to N \to M \to P \to 0$ von $R$-Moduln an, die nicht spaltet.
     \item
       Es sei $R$ ein kommutativer Ring und $F$ ein freier $R$-Modul.
-      Zeigen Sie, dass jede kurze exakte Sequenz von $R$-Moduln $0 \to N \to M \to F \to 0$ spaltet.
+      Zeigen Sie, dass jede kurze exakte Sequenz von $R$-Moduln $0 \to N \xrightarrow{f} M \xrightarrow{g} F \to 0$ spaltet.
   \end{enumerate}
 \end{question}
 
 
-% TODO: Adding a solution.
+\begin{solution}
+  \begin{enumerate}
+    \item
+      Wir betrachten die folgende kurze exakte Sequenz von $\Integer$-Moduln, d.h.\ von abelschen Gruppen:
+      \[
+                                              0
+        \to                                   \Integer
+        \xrightarrow{\cdot 2}                 \Integer
+        \xrightarrow{x \mapsto \overline{x}}  \Integer/2
+        \to                                   0
+      \]
+      Würde diese kurze exakte Sequenz spalten, so wäre $\Integer \cong \Integer \oplus \Integer/2$.
+      Dies gilt aber nicht, wie man den folgenden Gründen entnehmen kann:
+      \begin{itemize}
+        \item
+          Dies würde dem Hauptsatz über endlich erzeugte abelsche Gruppen widersprechen.
+        \item
+          $\Integer/2$ wäre isomorph zu einer Untergruppe von $\Integer$ und somit torsionsfrei (denn $\Integer$ ist frei und somit auch torsionsfrei, und Untergruppen von torsionsfreien abelschen Gruppen sind ebenfalls torsionsfrei), aber $2 \cdot \Integer/2 = 0$.
+        \item
+          $\Integer/2$ wäre isomorph zu einer Untergruppe von $\Integer$, und müsste somit entweder trivial oder unendlich sein, was beides nicht gilt.
+      \end{itemize}
+    \item
+      Es sei $(e_i)_{i \in I}$ eine Basis von $F$.
+      Wegen der Surjektivität von $g$ gibt es für jedes $i \in I$ ein $m_i \in M$ mit $g(m_i) = e_i$.
+      Es sei $h \colon F \to M$ der eindeutige Homomorphismus von $R$-Moduln mit $h(e_i) = m_i$ für alle $i \in I$.
+      Dann gilt $g(h(e_i)) = g(m_i) = e_i$ für alle $i \in I$, und wegen der $R$-Linearität von $g \circ h$ somit bereits $g(h(x)) = x$ für alle $x \in F$.
+      Also ist $g \circ h = \id_F$, weshalb die gegebene kurze exakte Sequenz spaltet.
+  \end{enumerate}
+\end{solution}
 
 
 \begin{question}
@@ -128,7 +333,6 @@
 \begin{solution}
   Für jedes Ideal $K \subseteq R$ gilt $\annihilator(R/K) = K$, weshalb $I = \annihilator(R/I) = \annihilator(R/J) = J$ gilt.
 \end{solution}
-
 
 
 \begin{question}[subtitle=Torsionsuntermoduln]
@@ -179,20 +383,72 @@
   Zeigen Sie, dass für jeden $R$-Moduln $M$ die folgenden Bedingungen äquivalent sind:
   \begin{enumerate}
     \item
+      \label{enum: module is cyclic}
       $M$ wird von einem einzelnen Element erzeugt, d.h.\ es gibt $m \in M$ mit $M = \generate{m}_R$.
     \item
+      \label{enum: module is quotient by its annihilator}
       Es gilt $M \cong R/\!\annihilator(M)$ als $R$-Moduln.
     \item
+      \label{enum: module is quotient by an ideal}
       Es gibt ein Ideal $I \subseteq R$ mit $R/I \cong M$ als $R$-Moduln.
   \end{enumerate}
   Erfüllt $M$ eine (und damit alle) dieser Bedingungen, so heißt $M$ \emph{zyklisch}.
 \end{question}
 
 
-% TODO: Adding a solution.
+\begin{solution}
+  (
+    \ref{enum: module is cyclic}
+    $\implies$
+    \ref{enum: module is quotient by its annihilator}
+  )
+  Es sei $m \in M$ mit $M = \generate{m}_R$.
+  Dann gilt
+  \[
+      \annihilator(M)
+    = \annihilator(\generate{m}_R)
+    = \annihilator(m)
+    = \{r \in R \mid rm = 0\}.
+  \]
+  Für den surjektive Homomorphismus von $R$-Moduln
+  \[
+            \varphi
+    \colon  R \to M,
+    \quad
+            r \mapsto rm
+  \]
+  gilt deshalb $\ker \varphi = \annihilator(M)$.
+  Somit induziert $\varphi$ einen Isomorphismus von $R$-Moduln
+  \[
+            \bar{\varphi}
+    \colon  R/\annihilator(M) \to M,
+    \quad
+            [r] \mapsto rm.
+  \]
+  
+  (
+    \ref{enum: module is quotient by its annihilator}
+    $\implies$
+    \ref{enum: module is quotient by an ideal}
+  )
+  Man setze $I = \annihilator(M)$.
+  
+  (
+    \ref{enum: module is quotient by an ideal}
+    $\implies$
+    \ref{enum: module is cyclic}
+  )
+  Ist $\varphi \colon R/I \to M$ ein Isomorphismus, so gilt
+  \[
+      M
+    = \varphi(R/I)
+    = \varphi(\generate{\overline{1}}_R)
+    = \generate{\varphi(\overline{1})}_R.
+  \]
+\end{solution}
 
 
-\begin{question}
+\begin{question}[subtitle = Schurs Lemma]
   Ein $R$-Modul $M$ heißt \emph{einfach}, wenn $M$ genau zwei Untermoduln hat.
   \begin{enumerate}
     \item
@@ -203,7 +459,26 @@
 \end{question}
 
 
-% TODO: Adding a solution.
+\begin{solution}
+  \begin{enumerate}
+    \item
+      Ist $M$ einfach, so muss $M \neq 0$, da $M$ sonst nur einen Untermodul hätte (nämlich sich selbst).
+      Dann sind $0, M \subseteq M$ zwei verschiedene Untermoduln, und nach Annahme gibt es keine weiteren Untermoduln.
+      
+      Ist $M \neq 0$ und sind $0, M \subseteq M$ die einzigen beiden Untermoduln, so hat $M$ genau zwei Untermoduln.
+    \item
+      Ist $f \colon M \to N$ ein Homomorphismus von $R$-Moduln mit $f \neq 0$, so sind $\ker f \subseteq M$ und $\im f \subseteq N$ Untermoduln mit $\ker f \neq M$ und $\im f \neq 0$.
+      Ist $M$ einfach, so muss bereits $\ker f = 0$ gelten, und $f$ somit bereits injektiv sein.
+      Ist $N$ einfach, so muss bereits $\im f = N$ gelten, und $f$ somit bereits surjektiv sein.
+      Sind $M$ und $N$ beide einfach, so ist $f$ also bereits ein Isomorphismus.
+  \end{enumerate}
+\end{solution}
+
+
+\begin{remark*}
+  Das Lemma von Schur besagt insbesondere, dass der Endomorphismenring eines einfachen Moduls ein Schiefkörper ist.
+\end{remark*}
+
 
 
 \begin{question}
@@ -212,6 +487,8 @@
     \item
       Es sei $R$ ein Integritätsbereich.
       Zeigen Sie, dass $R$ als $R$-Modul unzerlegbar ist.
+      
+      (\emph{Hinweis}: Zeigen Sie, dass $I \cap J \neq 0$ für alle Ideale $I, J \subseteq R$ mit $I, J \neq 0$.)
     \item
       Geben Sie ein Beispiel für einen Ring $R$, der zwar nicht nullteilerfrei ist, so dass aber $R$ als $R$-Modul dennoch unzerlegbar ist.
     \item

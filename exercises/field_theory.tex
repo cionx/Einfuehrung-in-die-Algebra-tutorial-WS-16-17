@@ -1,7 +1,7 @@
 \section{Körpertheorie}
 
 
-\begin{question}
+\begin{question}\label{question: characterization of fields via its ideals}
   Zeigen Sie, dass für einen kommutativen Ring $K$ die folgenden Bedingungen äquivalent sind:
   \begin{enumerate}
     \item
@@ -62,5 +62,175 @@
 \begin{solution}
   Gebe es eine gemeinsame Nullstelle $\alpha \in \overline{K}$ von $p$ und $q$, so wären $p$ und $q$ beide das Minimalpolynom von $\alpha$ über $K$, und somit $p = q$.
 \end{solution}
+
+
+\begin{question}
+  Es sei $K(\alpha)/K$ eine endliche, zyklische Körpererweiterung von ungeraden Grad.
+  Zeigen Sie, dass $K(\alpha) = K(\alpha^2)$.
+\end{question}
+
+
+\begin{solution}
+  Da $K(\alpha^2) \subseteq K(\alpha)$ gilt, genügt es zu zeigen, dass $\alpha^2 \in K(\alpha)$.
+  Wir nehmen an, dass $\alpha^2 \notin K(\alpha)$.
+  Dann ist das normierte quadratische Polynom $P(T) \coloneqq T^2 - \alpha^2 \in K(\alpha^2)[T]$ irreduzibel mit $P(\alpha) = 0$, und deshalb das Minimalpolynom von $\alpha$ über $K(\alpha^2)$.
+  Es ist also $[K(\alpha) : K(\alpha^2)] = 2$.
+  Damit gilt
+  \[
+      [K(\alpha) : K]
+    = [K(\alpha) : K(\alpha^2)] [K(\alpha^2) : K]
+    = 2 [K(\alpha^2) : K],
+  \]
+  was im Widerspruch dazu steht, dass $[K(\alpha) : K]$ ungerade ist.
+\end{solution}
+
+
+\begin{question}
+  Es sei $K$ ein algebraisch abgeschlossener Körper und $L/K$ eine algebraische Körpererweiterung.
+  Zeigen Sie, dass bereits $L = K$ gilt.
+\end{question}
+
+
+\begin{solution}
+  Es sei $\alpha \in L$.
+  Da $L/K$ algebraisch ist, gibt es ein normiertes Polynom $P \in K[T]$ mit $P \neq 0$ und $P(\alpha) = 0$.
+  Da $K$ algebraisch abgeschlossen ist zerfällt $P$ in Linearfaktoren, also $P(T) = (T - a_1) \dotsm (T - a_n)$ mit $a_1, \dotsc, a_n \in K$ und $n = \deg P$.
+  Da
+  \[
+      0
+    = P(\alpha)
+    = (\alpha - a_1) \dotsm (\alpha - a_n)
+  \]
+  muss bereits $\alpha = a_i$ für ein $1 \leq i \leq n$, und somit $\alpha \in K$.
+\end{solution}
+
+
+\begin{question}
+  Zeigen Sie, dass endliche Körpererweiterungen algebraisch sind.
+\end{question}
+
+
+\begin{solution}
+  Es sei $L/K$ eine endliche Körpererweiterung und $x \in L$.
+  Für den $K$-Untervektorraum $\generate{ \{x^n \mid n \in \Natural\} }_K \subseteq L$ gilt
+  \[
+          \dim_K \generate{ \{x^n \mid n \in \Natural \} }_K
+    \leq  \dim_K L
+    =     [L : K]
+    <     \infty,
+  \]
+  weshalb die Potenzen $x^n$ mit $n \in \Natural$ linear abhängig über $K$ sind.
+  Also gibt es eine nichttriviale Linearkombination
+  \[
+    a_n x^n + \dotsb + a_1 x + a_0 = 0
+  \]
+  mit $n \geq 1$ und $a_n, \dotsc, a_0 \in K$ mit $a_n \neq 0$.
+  Für das Polynom
+  \[
+              P(T)
+    \coloneqq a_n T^n + \dotsb + a_1 T + a_0
+    \in       K[T]
+  \]
+  gilt also $P(x) = 0$, weshalb $x$ algebraisch über $K$ ist.
+\end{solution}
+
+
+\begin{question}
+  Es sei $L/K$ eine Körpererweiterung und es seien $\alpha, \beta \in L$.
+  Zeigen Sie, dass $\alpha$ und $\beta$ genau dann beide algebraisch über $K$ sind, wenn $\alpha + \beta$ und $\alpha \beta$ beide algebraisch über $K$ sind.
+\end{question}
+
+
+\begin{remark*}
+  Da $\pi$ und $e$ transzenent (über $\Rational$) sind, muss $\pi + e$ oder $\pi \cdot e$ transzendent sein.
+  Es ist nicht bekannt, welches von beiden.
+\end{remark*}
+
+
+\begin{solution}
+  Sind $\alpha$ und $\beta$ algebraisch über $K$, so ist $K(\alpha, \beta) / K$ eine algebraische Körpererweiterung.
+  Da $\alpha + \beta, \alpha \beta \in K(\alpha, \beta)$ sind $\alpha + \beta$ und $\alpha \beta$ dann algebraisch über $K$.
+  
+  Es seien nun $\alpha + \beta$ und $\alpha \beta$ algebraisch über $K$.
+  Dann ist $K(\alpha + \beta, \alpha \beta)/K$ eine algebraische Erweiterung.
+  Auch die Erweiterung $K(\alpha, \beta)/K(\alpha + \beta, \alpha \beta)$ ist algebraisch, da $\alpha$ und $\beta$ Nullstellen des Polynoms
+  \[
+              P(T)
+    \coloneqq (T - \alpha)(T - \beta)
+    =         T^2 - (\alpha + \beta)T + \alpha \beta
+    \in       K(\alpha + \beta, \alpha \beta)[T]
+  \]
+  sind.
+  Wegen der Transitivität von Algebraizität folgt, dass auch $K(\alpha,\beta)/K$ algebraisch ist, also $\alpha$ und $\beta$ algebraisch über $K$ sind.
+\end{solution}
+
+
+\begin{question}
+  Es sei $L/K$ eine Körpererweiterung, so dass $p \coloneqq [L : K]$ endlich und prim ist.
+  Zeigen Sie, dass $L/K$ ein zyklische Erweiterung ist, und bestimmen Sie alle $\alpha \in L$ mit $L = K(\alpha)$.
+\end{question}
+
+
+\begin{solution}
+  Für alle $\alpha \in K$ ist $K(\alpha) = K$.
+  Ist $\alpha \in L$ mit $\alpha \notin K$, so ist $K(\alpha)/K$ eine echte Körperweiterung, weshalb $[K(\alpha) : K] \neq 1$ gilt.
+  Aus
+  \[
+      p
+    = [L : K]
+    = [L : K(\alpha)] \underbrace{[K(\alpha) : K]}_{\neq 1}
+  \]
+  folgt, da $p$ prim ist, dass $[L : K(\alpha)] = 1$ (und $[K(\alpha) : K] = p$), und somit $K(\alpha) = L$.
+  Also ist $L$ eine zyklische Körpererweiterung, und die möglichen Elemente sind genau die $\alpha \in L$, für die $\alpha \notin K$.
+\end{solution}
+
+
+\begin{question}
+  Es sei $L/K$ eine endliche Körpererweiterung mit $[L : K] = 2^k$ für ein $k \geq 0$.
+  Es sei $P \in K[T]$ ein kubisches Polynom, das eine Nullstelle in $L$ hat.
+  Zeigen Sie, dass $f$ bereits eine Nullstelle in $K$ hat.
+\end{question}
+
+
+\begin{solution}
+  Es sei $\alpha \in L$ eine Nullstelle von $P$.
+  Wir können o.B.d.A.\ davon ausgehen, dass $P$ normiert ist.
+  Hätte $P$ keine Nullstelle in $K$, so wäre $P$ irreduzibel in $K[T]$, da $P$ kubisch ist.
+  Damit wäre dann $P$ das Minimalpolynom von $\alpha$ über $K$, und somit $[K(\alpha) : K] = \deg P = 3$.
+  Dann wäre aber
+  \[
+          3
+    =     [K(\alpha) : K]
+    \mid  [L : K(\alpha)] [K(\alpha) : K]
+    =     [L : K]
+    =     2^k,
+  \]
+  was nicht gilt.
+\end{solution}
+
+
+\begin{question}
+  Zeigen Sie, dass eine Körpererweiterung $L/K$ genau dann algebraisch ist, wenn jeder Zwischenring $K \subseteq R \subseteq L$ bereits ein Körper ist.
+\end{question}
+
+
+\begin{solution}
+  Es sei $L/K$ algebraisch und $K \subseteq R \subseteq L$ ein Zwischenring.
+  Für $\alpha \in R$ ist dann $\alpha$ algebraisch über $K$, und somit $K(\alpha) = K[\alpha]$.
+  Da $R$ ein Ring ist, der $\alpha$ und $R$ enthält, gilt $K[\alpha] \subseteq R$.
+  Somit ist $K(\alpha) = K[\alpha] \subseteq R$.
+  Ist $\alpha \neq 0$, so ist inbesondere $\alpha^{-1} \in K(\alpha) \subseteq R$.
+  Das zeigt, dass jedes Element $\alpha \in R$ mit $\alpha \neq 0$ in $R$ invertierbar ist.
+  Somit ist $R$ ein Körper.
+  (Die Kommutativität von $R$ ist klar, es sich um einen Unterring von $L$ handelt, und $L$ als Körper kommutativ ist.)
+  
+  Es sei nun $L/K$ nicht algebraisch.
+  Dann gibt es ein Element $\alpha \in L$, das transzendent über $K$ ist.
+  Der Zwischenring $K \subseteq K[\alpha] \subseteq L$ ist dann kein Körper:
+  Für den Polynomring $K[T]$ ist der Einsetzhomorphismus $K[T] \to K[\alpha]$, $P(T) \to P(\alpha)$ surjektiv, und wegen der Transzendenz von $\alpha$ auch injektiv, und somit ein Isomorphismus.
+  Der Polynomring $K[T]$, und somit auch $K[\alpha]$, ist aber kein Körper.
+\end{solution}
+
+
 
 
