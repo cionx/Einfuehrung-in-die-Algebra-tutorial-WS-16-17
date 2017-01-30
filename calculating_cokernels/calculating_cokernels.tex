@@ -19,6 +19,12 @@
 
 
 
+\section{Allgemeines Vorgehen}
+
+
+
+
+
 \begin{lemma}
   \label{lemma: quotients via diagonal matrices}
   Es sei $R$ ein Ring.
@@ -27,7 +33,7 @@
       Es sei $(M_i)_{i \in I}$ eine Familie von $R$-Moduln, und für jedes $i \in I$ sei $N_i \subseteq M_i$ ein Untermodul.
       Dann ist $\bigoplus_{i \in I} N_i \subseteq \bigoplus_{i \in I} M_i$ ein Untermodul, und die Abbildung
       \[
-            \left( \bigoplus_{i \in I} M_i \right) / \left( \bigoplus_{i \in I} N_i \right)
+            \left. \left( \bigoplus_{i \in I} M_i \right) \middle/ \left( \bigoplus_{i \in I} N_i \right) \right.
         \to \bigoplus_{i \in I} (M_i / N_i),
         \qquad
         [(m_i)_{i \in I}] \mapsto ([m_i])_{i \in I}
@@ -107,10 +113,10 @@ Um den Quotienten $R^m / \im \phi$ bis auf Isomorphie zu bestimmen, lässt sich 
 \begin{enumerate}
   \item
     Bezüglich der Standardbasen von $R^n$ und $R^m$ wird der Homomorphismus $\phi$ durch eine Matrix $A \in \Mat(m \times n, R)$ dargestellt.
-    (Die Matrix $A$ ist dadurch gegeben, dass $\phi(x) = Ax$ für alle $x \in R^n$.)
+    (Die Matrix $A$ ist dadurch gegeben, dass $\phi(x) = Ax$ für alle $x \in R^n$ gilt.)
   \item
     Durch elementare Zeilen- und Spaltenumformungen entsteht aus der Matrix $A$ eine Matrix $A' \in \Mat(m \times n, R)$ in Smith-Normalform.
-    D.h.\ es ist
+    D.h.\ $A'$ ist von der Form
     \[
         A'
       = \begin{pmatrix}
@@ -120,7 +126,7 @@ Um den Quotienten $R^m / \im \phi$ bis auf Isomorphie zu bestimmen, lässt sich 
           0       & \cdots  & 0       & 0       & \cdots  & 0       \\
           \vdots  & \ddots  & \vdots  & \vdots  & \ddots  & \vdots  \\
           0       & \cdots  & 0       & 0       & \cdots  & 0
-        \end{pmatrix}.
+        \end{pmatrix}
     \]
     mit $a_i \mid a_{i+1}$ für alle $i = 1, \dotsc, r-1$.
   \item
@@ -137,7 +143,7 @@ Um den Quotienten $R^m / \im \phi$ bis auf Isomorphie zu bestimmen, lässt sich 
   \begin{enumerate}
     \item
       Die Bedingung $a_i \mid a_{i+1}$ ist für die Berechnung des Quotienten nicht notwendig.
-      Die Matrix $A'$ muss also nicht in der Smith-Normalform sein, sondern nur in passender Diagonalgestalt.
+      Die Matrix $A'$ muss also nicht in Smith-Normalform sein, sondern nur in passender Diagonalgestalt.
     \item
       Die obige Berechnungsmethode zeigt, dass für eine Matrix $A \in \Mat(m \times n, R)$ der Quotient $R^m / A R^n$ bis auf Isomorphie nur von der Smith-Normalform von $A$ abhängt.
   \end{enumerate}
@@ -204,12 +210,6 @@ Außerdem ergibt sich, dass
   \cong \Integer/2 \oplus \Integer/2 \oplus \Integer/3.
 \]
 Dabei nutzen wir den Chinesischen Restklassensatz, um einen Iso\-mor\-phis\-mus von Ringen, und damit insbesondere von abelschen Gruppen, $\Integer/6 \cong \Integer/2 \oplus \Integer/3$ zu erhalten.
-
-
-
-
-
-\appendix
 
 
 
@@ -350,6 +350,34 @@ Im Folgenden bringen wir die Matrizen $A$, $B$, $C$ und $D$ durch elementare Zei
   \end{pmatrix*}
 \end{align*}
 
+\begin{align*}
+  D:
+  &\
+  \begin{pmatrix}
+    -10 & 12  \\
+    -16 & 18
+  \end{pmatrix}
+  \to
+  \begin{pmatrix}
+    -10 & 2 \\
+    -16 & 2
+  \end{pmatrix}
+  \to
+  \begin{pmatrix}
+    6 & 2 \\
+    0 & 2
+  \end{pmatrix}
+  \to
+  \begin{pmatrix}
+    6 & 0 \\
+    0 & 2
+  \end{pmatrix}
+  \to
+  \begin{pmatrix}
+    2 & 0 \\
+    0 & 6
+  \end{pmatrix}
+\end{align*}
 
 
 
