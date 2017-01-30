@@ -34,7 +34,7 @@
       \]
       ist ein wohldefinierter Isomorphismus von $R$-Moduln.
     \item
-      Es sei $\phi \colon F \to G$ ein Modulhomomorphismus zwischen freien $R$-Moduln endlichen Ranks;
+      Es sei $\phi \colon F \to G$ ein Modulhomomorphismus zwischen freien $R$-Moduln endliches Rangs;
       es gebe eine Basis $\basis{B} = (b_1, \dotsc, b_n)$ von $F$ und eine Basis $\basis{C} = (c_1, \dotsc, c_m)$ von $G$, so dass $\phi$ bezüglich dieser Basen durch eine Matrix $A \in \Mat(m \times n, R)$ der Form
       \[
           A
@@ -68,7 +68,7 @@
                 \overline{\varphi}
         \colon  \left( \bigoplus_{i \in I} M_i \right) / \ker \varphi \to \bigoplus_{i \in I} (M_i / N_i),
         \quad
-                [(m_i)_{i \in I}] \mapsto ([m_i])_{i \in I}
+                [(m_i)_{i \in I}] \mapsto ([m_i])_{i \in I}.
       \]
       Für $(m_i)_{i \in I} \in \bigoplus_{i \in I} M_i$ gilt
       \[
@@ -78,7 +78,7 @@
       \]
       weshalb $\ker \varphi = \bigoplus_{i \in I} N_i$.
     \item
-      Es gilt
+      Es gelten
       \[
           G
         = R c_1 \oplus \dotsb \oplus R c_m
@@ -173,7 +173,7 @@ Wir betrachten nun die folgenden Matrizen mit ganzzahligen Einträgen:
       -16 & 18
     \end{pmatrix}
 \]
-Für diese Matrizen ergeben sich über $\Integer$ die folgenden Smith-Normalformen:
+Für diese Matrizen ergeben sich über $\Integer$ die folgenden Smith-Normalformen (die konkrenten Berechnungen finden sich im nächsten Abschnitt):
 \[
     A'
   = B'
@@ -200,13 +200,155 @@ und ebenso $\Integer^3 / B \Integer^3 \cong \Integer/3 \oplus \Integer$ und $\In
 Außerdem ergibt sich, dass
 \[
         \Integer^2 / D \Integer^2
-  \cong \Integer/2 \oplus \Integer/6.
+  \cong \Integer/2 \oplus \Integer/6
+  \cong \Integer/2 \oplus \Integer/2 \oplus \Integer/3.
 \]
+Dabei nutzen wir den Chinesischen Restklassensatz, um einen Iso\-mor\-phis\-mus von Ringen, und damit insbesondere von abelschen Gruppen, $\Integer/6 \cong \Integer/2 \oplus \Integer/3$ zu erhalten.
 
 
 
 
 
+\appendix
+
+
+
+
+
+\section{Berechnung der Smith-Normalformen}
+
+Im Folgenden bringen wir die Matrizen $A$, $B$, $C$ und $D$ durch elementare Zeilen- und Spaltenumformungen in Smith-Normalform.
+
+\begin{align*}
+  A:
+  &\,
+  \begin{pmatrix}
+    0 & 1 & 2 \\
+    3 & 4 & 5 \\
+    6 & 7 & 8
+  \end{pmatrix}
+  \to
+  \begin{pmatrix*}[r]
+    0 & 1 &  0  \\
+    3 & 4 & -3  \\
+    6 & 7 & -6
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    0 & 1 &  0  \\
+    3 & 0 & -3  \\
+    6 & 0 & -6
+  \end{pmatrix*}
+  \\
+  \to&\,
+  \begin{pmatrix*}[r]
+    1 & 0 &  0  \\
+    0 & 3 & -3  \\
+    0 & 6 & -6
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 6 & 0
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 0
+  \end{pmatrix*}
+\end{align*}
+
+\begin{align*}
+  B:
+  &\,
+  \begin{pmatrix*}[r]
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 &  0 &   0  \\
+    4 & -3 &  -6  \\
+    7 & -6 & -12
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 &  0 &   0  \\
+    0 & -3 &  -6  \\
+    0 & -6 & -12
+  \end{pmatrix*}
+  \\
+  &\,
+  \to
+  \begin{pmatrix*}[r]
+    1 &  0 & 0  \\
+    0 & -3 & 0  \\
+    0 & -6 & 0
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 &  0 & 0  \\
+    0 & -3 & 0  \\
+    0 &  0 & 0
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 0
+  \end{pmatrix*}
+\end{align*}
+
+\begin{align*}
+  C:
+  &\,
+  \begin{pmatrix*}[r]
+    2 & 3 &  4  \\
+    5 & 6 &  7  \\
+    8 & 9 & 10
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    2 & 1 &  4  \\
+    5 & 1 &  7  \\
+    8 & 1 & 10
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    0 & 1 & 0 \\
+    3 & 1 & 3 \\
+    6 & 1 & 6
+  \end{pmatrix*}
+  \\
+  &\,
+  \to
+  \begin{pmatrix*}[r]
+    0 & 1 & 0 \\
+    3 & 0 & 3 \\
+    6 & 0 & 6
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 3 \\
+    0 & 6 & 6
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 6 & 0
+  \end{pmatrix*}
+  \to
+  \begin{pmatrix*}[r]
+    1 & 0 & 0 \\
+    0 & 3 & 0 \\
+    0 & 0 & 0
+  \end{pmatrix*}
+\end{align*}
 
 
 
