@@ -1,0 +1,313 @@
+\documentclass[a4paper,10pt,numbers=noenddot]{scrartcl}
+
+\usepackage{../generalstyle}
+\usepackage{specificstyle}
+
+\title{Lösung zu Zettel~11, \\ Aufgaben 3 und 4}
+\author{Jendrik Stelzner}
+\date{\today}
+
+\begin{document}
+
+
+
+
+
+\maketitle
+
+
+
+\section{Aufgabe 3}
+
+Die $K$-linearen Körperhomomorphismen $K(t) \to K(t)$ sind nach der universellen Eigeschaft des Quotientenkörpers genau die eindeutigen Fortsetzungen der $K$-linearen, injektiven Ringhomomorphismen $K[T] \to K(t)$.
+
+Die $K$-linearen Ringhomomorphismen $K[T] \to K(t)$ sind genau die Einsetzhomomorphismen von Elementen aus $K(t)$, wobei jedes Element einen anderen Einsetzhomomorphismus liefert; die injektiven Einsetzhomomorphismen entsprechen dabei genau den Elementen aus $K(t)$, die transzendent über $K$ sind.
+Nach Aufgabe~2 ist ein Element $q \in K(t)$ genau dann transzendent, wenn $q \notin K$.
+
+Ingesamt erhalten wir, dass die $K$-linearen Körperhomomorphismen $K(t) \to K(t)$ genau die Abbildungen der Form $p \mapsto p(q)$ für $q \in K(t)$ mit $q \notin K$ sind.
+
+\begin{claim}
+  Für ein Element $q \in K(t)$ gilt genau dann $q \notin K$, wenn $q = (at+b)/(ct+d)$ für ein
+  \[
+    \begin{pmatrix}
+      a & b
+      \\
+      c & d
+    \end{pmatrix}
+    \in \GL_2(K).
+  \]
+\end{claim}
+\begin{proof}
+  
+\end{proof}
+
+
+Ist $q \in K(t)$ mit $q \notin K$, so ist das Bild des Einsetzhomomorphismus
+\[
+  \varphi \colon K(t) \to K(t),
+  \quad
+  p \mapsto p(q)
+\]
+genau $K(q)$.
+Ist $q = f/g$ mit teilerfremden $f, g \in K[T]$, so gilt nach Aufgabe~2, dass
+\[
+    [K(t) : \im \varphi]
+  = [K(t) : K(q)]
+  = \max\{ \deg f, \deg g \}.
+\]
+Folglich ist $\varphi$ genau dann surjektiv, und damit bijektiv (denn Körperhomomorphismen sind immer injektiv), wenn $[K(t) : \im \varphi] = 1$, wenn also $f = at+b$ und $g = ct+d$ mit $a \neq 0$ oder $c \neq 0$.
+
+Für ein Element $(at+b)/(ct+d)$ mit $c \neq 0$ oder $d \neq 0$ gilt
+\begin{align*}
+      &\, \frac{at+b}{ct+d} \in K
+  \\
+  \iff&\, \frac{at+b}{ct+d} = \lambda       \quad \text{für ein $\lambda \in K$}
+  \\
+  \iff&\, at + b = c \lambda t + d \lambda  \quad \text{für ein $\lambda \in K$}
+  \\
+  \iff&\, \left\{
+            \begin{matrix}
+              a &=& c \lambda
+              \\
+              b &=& d \lambda
+            \end{matrix}
+          \right.                           \quad \text{für ein $\lambda \in K$}
+  \\
+  \iff&\, \text{$\vect{a \\ b}$ und $\vect{c \\ d}$ sind linear abhängig}
+  \\
+  \iff&\, \begin{pmatrix}
+            a & b
+            \\
+            c & d
+          \end{pmatrix}
+          \notin \GL_2(K).
+\end{align*}
+
+Insgesamt erhalten wir somit, dass die $K$-linearen Körperautomorphismen $K(t) \to K(t)$ genau die Einsetzhomomorphismen von Elementen $q \in K(t)$ der Form $q = (at+b)/(ct+d)$ mit
+\[
+  \begin{pmatrix}
+    a & b
+    \\
+    c & d
+  \end{pmatrix}
+  \in
+  \GL_2(K)
+\]
+sind.
+Wir haben also eine surjektive Abbildung
+\[
+          \Phi
+  \colon  \GL_2(K)
+  \to     \Gal(K(t) / K),
+  \quad
+          \begin{pmatrix}
+            a & b
+            \\
+            c & d
+          \end{pmatrix}
+          \mapsto
+          \left(
+                    p
+            \mapsto p\left( \frac{at+b}{ct+d} \right)
+          \right).
+\]
+Diese Abbildung ist ein Gruppenantihomomorphismus, d.h.\ für alle $S_1, S_2 \in \GL_2(K)$ gilt $\Phi(S_1 S_2) = \Phi(S_2) \Phi(S_1)$.
+Sind nämlich
+\[
+    S_1
+  = \begin{pmatrix}
+      a & b
+      \\
+      c & d
+    \end{pmatrix}
+  \quad
+  \text{und}
+  \quad
+    S_2
+  = \begin{pmatrix}
+      a'  & b'
+      \\
+      c'  & d'
+    \end{pmatrix},
+\]
+so gilt
+\begin{align*}
+      \Phi(S_1)\left( \Phi(S_2)(t) \right)  
+  &=  \Phi(S_1)( \Phi(S_2)(t) )
+  =   \Phi(S_1)\left( \frac{a' t + b'}{c' t + d'} \right)
+  =   \frac{a' \Phi(S_1)(t) + b'}{c' \Phi(S_1 ) + d'}
+  \\
+  &=  \frac{a' \frac{a t + b}{c t + d} + b'}{c' \frac{a t + b}{c t + d} + d'}
+  =   \frac{a'(at+b) + b'(ct+d)}{c'(at+b) + d'(ct+d)}
+  =   \frac{(a'a + b'c)t + a'b + b'd}{(c'a + d'c)t  + (c'b + d'd)}
+  \\
+  &=  \Phi\left(
+            \begin{pmatrix}
+              a'a + b'c & a'b + b'd
+              \\
+              c'a + d'c & c'b + d'd
+            \end{pmatrix}
+          \right)(t)
+  =   \Phi(S_2 S_1)(t).
+\end{align*}
+
+Es gilt $\ker \varphi = K^\times I$, denn
+\begin{align*}
+        \begin{pmatrix}
+          a & b
+          \\
+          c & d
+        \end{pmatrix}
+        \in
+        \ker \varphi
+  &\iff
+        \varphi
+        \left(
+          \begin{pmatrix}
+            a & b
+            \\
+            c & d
+          \end{pmatrix}
+        \right)
+        =
+        \id
+  \\
+  &\iff
+        \varphi
+        \left(
+          \begin{pmatrix}
+            a & b
+            \\
+            c & d
+          \end{pmatrix}
+        \right)
+        (t)
+        =
+        t
+  \\
+  &\iff
+        \frac{at+b}{ct+d} = t
+  \\
+  &\iff
+        at + b = ct^2 + dt
+  \\
+  &\iff
+        a = d, b = c = 0.
+\end{align*}
+Somit induziert $\varphi$ einen Antiisomorphismus von Gruppen
+\[
+  \PGL_2(K) \to \Gal(K(t)/K),
+  \quad
+  \overline{
+  \begin{pmatrix}
+    a & b
+    \\
+    c & d
+  \end{pmatrix}
+  }
+  \mapsto
+  \varphi
+  \left(
+    \begin{pmatrix}
+      a & b
+      \\
+      c & d
+    \end{pmatrix}
+  \right).
+\]
+
+
+
+
+
+\section{}
+
+Es sei
+\[
+            C_n(K)
+  \coloneqq \{ \omega \in K \mid \omega^2 = 1 \}
+\]
+die Gruppe der $n$-ten Einheitswurzeln in $K$;
+es handelt sich um eine Untergruppe von $K^\times$.
+
+Für alle $\omega \in C_n(K)$ ist das Element $\omega t \in K(t)$ transzendent, da $\omega t \notin K$.
+Somit gibt es für jedes $\omega \in C_n(K)$ einen Körperhomomorphismus
+\[
+          \sigma_\omega
+  \colon  K(t) \to K(t),
+  \quad   p(t) \mapsto p(\omega t).
+\]
+Es gilt $\omega_1 = \id_{K(t)}$, und für alle $\omega_1, \omega_2 \in C_n(K)$ gilt $\sigma_{\omega_1} \circ \sigma_{\omega_2} = \sigma_{\omega_1 \omega_2}$.
+Daraus folgt, dass $\{\sigma_\omega \mid \omega \in C_n(K)\}$ ein Untergruppe von $\Aut(K(t))$ ist, und die Abbildung
+\[
+          \Phi
+  \colon  C_n(K) \to \Aut(K(t)),
+  \quad   \omega \mapsto \sigma_\omega
+\]
+ein Gruppenhomomorphismus ist.
+Da $\phi(\omega)(t) = \sigma_\omega(t) = \omega t$ ist $\phi$ injektiv.
+Wir zeigen, dass $\im \phi = \Gal(K(t) / K(t^n))$;
+damit liefert die Zuordnung $\omega \mapsto \sigma_\omega$ einen Isomorphismus $C_n(K) \to \Gal(K(t) / K(t^n))$.
+
+Es gilt $\im \Phi \subseteq \Gal(K(t) / K(t^n))$,
+denn für jedes $\omega \in C_n(K)$ gilt
+\[
+    \sigma_\omega(t^n)
+  = \sigma_\omega(t)^n
+  = (\omega t)^n
+  = \omega^n t^n
+  = t^n
+\]
+und somit $\sigma_\omega|_{K(t^n)} = \id_{K(t^n)}$.
+
+Die Surjektivität von $\Phi$ nach $\Gal(K(t) / K(t^n))$ ergibt sich aus der folgenden Aussage:
+
+\begin{claim}
+  Ist $P \in K(t)$ mit $P^n = t^n$, so ist $P = \omega t$ mit $\omega \in C_n(K)$.
+\end{claim}
+\begin{proof}
+  Es sei $\mathcal{P} \subseteq K[T]$ ein Repräsentantensystem der Primelemente von $K[T]$.
+  Wir können o.B.d.A.\ davon ausgehen, dass $t \in \mathcal{P}$.
+  Dann gibt es eine eindeutige Darstellung
+  \[
+    P = \omega \prod_{p \in \mathcal{P}} p^{\nu_p}
+  \]
+  mit $\omega \in K^\times$ und $\nu_p \in \Integer$ für alle $p \in \mathcal{P}$, wobei $\nu_p = 0$ für fast alle $p \in \mathcal{P}$.
+  Es gilt
+  \[
+      t^n
+    = P^n
+    = \omega^n \prod_{p \in \mathcal{P}} p^{n \nu_p}
+    = \omega^n t^{n \nu_t} \prod_{p \in \mathcal{P} \setminus \{t\}} p^{n \nu_p}
+  \]
+  und aus der Eindeutigkeit der Darstellung von $t^n$ ergibt sich, dass $\omega^n = 1$, $\nu_t = 1$ und $\nu_p = 0$ für alle $ \in \mathcal{P} \setminus \{t\}$.
+  Also ist $P = \omega t$ mit $\omega \in C_n(K)$.
+\end{proof}
+
+Die Galoisgruppe der Körpererweiterung $K(t)/K(t^n)$ ist also die Gruppe der $n$-ten Einheitswurzeln.
+Nach Aufgabe~2 gilt $[K(t) : K(t^n)] = n$ (das Minimalpolynom von $t$ über $K(t^n)$ ist $X - t^n \in K(t^n)[X]$),
+also st $K(t)/K(t^n)$ genau dann galoisch, wenn $|C_n(K)| = n$.
+Da $C_n(K)$ die Nullstellenmenge des Polynoms $X^n - 1 \in K[X]$ ist, gilt dies genau dann, wenn das Polynom $X^n - 1 \in K[X]$ vollständig in Linearfaktoren zerfällt, und alle Nullstellen paarweise verschieden sind, d.h.\ wenn das Polynom zerfällt und seperabel ist.
+
+Gilt $p \coloneqq \ringchar(K) > 0$ und $n = p^r$, so gilt
+\[
+    X^n - 1
+  = X^{p^r} - 1^{p^r}
+  = (X - 1)^{p_r}.
+\]
+In diesem Fall ist also $\Gal(K(t) / K(t^n)) \cong C_n(K) \cong 1$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
